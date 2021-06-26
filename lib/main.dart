@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swimstatsapp/home.dart';
+import 'package:swimstatsapp/add_swimmer.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Select Swimmer'),
-          centerTitle: true,
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        '/addswimmer': (context) => AddSwimmer(),
+      },
     );
   }
 }
+
