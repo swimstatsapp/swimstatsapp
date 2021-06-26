@@ -17,7 +17,7 @@ class _AddSwimmerState extends State<AddSwimmer> {
   String? _currentState = 'State 1';//initialize with first region
   var regions = ['Region 1', 'Region 2'];
   var states = ['State 1', 'State 2'];
-  DateTime _dateTime = DateTime.now();
+  DateTime _birthday = DateTime.now(); //just to have initial value
   //created global key, needed for form
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -49,6 +49,21 @@ class _AddSwimmerState extends State<AddSwimmer> {
     );
   }
 
+  Future<Null> _selectDate (BuildContext context) async {
+    DateTime? _datePicker = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2022),
+    );
+
+    if(_datePicker != null && _datePicker != _birthday) {
+      setState(() {
+        _birthday = _datePicker;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -68,7 +83,7 @@ class _AddSwimmerState extends State<AddSwimmer> {
         ),
         body: Container(
           //edge insets to add margin around the form
-          margin: EdgeInsets.all(48),
+          padding: EdgeInsets.all(48),
           child: Form(
             key: _formKey,
             child: ListView(
@@ -126,20 +141,11 @@ class _AddSwimmerState extends State<AddSwimmer> {
                     IconButton(
                       icon:Icon(Icons.calendar_today),
                       onPressed: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2001),
-                          lastDate: DateTime(2021),
-                        ).then((date) {
-                          setState(() {
-                            _dateTime = date!;
-                          });
-                        });
-                      },
+                        _selectDate(context);
+                      }
                     ),
                     SizedBox(width: 10),
-                    Text(_dateTime == null ? 'Nothing has been picked yet' : _dateTime.toString()),
+                    Text(_birthday ==  null ? 'Nothing has been picked yet' : _birthday.toString()),
                   ],
                 ),
                 SizedBox(height:20),
@@ -149,10 +155,14 @@ class _AddSwimmerState extends State<AddSwimmer> {
                       if (_formKey.currentState!.validate() == true){ //.validate() function causes form to validate
                         _formKey.currentState!.save();
                         //values now stored in _firstName and _lastName
+
+                        //check your console for output
+                        //route this data to the identifier creator file
                         print("$_firstName");
                         print("$_lastName");
                         print("$_currentRegion");
                         print("$_currentState");
+                        print("$_birthday");
                         Navigator.pop(context);
                       }
                     }
@@ -161,13 +171,8 @@ class _AddSwimmerState extends State<AddSwimmer> {
                   children: <Widget> [
                     Icon(Icons.info),
                     SizedBox(width: 10),
-                    Text('SwimStats never stores any of your data. Read our'),
-                    GestureDetector(
-                        child: Text(" privacy policy.", style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue)),
-                        onTap: () {
-                          // do what you need to do when "Click here" gets clicked
-                        }
-                    )
+                    Flexible(
+                        child: Text('SwimStats never stores any of your data. Read our privacy policy.')),
                   ],
                 ),
               ],
