@@ -363,15 +363,16 @@ class _AddSwimmerState extends State<AddSwimmer> {
 
                         //check your console for output
                         //route this data to the identifier creator file
-                        print("$_firstName");
-                        print("$_lastName");
-                        print("$_currentRegion");
-                        print("$_currentLSC");
-                        print("$_birthday");
-                        print("$_birthdayMonth");
-                        print("$_birthdayDay");
-                        print("$_birthdayYear");
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/createurl', arguments: {
+                          'firstName': _firstName,
+                          'lastName': _lastName,
+                          'currentRegion': _currentRegion,
+                          'currentLSC': _currentLSC,
+                          'birthday': _birthday,
+                          'birthdayMonth': _birthdayMonth,
+                          'birthdayDay': _birthdayDay,
+                          'birthdayYear': _birthdayYear,
+                        });
                       }
                     }
                 ),
