@@ -13,10 +13,9 @@ class _AddSwimmerState extends State<AddSwimmer> {
   String _swimmerMonth = '';
   String _swimmerDay = '';
   String _swimmerYear = '';
-  String? _currentRegion = 'Region 1';
-  String? _currentState = 'State 1';//initialize with first region
-  var regions = ['Region 1', 'Region 2'];
-  var states = ['State 1', 'State 2'];
+  String? _currentRegion = 'aft';
+  String? _currentLSC = 'Florida';
+  List<String> lsc = ['Florida','Florida Gold Coast','Southeastern'];//initialize with first region
   DateTime _birthday = DateTime.now(); //just to have initial value
   String _birthdayMonth = DateTime.now().month.toString();
   String _birthdayDay = DateTime.now().day.toString();
@@ -104,36 +103,233 @@ class _AddSwimmerState extends State<AddSwimmer> {
                 DropdownButton(
                   value: _currentRegion,
                   icon: Icon(Icons.keyboard_arrow_down),
-                  items: regions.map((String regions) {
-                    return DropdownMenuItem(
-                      value: regions,
-                      child: Text(regions)
-                    );
-                  }).toList(),
+                  items: [
+                    DropdownMenuItem(
+                      child: Text('Alabama - Florida - Tennessee'),
+                      value: 'aft',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Alaska'),
+                      value: 'ak',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Arizona'),
+                      value: 'az',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('California - Nevada'),
+                      value: 'cal',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Colorado - New Mexico - Utah - Wyoming'),
+                      value: 'cnw',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Connecticut - Maine - New England'),
+                      value: 'ne',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('D.C. - Maryland - Virginia'),
+                      value: 'mdva',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Delaware- New Jersey - Pennsylvania'),
+                      value: 'dnp',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Georgia - North Carolina - South Carolina'),
+                      value: 'nc',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Hawaii'),
+                      value: 'hi',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Idaho - Montana - Oregon - Washington'),
+                      value: 'imow',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Illinois - Iowa'),
+                      value: 'ii',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Indiana'),
+                      value: 'in',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Kentucky - West Virginia'),
+                      value: 'kywv',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Lake Erie - Michigan - Ohio'),
+                      value: 'leoh',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Lousiana - Mississippi'),
+                      value: 'lams',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Minnesota - North Dakota - South Dakota - Wisconsin'),
+                      value: 'mmw',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('New York'),
+                      value: 'ny',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Texas'),
+                      value: 'tx',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Arkansas - Kansas - Missouri - Nebraska - Oklahoma'),
+                      value: 'kmno',
+                    ),
+                  ],
                   onChanged: (String? newValue) {
                     setState(() {
                       _currentRegion = newValue;
+
+                      if(_currentRegion == 'aft') {
+                        setState(() {
+                          lsc = ['Florida','Florida Gold Coast','Southeastern'];
+                          _currentLSC = 'Florida';
+                        });
+                      }
+                      if(_currentRegion == 'ak') {
+                        setState(() {
+                          lsc = ['Alaska','None'];
+                          _currentLSC = 'Alaska';
+                        });
+                      }
+                      if(_currentRegion == 'az') {
+                        setState(() {
+                          lsc = ['Arizona','None'];
+                          _currentLSC = 'Arizona';
+                        });
+                      }
+                      if(_currentRegion == 'cal') {
+                        setState(() {
+                          lsc = ['Southern California','Pacific','San Diego - Imperial', 'Central', 'Sierra Nevada'];
+                          _currentLSC = 'Southern California';
+                        });
+                      }
+                      if(_currentRegion == 'cnw') {
+                        setState(() {
+                          lsc = ['Colorado','New Mexico','Utah', 'Wyoming'];
+                          _currentLSC = 'Colorado';
+                        });
+                      }
+                      if(_currentRegion == 'ne') {
+                        setState(() {
+                          lsc = ['Connecticut','Maine','New England'];
+                          _currentLSC = 'Connecticut';
+                        });
+                      }
+                      if(_currentRegion == 'mdva') {
+                        setState(() {
+                          lsc = ['Maryland','Potomac Valley','Virginia'];
+                          _currentLSC = 'Maryland';
+                        });
+                      }
+                      if(_currentRegion == 'dnp') {
+                        setState(() {
+                          lsc = ['Allegheny Mountain','Mid Atlantic','New Jersey'];
+                          _currentLSC = 'Allegheny Mountain';
+                        });
+                      }
+                      if(_currentRegion == 'nc') {
+                        setState(() {
+                          lsc = ['Georgia','North Carolina','South Carolina'];
+                          _currentLSC = 'Georgia';
+                        });
+                      }
+                      if(_currentRegion == 'hi') {
+                        setState(() {
+                          lsc = ['Hawaii','None'];
+                          _currentLSC = 'Hawaii';
+                        });
+                      }
+                      if(_currentRegion == 'imow') {
+                        setState(() {
+                          lsc = ['Inland Empire','Montana','Oregon','Pacific Northwest','Snake River'];
+                          _currentLSC = 'Inland Empire';
+                        });
+                      }
+                      if(_currentRegion == 'ii') {
+                        setState(() {
+                          lsc = ['Illinois','Iowa'];
+                          _currentLSC = 'Illinois';
+                        });
+                      }
+                      if(_currentRegion == 'in') {
+                        setState(() {
+                          lsc = ['Indiana','None'];
+                          _currentLSC = 'Indiana';
+                        });
+                      }
+                      if(_currentRegion == 'kywv') {
+                        setState(() {
+                          lsc = ['Kentucky','West Virginia'];
+                          _currentLSC = 'Kentucky';
+                        });
+                      }
+                      if(_currentRegion == 'leoh') {
+                        setState(() {
+                          lsc = ['Lake Erie','Michigan','Ohio'];
+                          _currentLSC = 'Lake Erie';
+                        });
+                      }
+                      if(_currentRegion == 'lams') {
+                        setState(() {
+                          lsc = ['Louisiana','Mississippi'];
+                          _currentLSC = 'Louisiana';
+                        });
+                      }
+                      if(_currentRegion == 'mmw') {
+                        setState(() {
+                          lsc = ['Minnesota','North Dakota','South Dakota','Wisconsin'];
+                          _currentLSC = 'Minnesota';
+                        });
+                      }
+                      if(_currentRegion == 'ny') {
+                        setState(() {
+                          lsc = ['Adirondack','Metropolitan','Niagara'];
+                          _currentLSC = 'Adirondack';
+                        });
+                      }
+                      if(_currentRegion == 'tx') {
+                        setState(() {
+                          lsc = ['Border','Gulf','North Texas','South Texas','West Texas'];
+                          _currentLSC = 'Border';
+                        });
+                      }
+                      if(_currentRegion == 'kmno') {
+                        setState(() {
+                          lsc = ['Arkansas','Missouri Valley','Oklahoma','Midwestern','Ozark'];
+                          _currentLSC = 'Arkansas';
+                        });
+                      }
                     });
                   },
                 ),
                 // sizedBox just to add more space
                 SizedBox(height:20),
-                Text('Enter your state',
+                Text('Enter your Local Swim Committee',
                 style: TextStyle(
                   fontSize: 20,
                 )),
                 DropdownButton(
-                  value: _currentState,
+                  value: _currentLSC,
                   icon: Icon(Icons.keyboard_arrow_down),
-                  items: states.map((String states) {
+                  items: lsc.map((String lsc) {
                     return DropdownMenuItem(
-                        value: states,
-                        child: Text(states)
+                        value: lsc,
+                        child: Text(lsc)
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
-                      _currentState = newValue;
+                      _currentLSC = newValue;
                     });
                   },
                 ),
@@ -170,7 +366,7 @@ class _AddSwimmerState extends State<AddSwimmer> {
                         print("$_firstName");
                         print("$_lastName");
                         print("$_currentRegion");
-                        print("$_currentState");
+                        print("$_currentLSC");
                         print("$_birthday");
                         print("$_birthdayMonth");
                         print("$_birthdayDay");
