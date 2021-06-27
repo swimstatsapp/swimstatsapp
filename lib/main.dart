@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swimstatsapp/home.dart';
 import 'package:swimstatsapp/add_swimmer.dart';
+import 'package:swimstatsapp/privacypolicy.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Home(),
         '/addswimmer': (context) => AddSwimmer(),
+        '/privacypolicy': (context) => PrivacyPolicy(),
       },
     );
   }

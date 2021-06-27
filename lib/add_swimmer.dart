@@ -18,6 +18,9 @@ class _AddSwimmerState extends State<AddSwimmer> {
   var regions = ['Region 1', 'Region 2'];
   var states = ['State 1', 'State 2'];
   DateTime _birthday = DateTime.now(); //just to have initial value
+  String _birthdayMonth = DateTime.now().month.toString();
+  String _birthdayDay = DateTime.now().day.toString();
+  String _birthdayYear = DateTime.now().year.toString();
   //created global key, needed for form
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -60,6 +63,9 @@ class _AddSwimmerState extends State<AddSwimmer> {
     if(_datePicker != null && _datePicker != _birthday) {
       setState(() {
         _birthday = _datePicker;
+        _birthdayDay = _datePicker.day.toString();
+        _birthdayMonth = _datePicker.month.toString();
+        _birthdayYear = _datePicker.year.toString();
       });
     }
   }
@@ -132,7 +138,7 @@ class _AddSwimmerState extends State<AddSwimmer> {
                   },
                 ),
                 SizedBox(height:20),
-                Text('Birthday (mm/dd/yy)',
+                Text('Birthday',
                     style: TextStyle(
                       fontSize: 20,
                     )),
@@ -145,7 +151,10 @@ class _AddSwimmerState extends State<AddSwimmer> {
                       }
                     ),
                     SizedBox(width: 10),
-                    Text(_birthday ==  null ? 'Nothing has been picked yet' : _birthday.toString()),
+                    Text('$_birthdayMonth / $_birthdayDay / $_birthdayYear ',
+                    style: TextStyle(
+                        fontSize: 20,
+                    )),
                   ],
                 ),
                 SizedBox(height:20),
@@ -163,16 +172,26 @@ class _AddSwimmerState extends State<AddSwimmer> {
                         print("$_currentRegion");
                         print("$_currentState");
                         print("$_birthday");
+                        print("$_birthdayMonth");
+                        print("$_birthdayDay");
+                        print("$_birthdayYear");
                         Navigator.pop(context);
                       }
                     }
                 ),
                 Row(
                   children: <Widget> [
-                    Icon(Icons.info),
+                    IconButton(
+                        icon: Icon(
+                            Icons.info,
+                            color: Colors.blueAccent),
+                        onPressed:() {
+                          Navigator.pushNamed(context, '/privacypolicy');
+                        },
+                    ),
                     SizedBox(width: 10),
                     Flexible(
-                        child: Text('SwimStats never stores any of your data. Read our privacy policy.')),
+                        child: Text('SwimStats never stores any of your data. Click the icon to read our privacy policy.')),
                   ],
                 ),
               ],
