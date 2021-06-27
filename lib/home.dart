@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Select Swimmer'),
+          title: Text('Select a Swimmer'),
           centerTitle: true,
         ),
         body: Center(
