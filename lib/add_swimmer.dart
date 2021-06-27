@@ -138,7 +138,7 @@ class _AddSwimmerState extends State<AddSwimmer> {
                   },
                 ),
                 SizedBox(height:20),
-                Text('Birthday',
+                Text('Birthday Date',
                     style: TextStyle(
                       fontSize: 20,
                     )),
