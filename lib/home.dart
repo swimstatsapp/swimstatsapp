@@ -16,8 +16,24 @@ class _HomeState extends State<Home> {
           title: Text('Select a Swimmer'),
           centerTitle: true,
         ),
-        body: Center(
-          child: Text('Click the button to add a swimmer'),
+        body: Column(
+          children: <Widget>[
+            Container(
+              child: Center(
+                child: Text('Click the button to add a swimmer'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/swimmerinfo');
+                  },
+                  child: Text('Swimmer Info'),
+                ),
+              ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
