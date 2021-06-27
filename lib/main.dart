@@ -3,6 +3,7 @@ import 'package:swimstatsapp/home.dart';
 import 'package:swimstatsapp/add_swimmer.dart';
 import 'package:swimstatsapp/privacypolicy.dart';
 import 'package:swimstatsapp/create_url.dart';
+import 'package:swimstatsapp/swimmer_info.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/addswimmer': (context) => AddSwimmer(),
         '/privacypolicy': (context) => PrivacyPolicy(),
         '/createurl' : (context) => CreateUrl(),
+        '/swimmerinfo' : (context) => SwimmerInfo(),
       },
     );
   }
