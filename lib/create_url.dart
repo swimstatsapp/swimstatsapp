@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_scraper/web_scraper.dart';
 
 class CreateUrl extends StatefulWidget {
   const CreateUrl({Key? key}) : super(key: key);
@@ -210,36 +211,36 @@ class _CreateUrlState extends State<CreateUrl> {
     List letter = ['A','B','C','D','E','F','G','H','I','J','K','L','M','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5'];
 
     String firstLetter = firstName.substring(0,1).toUpperCase();
-    print(firstLetter);
 
     String secondLetter = letter[birthdayMonth];
-    print(secondLetter);
 
     String thirdLetter = firstName.substring(1,2).toUpperCase();
-    print(thirdLetter);
 
     String fourthLetter = letter[birthdayDay];
-    print(fourthLetter);
 
     String fifthLetter = firstName.substring(2,3).toUpperCase();
-    print(fifthLetter);
 
     String sixthLetter = letter[birthdayYearFirst];
-    print(sixthLetter);
 
     String seventhLetter = lastName.substring(0,1).toUpperCase();
-    print(seventhLetter);
 
     String eigthLetter = letter[birthdayYearSecond];
-    print(eigthLetter);
 
     String ninthLetter = lastName.substring(1,2).toUpperCase();
-    print(ninthLetter);
 
     String swimmerIdentifier = firstLetter + secondLetter + thirdLetter + fourthLetter + fifthLetter + sixthLetter + seventhLetter + eigthLetter + ninthLetter;
 
     String fullUrl = "https://www.swimmingrank.com/" + currentRegion + "/strokes/strokes_"+ currentLSCidentifier + "/" + swimmerIdentifier + "_meets.html";
     print(fullUrl);
+
+    //Starting some web scraping
+    void fetchData() async {
+      final swimmerPage = WebScraper("https://www.swimmingrank.com");
+      if (await swimmerPage.loadWebPage('/'+ currentRegion + "/strokes/strokes_"+ currentLSCidentifier + "/" + swimmerIdentifier + "_meets.html" )) {
+        List<Map<String, dynamic>> elements = swimmerPage.getElement('h1', ['']);
+        print(elements[0]['title']);
+      }
+    }
 
     return MaterialApp(
       home: Scaffold(
@@ -249,7 +250,25 @@ class _CreateUrlState extends State<CreateUrl> {
         ),
         body: ListView(
           children: [
-            Text(fullUrl),
+            Center(
+              child: Card(
+                child: Column(
+                  children: <Widget> [
+                    Text('Confirm Information:'),
+                    Text('First Name: '),
+                    Text('Last Name: '),
+                    Text('Current LSC: '),
+                    Text('Birthday: '),  
+                    ElevatedButton(
+                      child: Text('Add Swimmer'),
+                      onPressed:(() {
+                        fetchData();
+                      })
+                    ),
+                  ]
+                ),
+              ),
+            ),
           ],
         )
       ),
