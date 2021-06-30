@@ -8,12 +8,10 @@ class CreateUrl extends StatefulWidget {
 }
 
 class _CreateUrlState extends State<CreateUrl> {
-
   Map swimmerData = {};
 
   @override
   Widget build(BuildContext context) {
-
     swimmerData = ModalRoute.of(context)!.settings.arguments as Map;
 
     String firstName = swimmerData['firstName'];
@@ -24,234 +22,317 @@ class _CreateUrlState extends State<CreateUrl> {
     int birthdayMonth = int.parse(swimmerData['birthdayMonth']);
     int birthdayDay = int.parse(swimmerData['birthdayDay']);
     String birthdayYear = swimmerData['birthdayYear'];
-    int birthdayYearFirst = int.parse(birthdayYear.substring(2,3));
-    int birthdayYearSecond = int.parse(birthdayYear.substring(3,4));
+    int birthdayYearFirst = int.parse(birthdayYear.substring(2, 3));
+    int birthdayYearSecond = int.parse(birthdayYear.substring(3, 4));
 
     //creating usable LSC output
-    if(currentLSC == 'Florida') {
+    if (currentLSC == 'Florida') {
       currentLSCidentifier = 'fl';
     }
-    if(currentLSC == 'Florida Gold Coast') {
+    if (currentLSC == 'Florida Gold Coast') {
       currentLSCidentifier = 'fg';
     }
-    if(currentLSC == 'Southeastern') {
+    if (currentLSC == 'Southeastern') {
       currentLSCidentifier = 'se';
     }
-    if(currentLSC == 'Alaska') {
+    if (currentLSC == 'Alaska') {
       currentLSCidentifier = 'ak';
     }
-    if(currentLSC == 'Arizona') {
+    if (currentLSC == 'Arizona') {
       currentLSCidentifier = 'az';
     }
-    if(currentLSC == 'Southern California') {
+    if (currentLSC == 'Southern California') {
       currentLSCidentifier = 'scs';
     }
-    if(currentLSC == 'Pacific') {
+    if (currentLSC == 'Pacific') {
       currentLSCidentifier = 'pc';
     }
-    if(currentLSC == 'San Diego - Imperial') {
+    if (currentLSC == 'San Diego - Imperial') {
       currentLSCidentifier = 'si';
     }
-    if(currentLSC == 'Central') {
+    if (currentLSC == 'Central') {
       currentLSCidentifier = 'cc';
     }
-    if(currentLSC == 'Sierra Nevada') {
+    if (currentLSC == 'Sierra Nevada') {
       currentLSCidentifier = 'sn';
     }
-    if(currentLSC == 'Colorado') {
+    if (currentLSC == 'Colorado') {
       currentLSCidentifier = 'co';
     }
-    if(currentLSC == 'New Mexico') {
+    if (currentLSC == 'New Mexico') {
       currentLSCidentifier = 'nm';
     }
-    if(currentLSC == 'Utah') {
+    if (currentLSC == 'Utah') {
       currentLSCidentifier = 'ut';
     }
-    if(currentLSC == 'Wyoming') {
+    if (currentLSC == 'Wyoming') {
       currentLSCidentifier = 'wy';
     }
-    if(currentLSC == 'Connecticut') {
+    if (currentLSC == 'Connecticut') {
       currentLSCidentifier = 'ct';
     }
-    if(currentLSC == 'Maine') {
+    if (currentLSC == 'Maine') {
       currentLSCidentifier = 'me';
     }
-    if(currentLSC == 'New England') {
+    if (currentLSC == 'New England') {
       currentLSCidentifier = 'ne';
     }
-    if(currentLSC == 'Maryland') {
+    if (currentLSC == 'Maryland') {
       currentLSCidentifier = 'md';
     }
-    if(currentLSC == 'Potomac Valley') {
+    if (currentLSC == 'Potomac Valley') {
       currentLSCidentifier = 'pv';
     }
-    if(currentLSC == 'Virginia') {
+    if (currentLSC == 'Virginia') {
       currentLSCidentifier = 'va';
     }
-    if(currentLSC == 'Allegheny Mountain') {
+    if (currentLSC == 'Allegheny Mountain') {
       currentLSCidentifier = 'am';
     }
-    if(currentLSC == 'Mid Atlantic') {
+    if (currentLSC == 'Mid Atlantic') {
       currentLSCidentifier = 'ma';
     }
-    if(currentLSC == 'New Jersey') {
+    if (currentLSC == 'New Jersey') {
       currentLSCidentifier = 'nj';
     }
-    if(currentLSC == 'Georgia') {
+    if (currentLSC == 'Georgia') {
       currentLSCidentifier = 'ga';
     }
-    if(currentLSC == 'North Carolina') {
+    if (currentLSC == 'North Carolina') {
       currentLSCidentifier = 'nc';
     }
-    if(currentLSC == 'South Carolina') {
+    if (currentLSC == 'South Carolina') {
       currentLSCidentifier = 'fl';
     }
-    if(currentLSC == 'Hawaii') {
+    if (currentLSC == 'Hawaii') {
       currentLSCidentifier = 'hi';
     }
-    if(currentLSC == 'Inland Empire') {
+    if (currentLSC == 'Inland Empire') {
       currentLSCidentifier = 'ie';
     }
-    if(currentLSC == 'Montana') {
+    if (currentLSC == 'Montana') {
       currentLSCidentifier = 'mt';
     }
-    if(currentLSC == 'Oregon') {
+    if (currentLSC == 'Oregon') {
       currentLSCidentifier = 'or';
     }
-    if(currentLSC == 'Pacific Northwest') {
+    if (currentLSC == 'Pacific Northwest') {
       currentLSCidentifier = 'pn';
     }
-    if(currentLSC == 'Snake River') {
+    if (currentLSC == 'Snake River') {
       currentLSCidentifier = 'sr';
     }
-    if(currentLSC == 'Illinois') {
+    if (currentLSC == 'Illinois') {
       currentLSCidentifier = 'il';
     }
-    if(currentLSC == 'Iowa') {
+    if (currentLSC == 'Iowa') {
       currentLSCidentifier = 'ia';
     }
-    if(currentLSC == 'Indiana') {
+    if (currentLSC == 'Indiana') {
       currentLSCidentifier = 'in';
     }
-    if(currentLSC == 'Kentucky') {
+    if (currentLSC == 'Kentucky') {
       currentLSCidentifier = 'ky';
     }
-    if(currentLSC == 'West Virginia') {
+    if (currentLSC == 'West Virginia') {
       currentLSCidentifier = 'wv';
     }
-    if(currentLSC == 'Lake Erie') {
+    if (currentLSC == 'Lake Erie') {
       currentLSCidentifier = 'fl';
     }
-    if(currentLSC == 'Michigan') {
+    if (currentLSC == 'Michigan') {
       currentLSCidentifier = 'mi';
     }
-    if(currentLSC == 'Ohio') {
+    if (currentLSC == 'Ohio') {
       currentLSCidentifier = 'oh';
     }
-    if(currentLSC == 'Louisiana') {
+    if (currentLSC == 'Louisiana') {
       currentLSCidentifier = 'la';
     }
-    if(currentLSC == 'Mississippi') {
+    if (currentLSC == 'Mississippi') {
       currentLSCidentifier = 'ms';
     }
-    if(currentLSC == 'Minnesota') {
+    if (currentLSC == 'Minnesota') {
       currentLSCidentifier = 'mn';
     }
-    if(currentLSC == 'North Dakota') {
+    if (currentLSC == 'North Dakota') {
       currentLSCidentifier = 'nd';
     }
-    if(currentLSC == 'South Dakota') {
+    if (currentLSC == 'South Dakota') {
       currentLSCidentifier = 'sd';
     }
-    if(currentLSC == 'Wisconsin') {
+    if (currentLSC == 'Wisconsin') {
       currentLSCidentifier = 'wi';
     }
-    if(currentLSC == 'Adirondack') {
+    if (currentLSC == 'Adirondack') {
       currentLSCidentifier = 'ad';
     }
-    if(currentLSC == 'Metropolitan') {
+    if (currentLSC == 'Metropolitan') {
       currentLSCidentifier = 'mr';
     }
-    if(currentLSC == 'Niagara') {
+    if (currentLSC == 'Niagara') {
       currentLSCidentifier = 'ni';
     }
-    if(currentLSC == 'Border') {
+    if (currentLSC == 'Border') {
       currentLSCidentifier = 'bd';
     }
-    if(currentLSC == 'Gulf') {
+    if (currentLSC == 'Gulf') {
       currentLSCidentifier = 'gu';
     }
-    if(currentLSC == 'North Texas') {
+    if (currentLSC == 'North Texas') {
       currentLSCidentifier = 'nt';
     }
-    if(currentLSC == 'South Texas') {
+    if (currentLSC == 'South Texas') {
       currentLSCidentifier = 'st';
     }
-    if(currentLSC == 'West Texas') {
+    if (currentLSC == 'West Texas') {
       currentLSCidentifier = 'wt';
     }
-    if(currentLSC == 'Arkansas') {
+    if (currentLSC == 'Arkansas') {
       currentLSCidentifier = 'ar';
     }
-    if(currentLSC == 'Missouri Valley') {
+    if (currentLSC == 'Missouri Valley') {
       currentLSCidentifier = 'mv';
     }
-    if(currentLSC == 'Oklahoma') {
+    if (currentLSC == 'Oklahoma') {
       currentLSCidentifier = 'ok';
     }
-    if(currentLSC == 'Midwestern') {
+    if (currentLSC == 'Midwestern') {
       currentLSCidentifier = 'mw';
     }
-    if(currentLSC == 'Ozark') {
+    if (currentLSC == 'Ozark') {
       currentLSCidentifier = 'oz';
     }
 
     //using index of array to correspond to value
-    List letter = ['A','B','C','D','E','F','G','H','I','J','K','L','M','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5'];
+    List letter = [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'K',
+      'L',
+      'M',
+      'O',
+      'P',
+      'Q',
+      'R',
+      'S',
+      'T',
+      'U',
+      'V',
+      'W',
+      'X',
+      'Y',
+      'Z',
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5'
+    ];
 
-    String firstLetter = firstName.substring(0,1).toUpperCase();
-    print(firstLetter);
+    String firstLetter = firstName.substring(0, 1).toUpperCase();
 
     String secondLetter = letter[birthdayMonth];
-    print(secondLetter);
 
-    String thirdLetter = firstName.substring(1,2).toUpperCase();
-    print(thirdLetter);
+    String thirdLetter = firstName.substring(1, 2).toUpperCase();
 
     String fourthLetter = letter[birthdayDay];
-    print(fourthLetter);
 
-    String fifthLetter = firstName.substring(2,3).toUpperCase();
-    print(fifthLetter);
+    String fifthLetter = firstName.substring(2, 3).toUpperCase();
 
     String sixthLetter = letter[birthdayYearFirst];
-    print(sixthLetter);
 
-    String seventhLetter = lastName.substring(0,1).toUpperCase();
-    print(seventhLetter);
+    String seventhLetter = lastName.substring(0, 1).toUpperCase();
 
     String eigthLetter = letter[birthdayYearSecond];
-    print(eigthLetter);
 
-    String ninthLetter = lastName.substring(1,2).toUpperCase();
-    print(ninthLetter);
+    String ninthLetter = lastName.substring(1, 2).toUpperCase();
 
-    String swimmerIdentifier = firstLetter + secondLetter + thirdLetter + fourthLetter + fifthLetter + sixthLetter + seventhLetter + eigthLetter + ninthLetter;
+    String swimmerIdentifier = firstLetter +
+        secondLetter +
+        thirdLetter +
+        fourthLetter +
+        fifthLetter +
+        sixthLetter +
+        seventhLetter +
+        eigthLetter +
+        ninthLetter;
 
-    String fullUrl = "https://www.swimmingrank.com/" + currentRegion + "/strokes/strokes_"+ currentLSCidentifier + "/" + swimmerIdentifier + "_meets.html";
+    String fullUrl = "https://www.swimmingrank.com/" +
+        currentRegion +
+        "/strokes/strokes_" +
+        currentLSCidentifier +
+        "/" +
+        swimmerIdentifier +
+        "_meets.html";
     print(fullUrl);
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Swimmer URL'),
+          title: Text('Confirm Information'),
           centerTitle: true,
         ),
-        body: ListView(
-          children: [
-            Text(fullUrl),
-          ],
-        )
+        body: Padding(
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Name: ',
+                    style: TextStyle(
+                      color: Colors.blueAccent,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text('$firstName $lastName'),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('Current LSC: ',
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 20,
+                      )),
+                  Text('$currentLSC'),
+                ],
+              ),
+              Row(
+                children: [
+                  Text('Birthday: ',
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 20,
+                      )),
+                  Text('$birthdayMonth / $birthdayDay / $birthdayYear'),
+                ],
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                  child: Text('Submit'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/newhome', (Route<dynamic> route) => false,
+                        arguments: {
+                          'fullUrl': fullUrl,
+                          'firstName': firstName,
+                          'lastName': lastName,
+                        });
+                  }),
+            ],
+          ),
+        ),
       ),
     );
   }
