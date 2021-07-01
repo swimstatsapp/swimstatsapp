@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/newhome': (context) => NewHome(),
         '/privacypolicy': (context) => PrivacyPolicy(),
-        '/createurl': (context) => CreateUrl(),
+        // '/createurl': (context) => CreateUrl(),
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
-        '/about' : (context) => About(),
+        '/about': (context) => About(),
       },
     );
   }

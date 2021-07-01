@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swimstatsapp/main.dart';
 import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:web_scraper/web_scraper.dart';
 
 class NewHome extends StatefulWidget {
   const NewHome({Key? key}) : super(key: key);
@@ -14,14 +15,14 @@ class _NewHomeState extends State<NewHome> {
   List<SwimmerData> swimmerList = [];
   String _firstName = '';
   String _lastName = '';
-  String _swimmerMonth = '';
-  String _swimmerDay = '';
-  String _swimmerYear = '';
   int swimmerIndex = 0;
+  String swimmerAge = '';
 
   createAddSwimmerDialog(BuildContext context) {
-    String? _currentRegion = 'aft';
-    String? _currentLSC = 'Florida';
+    String _currentRegion = 'aft';
+    String _currentLSC = 'Florida';
+    String currentLSCidentifier = '';
+
     List<String> lsc = [
       'Florida',
       'Florida Gold Coast',
@@ -62,22 +63,27 @@ class _NewHomeState extends State<NewHome> {
           });
     }
 
-    Future<Null> _selectDate(BuildContext context) async {
-      DateTime? _datePicker = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2022),
-      );
-
-      if (_datePicker != null && _datePicker != _birthday) {
-        setState(() {
-          _birthday = _datePicker;
-          _birthdayDay = _datePicker.day.toString();
-          _birthdayMonth = _datePicker.month.toString();
-          _birthdayYear = _datePicker.year.toString();
-        });
-      }
+    Widget errorDialog(context) {
+      return AlertDialog(
+          title: Text('Error'),
+          content: ListView(
+            children: [
+              Text('Swimmer does not exist.'),
+              Text('Please try again.'),
+              Text(
+                  'If you think this is wrong, please contact us at swimstatsapp@gmail.com.'),
+            ],
+          ),
+          actions: [
+            MaterialButton(
+              child: Text('Ok'),
+              onPressed: () {
+                setState(() {
+                  Navigator.pop(context);
+                });
+              },
+            ),
+          ]);
     }
 
     return showDialog(
@@ -194,7 +200,7 @@ class _NewHomeState extends State<NewHome> {
                         ],
                         onChanged: (String? newValue) {
                           setState(() {
-                            _currentRegion = newValue;
+                            _currentRegion = newValue!;
 
                             if (_currentRegion == 'aft') {
                               setState(() {
@@ -383,7 +389,7 @@ class _NewHomeState extends State<NewHome> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _currentLSC = newValue;
+                            _currentLSC = newValue!;
                           });
                         },
                       ),
@@ -397,6 +403,28 @@ class _NewHomeState extends State<NewHome> {
                           IconButton(
                               icon: Icon(Icons.calendar_today),
                               onPressed: () {
+                                Future<Null> _selectDate(
+                                    BuildContext context) async {
+                                  DateTime? _datePicker = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2022),
+                                  );
+
+                                  if (_datePicker != null &&
+                                      _datePicker != _birthday) {
+                                    setState(() {
+                                      _birthday = _datePicker;
+                                      _birthdayDay = _datePicker.day.toString();
+                                      _birthdayMonth =
+                                          _datePicker.month.toString();
+                                      _birthdayYear =
+                                          _datePicker.year.toString();
+                                    });
+                                  }
+                                }
+
                                 _selectDate(context);
                               }),
                           SizedBox(width: 10),
@@ -430,15 +458,302 @@ class _NewHomeState extends State<NewHome> {
             actions: [
               MaterialButton(
                 child: Text('Submit'),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate() == true) {
                     _formKey.currentState!.save();
-                    Navigator.of(context).pop();
-                    setState(() {
-                      swimmerList.add(SwimmerData(
-                          _firstName + " " + _lastName, swimmerIndex));
-                    });
-                    swimmerIndex++;
+
+                    int birthdayYearFirst =
+                        int.parse(_birthdayYear.substring(2, 3));
+                    print(birthdayYearFirst);
+
+                    int birthdayYearSecond =
+                        int.parse(_birthdayYear.substring(3, 4));
+                    print(birthdayYearSecond);
+
+                    // //creating usable LSC output
+                    if (_currentLSC == 'Florida') {
+                      currentLSCidentifier = 'fl';
+                    }
+                    if (_currentLSC == 'Florida Gold Coast') {
+                      currentLSCidentifier = 'fg';
+                    }
+                    if (_currentLSC == 'Southeastern') {
+                      currentLSCidentifier = 'se';
+                    }
+                    if (_currentLSC == 'Alaska') {
+                      currentLSCidentifier = 'ak';
+                    }
+                    if (_currentLSC == 'Arizona') {
+                      currentLSCidentifier = 'az';
+                    }
+                    if (_currentLSC == 'Southern California') {
+                      currentLSCidentifier = 'scs';
+                    }
+                    if (_currentLSC == 'Pacific') {
+                      currentLSCidentifier = 'pc';
+                    }
+                    if (_currentLSC == 'San Diego - Imperial') {
+                      currentLSCidentifier = 'si';
+                    }
+                    if (_currentLSC == 'Central') {
+                      currentLSCidentifier = 'cc';
+                    }
+                    if (_currentLSC == 'Sierra Nevada') {
+                      currentLSCidentifier = 'sn';
+                    }
+                    if (_currentLSC == 'Colorado') {
+                      currentLSCidentifier = 'co';
+                    }
+                    if (_currentLSC == 'New Mexico') {
+                      currentLSCidentifier = 'nm';
+                    }
+                    if (_currentLSC == 'Utah') {
+                      currentLSCidentifier = 'ut';
+                    }
+                    if (_currentLSC == 'Wyoming') {
+                      currentLSCidentifier = 'wy';
+                    }
+                    if (_currentLSC == 'Connecticut') {
+                      currentLSCidentifier = 'ct';
+                    }
+                    if (_currentLSC == 'Maine') {
+                      currentLSCidentifier = 'me';
+                    }
+                    if (_currentLSC == 'New England') {
+                      currentLSCidentifier = 'ne';
+                    }
+                    if (_currentLSC == 'Maryland') {
+                      currentLSCidentifier = 'md';
+                    }
+                    if (_currentLSC == 'Potomac Valley') {
+                      currentLSCidentifier = 'pv';
+                    }
+                    if (_currentLSC == 'Virginia') {
+                      currentLSCidentifier = 'va';
+                    }
+                    if (_currentLSC == 'Allegheny Mountain') {
+                      currentLSCidentifier = 'am';
+                    }
+                    if (_currentLSC == 'Mid Atlantic') {
+                      currentLSCidentifier = 'ma';
+                    }
+                    if (_currentLSC == 'New Jersey') {
+                      currentLSCidentifier = 'nj';
+                    }
+                    if (_currentLSC == 'Georgia') {
+                      currentLSCidentifier = 'ga';
+                    }
+                    if (_currentLSC == 'North Carolina') {
+                      currentLSCidentifier = 'nc';
+                    }
+                    if (_currentLSC == 'South Carolina') {
+                      currentLSCidentifier = 'fl';
+                    }
+                    if (_currentLSC == 'Hawaii') {
+                      currentLSCidentifier = 'hi';
+                    }
+                    if (_currentLSC == 'Inland Empire') {
+                      currentLSCidentifier = 'ie';
+                    }
+                    if (_currentLSC == 'Montana') {
+                      currentLSCidentifier = 'mt';
+                    }
+                    if (_currentLSC == 'Oregon') {
+                      currentLSCidentifier = 'or';
+                    }
+                    if (_currentLSC == 'Pacific Northwest') {
+                      currentLSCidentifier = 'pn';
+                    }
+                    if (_currentLSC == 'Snake River') {
+                      currentLSCidentifier = 'sr';
+                    }
+                    if (_currentLSC == 'Illinois') {
+                      currentLSCidentifier = 'il';
+                    }
+                    if (_currentLSC == 'Iowa') {
+                      currentLSCidentifier = 'ia';
+                    }
+                    if (_currentLSC == 'Indiana') {
+                      currentLSCidentifier = 'in';
+                    }
+                    if (_currentLSC == 'Kentucky') {
+                      currentLSCidentifier = 'ky';
+                    }
+                    if (_currentLSC == 'West Virginia') {
+                      currentLSCidentifier = 'wv';
+                    }
+                    if (_currentLSC == 'Lake Erie') {
+                      currentLSCidentifier = 'fl';
+                    }
+                    if (_currentLSC == 'Michigan') {
+                      currentLSCidentifier = 'mi';
+                    }
+                    if (_currentLSC == 'Ohio') {
+                      currentLSCidentifier = 'oh';
+                    }
+                    if (_currentLSC == 'Louisiana') {
+                      currentLSCidentifier = 'la';
+                    }
+                    if (_currentLSC == 'Mississippi') {
+                      currentLSCidentifier = 'ms';
+                    }
+                    if (_currentLSC == 'Minnesota') {
+                      currentLSCidentifier = 'mn';
+                    }
+                    if (_currentLSC == 'North Dakota') {
+                      currentLSCidentifier = 'nd';
+                    }
+                    if (_currentLSC == 'South Dakota') {
+                      currentLSCidentifier = 'sd';
+                    }
+                    if (_currentLSC == 'Wisconsin') {
+                      currentLSCidentifier = 'wi';
+                    }
+                    if (_currentLSC == 'Adirondack') {
+                      currentLSCidentifier = 'ad';
+                    }
+                    if (_currentLSC == 'Metropolitan') {
+                      currentLSCidentifier = 'mr';
+                    }
+                    if (_currentLSC == 'Niagara') {
+                      currentLSCidentifier = 'ni';
+                    }
+                    if (_currentLSC == 'Border') {
+                      currentLSCidentifier = 'bd';
+                    }
+                    if (_currentLSC == 'Gulf') {
+                      currentLSCidentifier = 'gu';
+                    }
+                    if (_currentLSC == 'North Texas') {
+                      currentLSCidentifier = 'nt';
+                    }
+                    if (_currentLSC == 'South Texas') {
+                      currentLSCidentifier = 'st';
+                    }
+                    if (_currentLSC == 'West Texas') {
+                      currentLSCidentifier = 'wt';
+                    }
+                    if (_currentLSC == 'Arkansas') {
+                      currentLSCidentifier = 'ar';
+                    }
+                    if (_currentLSC == 'Missouri Valley') {
+                      currentLSCidentifier = 'mv';
+                    }
+                    if (_currentLSC == 'Oklahoma') {
+                      currentLSCidentifier = 'ok';
+                    }
+                    if (_currentLSC == 'Midwestern') {
+                      currentLSCidentifier = 'mw';
+                    }
+                    if (_currentLSC == 'Ozark') {
+                      currentLSCidentifier = 'oz';
+                    }
+
+                    //using index of array to correspond to value
+                    List letter = [
+                      'A',
+                      'B',
+                      'C',
+                      'D',
+                      'E',
+                      'F',
+                      'G',
+                      'H',
+                      'I',
+                      'J',
+                      'K',
+                      'L',
+                      'M',
+                      'O',
+                      'P',
+                      'Q',
+                      'R',
+                      'S',
+                      'T',
+                      'U',
+                      'V',
+                      'W',
+                      'X',
+                      'Y',
+                      'Z',
+                      '0',
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5'
+                    ];
+
+                    int birthdayMonth = int.parse(_birthdayMonth);
+                    int birthdayDay = int.parse(_birthdayDay);
+
+                    String firstLetter =
+                        _firstName.substring(0, 1).toUpperCase();
+
+                    String secondLetter = letter[birthdayMonth];
+
+                    String thirdLetter =
+                        _firstName.substring(1, 2).toUpperCase();
+
+                    String fourthLetter = letter[birthdayDay];
+
+                    String fifthLetter =
+                        _firstName.substring(2, 3).toUpperCase();
+
+                    String sixthLetter = letter[birthdayYearFirst];
+
+                    String seventhLetter =
+                        _lastName.substring(0, 1).toUpperCase();
+
+                    String eigthLetter = letter[birthdayYearSecond];
+
+                    String ninthLetter =
+                        _lastName.substring(1, 2).toUpperCase();
+
+                    String swimmerIdentifier = firstLetter +
+                        secondLetter +
+                        thirdLetter +
+                        fourthLetter +
+                        fifthLetter +
+                        sixthLetter +
+                        seventhLetter +
+                        eigthLetter +
+                        ninthLetter;
+
+                    String fullUrl = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
+                        "_meets.html";
+                    print(fullUrl);
+
+                    //parsing information from the website
+
+                    try {
+                      final swimmerPage =
+                          WebScraper("https://www.swimmingrank.com");
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('td.ui-helper-center', ['']);
+                        swimmerAge = elements[2]['title'];
+                      }
+                      setState(() {
+                        swimmerList.add(SwimmerData(
+                            _firstName + " " + _lastName,
+                            swimmerIndex,
+                            fullUrl,
+                            swimmerAge));
+                      });
+
+                      Navigator.of(context).pop();
+                      swimmerIndex++;
+                    } catch (e) {
+                      errorDialog(context);
+                    }
+
+                    print(swimmerAge);
                   }
                 },
               ),
@@ -494,6 +809,7 @@ class _NewHomeState extends State<NewHome> {
       onLongPress: () {
         createRemoveSwimmerDialog(context, swimmer);
       },
+      // Content displayed on the Card
       child: Card(
         margin: EdgeInsets.fromLTRB(10, 0, 10, 5),
         child: Padding(
@@ -514,8 +830,19 @@ class _NewHomeState extends State<NewHome> {
                 ],
               ),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Text('Age: '),
+                Text('Age: ${swimmer.age} '),
               ]),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${swimmer.url}',
+                    style: TextStyle(
+                      fontSize: 7,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -648,3 +975,4 @@ class _NewHomeState extends State<NewHome> {
     );
   }
 }
+
