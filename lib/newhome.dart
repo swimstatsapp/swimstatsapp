@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:swimstatsapp/main.dart';
 import 'package:swimstatsapp/cardtemplate.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class NewHome extends StatefulWidget {
   const NewHome({Key? key}) : super(key: key);
@@ -433,8 +435,8 @@ class _NewHomeState extends State<NewHome> {
                     _formKey.currentState!.save();
                     Navigator.of(context).pop();
                     setState(() {
-                      swimmerList
-                          .add(SwimmerData(_firstName, '17', swimmerIndex));
+                      swimmerList.add(SwimmerData(
+                          _firstName + " " + _lastName, swimmerIndex));
                     });
                     swimmerIndex++;
                   }
@@ -497,14 +499,23 @@ class _NewHomeState extends State<NewHome> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(swimmer.name,
-                  style: TextStyle(
-                    fontSize: 20,
-                  )),
-              SizedBox(height: 5),
-              Text(swimmer.age),
-              Text('${swimmer.index}'),
+              Row(
+                children: [
+                  Text('${swimmer.index}'),
+                  SizedBox(width: 20),
+                  Text(swimmer.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue[800],
+                      )),
+                ],
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                Text('Age: '),
+              ]),
             ],
           ),
         ),
@@ -519,11 +530,76 @@ class _NewHomeState extends State<NewHome> {
         appBar: AppBar(
           title: Text('Select a Swimmer'),
           centerTitle: true,
+          actions: [
+            PopupMenuButton(
+              onSelected: (item) {
+                if (item == 0) {
+                  Navigator.pushNamed(context, '/howtouse');
+                }
+                if (item == 1) {
+                  Navigator.pushNamed(context, '/about');
+                }
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: 0,
+                  child: RichText(
+                    text: TextSpan(children: [
+                      WidgetSpan(
+                        child: Icon(Icons.list, color: Colors.black),
+                      ),
+                      TextSpan(
+                          text: '   How to Use',
+                          style: TextStyle(color: Colors.black)),
+                    ]),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 1,
+                  child: RichText(
+                    text: TextSpan(children: [
+                      WidgetSpan(
+                        child: Icon(Icons.info_outline_rounded,
+                            color: Colors.black),
+                      ),
+                      TextSpan(
+                          text: '   About',
+                          style: TextStyle(color: Colors.black)),
+                    ]),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         body: ListView(
           children: [
             if (swimmerList.isEmpty)
-              Center(child: Text('Click the button to add a swimmer.'))
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
+                child: Column(
+                  children: [
+                    Text('No swimmers added yet.'),
+                    SizedBox(height: 20),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                              style: TextStyle(color: Colors.black),
+                              text: 'Add a swimmer by clicking the '),
+                          WidgetSpan(
+                            child: Icon(Icons.menu),
+                          ),
+                          TextSpan(
+                              style: TextStyle(color: Colors.black),
+                              text: ' button below.'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ))
             else
               Center(
                 child: Column(
@@ -534,11 +610,39 @@ class _NewHomeState extends State<NewHome> {
               ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            createAddSwimmerDialog(context);
-          },
-          child: Icon(Icons.add),
+        floatingActionButton: SpeedDial(
+          marginEnd: 18,
+          marginBottom: 20,
+          icon: Icons.menu,
+          activeIcon: Icons.close,
+          buttonSize: 56,
+          visible: true,
+          closeManually: false,
+          renderOverlay: false,
+          curve: Curves.bounceIn,
+          overlayColor: Colors.black,
+          overlayOpacity: 0.3,
+          onOpen: () => print('Opened'),
+          onClose: () => print('Closed'),
+          tooltip: 'Speed Dial',
+          heroTag: 'speed-dial-hero-tag',
+          backgroundColor: Colors.blue[400],
+          foregroundColor: Colors.white,
+          elevation: 8.0,
+          shape: CircleBorder(),
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.add),
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue[400],
+              label: 'Add New Swimmer',
+              labelStyle: TextStyle(
+                fontSize: 18.0,
+              ),
+              onTap: () => createAddSwimmerDialog(context),
+              onLongPress: () => print('FIRST CHILD LONG PRESS'),
+            ),
+          ],
         ),
       ),
     );
