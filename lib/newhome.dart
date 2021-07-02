@@ -18,6 +18,7 @@ class _NewHomeState extends State<NewHome> {
   int swimmerIndex = 0;
   String swimmerAge = '';
   String swimmerClub = '';
+  String swimmerGender = '';
 
   createAddSwimmerDialog(BuildContext context) {
     String _currentRegion = 'aft';
@@ -738,13 +739,22 @@ class _NewHomeState extends State<NewHome> {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td > button', ['']);
                         swimmerClub = elements[0]['title'];
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('td.ui-helper-center', ['']);
+                        swimmerGender = elements[3]['title'];
                         setState(() {
                           swimmerList.add(SwimmerData(
                               _firstName + " " + _lastName,
                               swimmerIndex,
                               fullUrl,
                               swimmerAge,
-                              swimmerClub));
+                              swimmerClub,
+                              swimmerGender));
                         });
                         Navigator.of(context).pop();
                         swimmerIndex++;
@@ -848,12 +858,20 @@ class _NewHomeState extends State<NewHome> {
                 children: [
                   Text('${swimmer.index}'),
                   SizedBox(width: 20),
-                  Text(swimmer.name,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue[800],
-                      )),
+                  if (swimmer.gender == "Male")
+                    Text(swimmer.name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[800],
+                        )),
+                  if (swimmer.gender == "Female")
+                    Text(swimmer.name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.pinkAccent,
+                        )),
                 ],
               ),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
