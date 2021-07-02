@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div style="display:flex">
-    <img style="flex: 1" src="./assets/swimstatsintropicture.png" alt="drawing" width="500" />
-    
-    <div style="display:block;margin:auto">
-            <p> <strong>SwimStats</strong> is a free, open source mobile app for displaying
-                swimming results of age group swimmers
-                currently registered in USA Swimming.</p>
-            
-            <p>
-                Various swimmer data, including personal best times, time standards, and time comparisons can all all be accesed
-                through this application.
-            </p>
-            
-            <p>
-                The application is available for Android and iOS, while a web application is currently in development and will
-                be made avaliable later on.
-            </p>
-    </div>
+<img width="400" src="./assets/swimstatsintropicture.png" align="left" /> **SwimStats** is a free, open source mobile app for displaying swimming results of age group swimmers currently registered under USA Swimming.
 
-    </div>
-</body>
-</html>
+Various swimmer data, including personal best times, time standards, and time comparisons can all all be accesed through this application.
+
+The application is available for Android and iOS, while a web application is currently in development and will
+be made avaliable later on.
+
+# Installation
+
+There are applications avaliable for **mobile** (Android and iOS). Both the iOS and Android applications have similar user interfaces.
+
+## Mobile Applications
+
+| Operating System | Download                                                                                   |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| Android          | <a href='#'><img alt='Get it on Android' width="134px" src='./assets/googlelogo'/></a>     |
+| Android Alt.     | <a href='#'><img alt='Get it on Android' width="134px" src='./assets/fdroidlogo.png'/></a> |
+| iOS              | <a href='#g'><img alt='Get it on macOS' width="134px" src='./assets/applelogo.png'/></a>   |
