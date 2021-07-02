@@ -17,6 +17,7 @@ class _NewHomeState extends State<NewHome> {
   String _lastName = '';
   int swimmerIndex = 0;
   String swimmerAge = '';
+  String swimmerClub = '';
 
   createAddSwimmerDialog(BuildContext context) {
     String _currentRegion = 'aft';
@@ -63,29 +64,6 @@ class _NewHomeState extends State<NewHome> {
           });
     }
 
-    Widget errorDialog(context) {
-      return AlertDialog(
-          title: Text('Error'),
-          content: ListView(
-            children: [
-              Text('Swimmer does not exist.'),
-              Text('Please try again.'),
-              Text(
-                  'If you think this is wrong, please contact us at swimstatsapp@gmail.com.'),
-            ],
-          ),
-          actions: [
-            MaterialButton(
-              child: Text('Ok'),
-              onPressed: () {
-                setState(() {
-                  Navigator.pop(context);
-                });
-              },
-            ),
-          ]);
-    }
-
     return showDialog(
         context: context,
         builder: (context) {
@@ -108,272 +86,280 @@ class _NewHomeState extends State<NewHome> {
                               fontSize: 20,
                             )),
                       ),
-                      DropdownButton(
-                        value: _currentRegion,
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        items: [
-                          DropdownMenuItem(
-                            child: Text('Alabama - Florida - Tennessee'),
-                            value: 'aft',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Alaska'),
-                            value: 'ak',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Arizona'),
-                            value: 'az',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('California - Nevada'),
-                            value: 'cal',
-                          ),
-                          DropdownMenuItem(
-                            child:
-                                Text('Colorado - New Mexico - Utah - Wyoming'),
-                            value: 'cnw',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Connecticut - Maine - New England'),
-                            value: 'ne',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('D.C. - Maryland - Virginia'),
-                            value: 'mdva',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Delaware- New Jersey - Pennsylvania'),
-                            value: 'dnp',
-                          ),
-                          DropdownMenuItem(
-                            child: Text(
-                                'Georgia - North Carolina - South Carolina'),
-                            value: 'nc',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Hawaii'),
-                            value: 'hi',
-                          ),
-                          DropdownMenuItem(
-                            child:
-                                Text('Idaho - Montana - Oregon - Washington'),
-                            value: 'imow',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Illinois - Iowa'),
-                            value: 'ii',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Indiana'),
-                            value: 'in',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Kentucky - West Virginia'),
-                            value: 'kywv',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Lake Erie - Michigan - Ohio'),
-                            value: 'leoh',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Lousiana - Mississippi'),
-                            value: 'lams',
-                          ),
-                          DropdownMenuItem(
-                            child: Text(
-                                'Minnesota - North Dakota - South Dakota - Wisconsin'),
-                            value: 'mmw',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('New York'),
-                            value: 'ny',
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Texas'),
-                            value: 'tx',
-                          ),
-                          DropdownMenuItem(
-                            child: Text(
-                                'Arkansas - Kansas - Missouri - Nebraska - Oklahoma'),
-                            value: 'kmno',
-                          ),
-                        ],
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _currentRegion = newValue!;
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: DropdownButton(
+                          value: _currentRegion,
+                          icon: Icon(Icons.keyboard_arrow_down),
+                          items: [
+                            DropdownMenuItem(
+                              child: Text('Alabama - Florida - Tennessee'),
+                              value: 'aft',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Alaska'),
+                              value: 'ak',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Arizona'),
+                              value: 'az',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('California - Nevada'),
+                              value: 'cal',
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                  'Colorado - New Mexico - Utah - Wyoming'),
+                              value: 'cnw',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Connecticut - Maine - New England'),
+                              value: 'ne',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('D.C. - Maryland - Virginia'),
+                              value: 'mdva',
+                            ),
+                            DropdownMenuItem(
+                              child:
+                                  Text('Delaware- New Jersey - Pennsylvania'),
+                              value: 'dnp',
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                  'Georgia - North Carolina - South Carolina'),
+                              value: 'nc',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Hawaii'),
+                              value: 'hi',
+                            ),
+                            DropdownMenuItem(
+                              child:
+                                  Text('Idaho - Montana - Oregon - Washington'),
+                              value: 'imow',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Illinois - Iowa'),
+                              value: 'ii',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Indiana'),
+                              value: 'in',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Kentucky - West Virginia'),
+                              value: 'kywv',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Lake Erie - Michigan - Ohio'),
+                              value: 'leoh',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Lousiana - Mississippi'),
+                              value: 'lams',
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                  'Minnesota - North Dakota - South Dakota - Wisconsin'),
+                              value: 'mmw',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('New York'),
+                              value: 'ny',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('Texas'),
+                              value: 'tx',
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                  'Arkansas - Kansas - Missouri - Nebraska - Oklahoma'),
+                              value: 'kmno',
+                            ),
+                          ],
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _currentRegion = newValue!;
 
-                            if (_currentRegion == 'aft') {
-                              setState(() {
-                                lsc = [
-                                  'Florida',
-                                  'Florida Gold Coast',
-                                  'Southeastern'
-                                ];
-                                _currentLSC = 'Florida';
-                              });
-                            }
-                            if (_currentRegion == 'ak') {
-                              setState(() {
-                                lsc = ['Alaska', 'None'];
-                                _currentLSC = 'Alaska';
-                              });
-                            }
-                            if (_currentRegion == 'az') {
-                              setState(() {
-                                lsc = ['Arizona', 'None'];
-                                _currentLSC = 'Arizona';
-                              });
-                            }
-                            if (_currentRegion == 'cal') {
-                              setState(() {
-                                lsc = [
-                                  'Southern California',
-                                  'Pacific',
-                                  'San Diego - Imperial',
-                                  'Central',
-                                  'Sierra Nevada'
-                                ];
-                                _currentLSC = 'Southern California';
-                              });
-                            }
-                            if (_currentRegion == 'cnw') {
-                              setState(() {
-                                lsc = [
-                                  'Colorado',
-                                  'New Mexico',
-                                  'Utah',
-                                  'Wyoming'
-                                ];
-                                _currentLSC = 'Colorado';
-                              });
-                            }
-                            if (_currentRegion == 'ne') {
-                              setState(() {
-                                lsc = ['Connecticut', 'Maine', 'New England'];
-                                _currentLSC = 'Connecticut';
-                              });
-                            }
-                            if (_currentRegion == 'mdva') {
-                              setState(() {
-                                lsc = [
-                                  'Maryland',
-                                  'Potomac Valley',
-                                  'Virginia'
-                                ];
-                                _currentLSC = 'Maryland';
-                              });
-                            }
-                            if (_currentRegion == 'dnp') {
-                              setState(() {
-                                lsc = [
-                                  'Allegheny Mountain',
-                                  'Mid Atlantic',
-                                  'New Jersey'
-                                ];
-                                _currentLSC = 'Allegheny Mountain';
-                              });
-                            }
-                            if (_currentRegion == 'nc') {
-                              setState(() {
-                                lsc = [
-                                  'Georgia',
-                                  'North Carolina',
-                                  'South Carolina'
-                                ];
-                                _currentLSC = 'Georgia';
-                              });
-                            }
-                            if (_currentRegion == 'hi') {
-                              setState(() {
-                                lsc = ['Hawaii', 'None'];
-                                _currentLSC = 'Hawaii';
-                              });
-                            }
-                            if (_currentRegion == 'imow') {
-                              setState(() {
-                                lsc = [
-                                  'Inland Empire',
-                                  'Montana',
-                                  'Oregon',
-                                  'Pacific Northwest',
-                                  'Snake River'
-                                ];
-                                _currentLSC = 'Inland Empire';
-                              });
-                            }
-                            if (_currentRegion == 'ii') {
-                              setState(() {
-                                lsc = ['Illinois', 'Iowa'];
-                                _currentLSC = 'Illinois';
-                              });
-                            }
-                            if (_currentRegion == 'in') {
-                              setState(() {
-                                lsc = ['Indiana', 'None'];
-                                _currentLSC = 'Indiana';
-                              });
-                            }
-                            if (_currentRegion == 'kywv') {
-                              setState(() {
-                                lsc = ['Kentucky', 'West Virginia'];
-                                _currentLSC = 'Kentucky';
-                              });
-                            }
-                            if (_currentRegion == 'leoh') {
-                              setState(() {
-                                lsc = ['Lake Erie', 'Michigan', 'Ohio'];
-                                _currentLSC = 'Lake Erie';
-                              });
-                            }
-                            if (_currentRegion == 'lams') {
-                              setState(() {
-                                lsc = ['Louisiana', 'Mississippi'];
-                                _currentLSC = 'Louisiana';
-                              });
-                            }
-                            if (_currentRegion == 'mmw') {
-                              setState(() {
-                                lsc = [
-                                  'Minnesota',
-                                  'North Dakota',
-                                  'South Dakota',
-                                  'Wisconsin'
-                                ];
-                                _currentLSC = 'Minnesota';
-                              });
-                            }
-                            if (_currentRegion == 'ny') {
-                              setState(() {
-                                lsc = ['Adirondack', 'Metropolitan', 'Niagara'];
-                                _currentLSC = 'Adirondack';
-                              });
-                            }
-                            if (_currentRegion == 'tx') {
-                              setState(() {
-                                lsc = [
-                                  'Border',
-                                  'Gulf',
-                                  'North Texas',
-                                  'South Texas',
-                                  'West Texas'
-                                ];
-                                _currentLSC = 'Border';
-                              });
-                            }
-                            if (_currentRegion == 'kmno') {
-                              setState(() {
-                                lsc = [
-                                  'Arkansas',
-                                  'Missouri Valley',
-                                  'Oklahoma',
-                                  'Midwestern',
-                                  'Ozark'
-                                ];
-                                _currentLSC = 'Arkansas';
-                              });
-                            }
-                          });
-                        },
+                              if (_currentRegion == 'aft') {
+                                setState(() {
+                                  lsc = [
+                                    'Florida',
+                                    'Florida Gold Coast',
+                                    'Southeastern'
+                                  ];
+                                  _currentLSC = 'Florida';
+                                });
+                              }
+                              if (_currentRegion == 'ak') {
+                                setState(() {
+                                  lsc = ['Alaska', 'None'];
+                                  _currentLSC = 'Alaska';
+                                });
+                              }
+                              if (_currentRegion == 'az') {
+                                setState(() {
+                                  lsc = ['Arizona', 'None'];
+                                  _currentLSC = 'Arizona';
+                                });
+                              }
+                              if (_currentRegion == 'cal') {
+                                setState(() {
+                                  lsc = [
+                                    'Southern California',
+                                    'Pacific',
+                                    'San Diego - Imperial',
+                                    'Central',
+                                    'Sierra Nevada'
+                                  ];
+                                  _currentLSC = 'Southern California';
+                                });
+                              }
+                              if (_currentRegion == 'cnw') {
+                                setState(() {
+                                  lsc = [
+                                    'Colorado',
+                                    'New Mexico',
+                                    'Utah',
+                                    'Wyoming'
+                                  ];
+                                  _currentLSC = 'Colorado';
+                                });
+                              }
+                              if (_currentRegion == 'ne') {
+                                setState(() {
+                                  lsc = ['Connecticut', 'Maine', 'New England'];
+                                  _currentLSC = 'Connecticut';
+                                });
+                              }
+                              if (_currentRegion == 'mdva') {
+                                setState(() {
+                                  lsc = [
+                                    'Maryland',
+                                    'Potomac Valley',
+                                    'Virginia'
+                                  ];
+                                  _currentLSC = 'Maryland';
+                                });
+                              }
+                              if (_currentRegion == 'dnp') {
+                                setState(() {
+                                  lsc = [
+                                    'Allegheny Mountain',
+                                    'Mid Atlantic',
+                                    'New Jersey'
+                                  ];
+                                  _currentLSC = 'Allegheny Mountain';
+                                });
+                              }
+                              if (_currentRegion == 'nc') {
+                                setState(() {
+                                  lsc = [
+                                    'Georgia',
+                                    'North Carolina',
+                                    'South Carolina'
+                                  ];
+                                  _currentLSC = 'Georgia';
+                                });
+                              }
+                              if (_currentRegion == 'hi') {
+                                setState(() {
+                                  lsc = ['Hawaii', 'None'];
+                                  _currentLSC = 'Hawaii';
+                                });
+                              }
+                              if (_currentRegion == 'imow') {
+                                setState(() {
+                                  lsc = [
+                                    'Inland Empire',
+                                    'Montana',
+                                    'Oregon',
+                                    'Pacific Northwest',
+                                    'Snake River'
+                                  ];
+                                  _currentLSC = 'Inland Empire';
+                                });
+                              }
+                              if (_currentRegion == 'ii') {
+                                setState(() {
+                                  lsc = ['Illinois', 'Iowa'];
+                                  _currentLSC = 'Illinois';
+                                });
+                              }
+                              if (_currentRegion == 'in') {
+                                setState(() {
+                                  lsc = ['Indiana', 'None'];
+                                  _currentLSC = 'Indiana';
+                                });
+                              }
+                              if (_currentRegion == 'kywv') {
+                                setState(() {
+                                  lsc = ['Kentucky', 'West Virginia'];
+                                  _currentLSC = 'Kentucky';
+                                });
+                              }
+                              if (_currentRegion == 'leoh') {
+                                setState(() {
+                                  lsc = ['Lake Erie', 'Michigan', 'Ohio'];
+                                  _currentLSC = 'Lake Erie';
+                                });
+                              }
+                              if (_currentRegion == 'lams') {
+                                setState(() {
+                                  lsc = ['Louisiana', 'Mississippi'];
+                                  _currentLSC = 'Louisiana';
+                                });
+                              }
+                              if (_currentRegion == 'mmw') {
+                                setState(() {
+                                  lsc = [
+                                    'Minnesota',
+                                    'North Dakota',
+                                    'South Dakota',
+                                    'Wisconsin'
+                                  ];
+                                  _currentLSC = 'Minnesota';
+                                });
+                              }
+                              if (_currentRegion == 'ny') {
+                                setState(() {
+                                  lsc = [
+                                    'Adirondack',
+                                    'Metropolitan',
+                                    'Niagara'
+                                  ];
+                                  _currentLSC = 'Adirondack';
+                                });
+                              }
+                              if (_currentRegion == 'tx') {
+                                setState(() {
+                                  lsc = [
+                                    'Border',
+                                    'Gulf',
+                                    'North Texas',
+                                    'South Texas',
+                                    'West Texas'
+                                  ];
+                                  _currentLSC = 'Border';
+                                });
+                              }
+                              if (_currentRegion == 'kmno') {
+                                setState(() {
+                                  lsc = [
+                                    'Arkansas',
+                                    'Missouri Valley',
+                                    'Oklahoma',
+                                    'Midwestern',
+                                    'Ozark'
+                                  ];
+                                  _currentLSC = 'Arkansas';
+                                });
+                              }
+                            });
+                          },
+                        ),
                       ),
                       // sizedBox just to add more space
                       SizedBox(height: 20),
@@ -731,29 +717,38 @@ class _NewHomeState extends State<NewHome> {
 
                     //parsing information from the website
 
+                    final swimmerPage =
+                        WebScraper("https://www.swimmingrank.com");
                     try {
-                      final swimmerPage =
-                          WebScraper("https://www.swimmingrank.com");
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td.ui-helper-center', ['']);
                         swimmerAge = elements[2]['title'];
+                      } else {
+                        Navigator.of(context).pop();
                       }
-                      setState(() {
-                        swimmerList.add(SwimmerData(
-                            _firstName + " " + _lastName,
-                            swimmerIndex,
-                            fullUrl,
-                            swimmerAge));
-                      });
 
-                      Navigator.of(context).pop();
-                      swimmerIndex++;
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('td > button', ['']);
+                        swimmerClub = elements[0]['title'];
+                        setState(() {
+                          swimmerList.add(SwimmerData(
+                              _firstName + " " + _lastName,
+                              swimmerIndex,
+                              fullUrl,
+                              swimmerAge,
+                              swimmerClub));
+                        });
+                        Navigator.of(context).pop();
+                        swimmerIndex++;
+                      } else {
+                        Navigator.of(context).pop();
+                      }
                     } catch (e) {
+                      print('Invalid!');
                       errorDialog(context);
                     }
-
-                    print(swimmerAge);
                   }
                 },
               ),
@@ -800,6 +795,32 @@ class _NewHomeState extends State<NewHome> {
     );
   }
 
+  // error dialog
+  errorDialog(context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            title: Text('Error'),
+            content: Container(
+              child: Row(
+                children: [
+                  Flexible(
+                      child: Text('Swimmer does not exist. Please try again.')),
+                ],
+              ),
+            ),
+            actions: [
+              MaterialButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ]);
+      },
+    );
+  }
+
   //swimmer template
   Widget swimmerTemplate(swimmer) {
     return GestureDetector(
@@ -839,10 +860,29 @@ class _NewHomeState extends State<NewHome> {
                     '${swimmer.url}',
                     style: TextStyle(
                       fontSize: 7,
+                      color: Colors.white,
                     ),
                   ),
                 ],
               ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Team: ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    '${swimmer.club}',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -975,4 +1015,3 @@ class _NewHomeState extends State<NewHome> {
     );
   }
 }
-
