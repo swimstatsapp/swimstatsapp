@@ -1,8 +1,8 @@
 <img width="400" src="./assets/swimstatsintropicture.png" align="left" />
 
-# 
+#
 
-**SwimStats** is a free, open source mobile app for displaying swimming results of age group swimmers currently registered under USA Swimming.
+**SwimStats** is a free, open source mobile app for displaying swimming results of age group swimmers currently registered under <a href ="https://www.usaswimming.org/"> USA Swimming </a>.
 
 Various swimmer data, including personal best times, time standards, and time comparisons can all all be accesed through this application.
 
