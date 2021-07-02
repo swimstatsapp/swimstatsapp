@@ -5,7 +5,7 @@ import 'package:swimstatsapp/swimmer_info.dart';
 import 'package:swimstatsapp/newhome.dart';
 import 'package:swimstatsapp/how_to_use.dart';
 import 'package:swimstatsapp/about.dart';
-
+import 'package:swimstatsapp/loadingscreen.dart';
 void main() {
   runApp(MyApp());
 }
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
         '/about': (context) => About(),
+        '/loadingscreen' : (context) => LoadingScreen(),
       },
     );
   }

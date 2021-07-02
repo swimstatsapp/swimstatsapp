@@ -32,6 +32,9 @@ class _NewHomeState extends State<NewHome> {
   String swimmerAge = '';
   String swimmerClub = '';
   String swimmerGender = '';
+  String swimmerLastMeet = '';
+  String swimmerLastMeetDate = '';
+
 
   createAddSwimmerDialog(BuildContext context) {
     String _currentRegion = 'aft';
@@ -53,7 +56,23 @@ class _NewHomeState extends State<NewHome> {
     //using the _build naming convention for functions that return a widget
     Widget _buildFirstName() {
       return TextFormField(
-          decoration: InputDecoration(labelText: 'First Name'),
+          decoration: InputDecoration(
+            hintText: 'First Name',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            prefixIcon: Icon(
+              Icons.person,
+              color: Colors.blueAccent,
+            ),
+            filled: true,
+            fillColor: Colors.blue[50],
+          ),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'First Name is Required';
@@ -67,7 +86,23 @@ class _NewHomeState extends State<NewHome> {
 
     Widget _buildLastName() {
       return TextFormField(
-          decoration: InputDecoration(labelText: 'Last Name'),
+          decoration: InputDecoration(
+            hintText: 'Last Name',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            prefixIcon: Icon(
+              Icons.person,
+              color: Colors.blueAccent,
+            ),
+            filled: true,
+            fillColor: Colors.blue[50],
+          ),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Last Name is Required';
@@ -93,321 +128,356 @@ class _NewHomeState extends State<NewHome> {
                     // mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       _buildFirstName(),
+                      SizedBox(height: 7),
                       _buildLastName(),
                       SizedBox(height: 20),
-                      Expanded(
-                        flex: 2,
-                        child: Text('Enter your Region',
-                            style: TextStyle(
-                              fontSize: 20,
-                            )),
-                      ),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: DropdownButton(
-                          value: _currentRegion,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          items: [
-                            DropdownMenuItem(
-                              child: Text('Alabama - Florida - Tennessee'),
-                              value: 'aft',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Alaska'),
-                              value: 'ak',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Arizona'),
-                              value: 'az',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('California - Nevada'),
-                              value: 'cal',
-                            ),
-                            DropdownMenuItem(
-                              child: Text(
-                                  'Colorado - New Mexico - Utah - Wyoming'),
-                              value: 'cnw',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Connecticut - Maine - New England'),
-                              value: 'ne',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('D.C. - Maryland - Virginia'),
-                              value: 'mdva',
-                            ),
-                            DropdownMenuItem(
-                              child:
-                                  Text('Delaware- New Jersey - Pennsylvania'),
-                              value: 'dnp',
-                            ),
-                            DropdownMenuItem(
-                              child: Text(
-                                  'Georgia - North Carolina - South Carolina'),
-                              value: 'nc',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Hawaii'),
-                              value: 'hi',
-                            ),
-                            DropdownMenuItem(
-                              child:
-                                  Text('Idaho - Montana - Oregon - Washington'),
-                              value: 'imow',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Illinois - Iowa'),
-                              value: 'ii',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Indiana'),
-                              value: 'in',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Kentucky - West Virginia'),
-                              value: 'kywv',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Lake Erie - Michigan - Ohio'),
-                              value: 'leoh',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Lousiana - Mississippi'),
-                              value: 'lams',
-                            ),
-                            DropdownMenuItem(
-                              child: Text(
-                                  'Minnesota - North Dakota - South Dakota - Wisconsin'),
-                              value: 'mmw',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('New York'),
-                              value: 'ny',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('Texas'),
-                              value: 'tx',
-                            ),
-                            DropdownMenuItem(
-                              child: Text(
-                                  'Arkansas - Kansas - Missouri - Nebraska - Oklahoma'),
-                              value: 'kmno',
-                            ),
-                          ],
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _currentRegion = newValue!;
+                      Text('Region',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          )),
+                      SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(14, 6, 10, 4),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.transparent),
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(5.5),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                            isExpanded: true,
+                            value: _currentRegion,
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Alabama - Florida - Tennessee'),
+                                value: 'aft',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Alaska'),
+                                value: 'ak',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Arizona'),
+                                value: 'az',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('California - Nevada'),
+                                value: 'cal',
+                              ),
+                              DropdownMenuItem(
+                                child: Text(
+                                    'Colorado - New Mexico - Utah - Wyoming'),
+                                value: 'cnw',
+                              ),
+                              DropdownMenuItem(
+                                child:
+                                    Text('Connecticut - Maine - New England'),
+                                value: 'ne',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('D.C. - Maryland - Virginia'),
+                                value: 'mdva',
+                              ),
+                              DropdownMenuItem(
+                                child:
+                                    Text('Delaware- New Jersey - Pennsylvania'),
+                                value: 'dnp',
+                              ),
+                              DropdownMenuItem(
+                                child: Text(
+                                    'Georgia - North Carolina - South Carolina'),
+                                value: 'nc',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Hawaii'),
+                                value: 'hi',
+                              ),
+                              DropdownMenuItem(
+                                child: Text(
+                                    'Idaho - Montana - Oregon - Washington'),
+                                value: 'imow',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Illinois - Iowa'),
+                                value: 'ii',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Indiana'),
+                                value: 'in',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Kentucky - West Virginia'),
+                                value: 'kywv',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Lake Erie - Michigan - Ohio'),
+                                value: 'leoh',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Lousiana - Mississippi'),
+                                value: 'lams',
+                              ),
+                              DropdownMenuItem(
+                                child: Text(
+                                    'Minnesota - North Dakota - South Dakota - Wisconsin'),
+                                value: 'mmw',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('New York'),
+                                value: 'ny',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Texas'),
+                                value: 'tx',
+                              ),
+                              DropdownMenuItem(
+                                child: Text(
+                                    'Arkansas - Kansas - Missouri - Nebraska - Oklahoma'),
+                                value: 'kmno',
+                              ),
+                            ],
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                _currentRegion = newValue!;
 
-                              if (_currentRegion == 'aft') {
-                                setState(() {
-                                  lsc = [
-                                    'Florida',
-                                    'Florida Gold Coast',
-                                    'Southeastern'
-                                  ];
-                                  _currentLSC = 'Florida';
-                                });
-                              }
-                              if (_currentRegion == 'ak') {
-                                setState(() {
-                                  lsc = ['Alaska', 'None'];
-                                  _currentLSC = 'Alaska';
-                                });
-                              }
-                              if (_currentRegion == 'az') {
-                                setState(() {
-                                  lsc = ['Arizona', 'None'];
-                                  _currentLSC = 'Arizona';
-                                });
-                              }
-                              if (_currentRegion == 'cal') {
-                                setState(() {
-                                  lsc = [
-                                    'Southern California',
-                                    'Pacific',
-                                    'San Diego - Imperial',
-                                    'Central',
-                                    'Sierra Nevada'
-                                  ];
-                                  _currentLSC = 'Southern California';
-                                });
-                              }
-                              if (_currentRegion == 'cnw') {
-                                setState(() {
-                                  lsc = [
-                                    'Colorado',
-                                    'New Mexico',
-                                    'Utah',
-                                    'Wyoming'
-                                  ];
-                                  _currentLSC = 'Colorado';
-                                });
-                              }
-                              if (_currentRegion == 'ne') {
-                                setState(() {
-                                  lsc = ['Connecticut', 'Maine', 'New England'];
-                                  _currentLSC = 'Connecticut';
-                                });
-                              }
-                              if (_currentRegion == 'mdva') {
-                                setState(() {
-                                  lsc = [
-                                    'Maryland',
-                                    'Potomac Valley',
-                                    'Virginia'
-                                  ];
-                                  _currentLSC = 'Maryland';
-                                });
-                              }
-                              if (_currentRegion == 'dnp') {
-                                setState(() {
-                                  lsc = [
-                                    'Allegheny Mountain',
-                                    'Mid Atlantic',
-                                    'New Jersey'
-                                  ];
-                                  _currentLSC = 'Allegheny Mountain';
-                                });
-                              }
-                              if (_currentRegion == 'nc') {
-                                setState(() {
-                                  lsc = [
-                                    'Georgia',
-                                    'North Carolina',
-                                    'South Carolina'
-                                  ];
-                                  _currentLSC = 'Georgia';
-                                });
-                              }
-                              if (_currentRegion == 'hi') {
-                                setState(() {
-                                  lsc = ['Hawaii', 'None'];
-                                  _currentLSC = 'Hawaii';
-                                });
-                              }
-                              if (_currentRegion == 'imow') {
-                                setState(() {
-                                  lsc = [
-                                    'Inland Empire',
-                                    'Montana',
-                                    'Oregon',
-                                    'Pacific Northwest',
-                                    'Snake River'
-                                  ];
-                                  _currentLSC = 'Inland Empire';
-                                });
-                              }
-                              if (_currentRegion == 'ii') {
-                                setState(() {
-                                  lsc = ['Illinois', 'Iowa'];
-                                  _currentLSC = 'Illinois';
-                                });
-                              }
-                              if (_currentRegion == 'in') {
-                                setState(() {
-                                  lsc = ['Indiana', 'None'];
-                                  _currentLSC = 'Indiana';
-                                });
-                              }
-                              if (_currentRegion == 'kywv') {
-                                setState(() {
-                                  lsc = ['Kentucky', 'West Virginia'];
-                                  _currentLSC = 'Kentucky';
-                                });
-                              }
-                              if (_currentRegion == 'leoh') {
-                                setState(() {
-                                  lsc = ['Lake Erie', 'Michigan', 'Ohio'];
-                                  _currentLSC = 'Lake Erie';
-                                });
-                              }
-                              if (_currentRegion == 'lams') {
-                                setState(() {
-                                  lsc = ['Louisiana', 'Mississippi'];
-                                  _currentLSC = 'Louisiana';
-                                });
-                              }
-                              if (_currentRegion == 'mmw') {
-                                setState(() {
-                                  lsc = [
-                                    'Minnesota',
-                                    'North Dakota',
-                                    'South Dakota',
-                                    'Wisconsin'
-                                  ];
-                                  _currentLSC = 'Minnesota';
-                                });
-                              }
-                              if (_currentRegion == 'ny') {
-                                setState(() {
-                                  lsc = [
-                                    'Adirondack',
-                                    'Metropolitan',
-                                    'Niagara'
-                                  ];
-                                  _currentLSC = 'Adirondack';
-                                });
-                              }
-                              if (_currentRegion == 'tx') {
-                                setState(() {
-                                  lsc = [
-                                    'Border',
-                                    'Gulf',
-                                    'North Texas',
-                                    'South Texas',
-                                    'West Texas'
-                                  ];
-                                  _currentLSC = 'Border';
-                                });
-                              }
-                              if (_currentRegion == 'kmno') {
-                                setState(() {
-                                  lsc = [
-                                    'Arkansas',
-                                    'Missouri Valley',
-                                    'Oklahoma',
-                                    'Midwestern',
-                                    'Ozark'
-                                  ];
-                                  _currentLSC = 'Arkansas';
-                                });
-                              }
-                            });
-                          },
+                                if (_currentRegion == 'aft') {
+                                  setState(() {
+                                    lsc = [
+                                      'Florida',
+                                      'Florida Gold Coast',
+                                      'Southeastern'
+                                    ];
+                                    _currentLSC = 'Florida';
+                                  });
+                                }
+                                if (_currentRegion == 'ak') {
+                                  setState(() {
+                                    lsc = ['Alaska', 'None'];
+                                    _currentLSC = 'Alaska';
+                                  });
+                                }
+                                if (_currentRegion == 'az') {
+                                  setState(() {
+                                    lsc = ['Arizona', 'None'];
+                                    _currentLSC = 'Arizona';
+                                  });
+                                }
+                                if (_currentRegion == 'cal') {
+                                  setState(() {
+                                    lsc = [
+                                      'Southern California',
+                                      'Pacific',
+                                      'San Diego - Imperial',
+                                      'Central',
+                                      'Sierra Nevada'
+                                    ];
+                                    _currentLSC = 'Southern California';
+                                  });
+                                }
+                                if (_currentRegion == 'cnw') {
+                                  setState(() {
+                                    lsc = [
+                                      'Colorado',
+                                      'New Mexico',
+                                      'Utah',
+                                      'Wyoming'
+                                    ];
+                                    _currentLSC = 'Colorado';
+                                  });
+                                }
+                                if (_currentRegion == 'ne') {
+                                  setState(() {
+                                    lsc = [
+                                      'Connecticut',
+                                      'Maine',
+                                      'New England'
+                                    ];
+                                    _currentLSC = 'Connecticut';
+                                  });
+                                }
+                                if (_currentRegion == 'mdva') {
+                                  setState(() {
+                                    lsc = [
+                                      'Maryland',
+                                      'Potomac Valley',
+                                      'Virginia'
+                                    ];
+                                    _currentLSC = 'Maryland';
+                                  });
+                                }
+                                if (_currentRegion == 'dnp') {
+                                  setState(() {
+                                    lsc = [
+                                      'Allegheny Mountain',
+                                      'Mid Atlantic',
+                                      'New Jersey'
+                                    ];
+                                    _currentLSC = 'Allegheny Mountain';
+                                  });
+                                }
+                                if (_currentRegion == 'nc') {
+                                  setState(() {
+                                    lsc = [
+                                      'Georgia',
+                                      'North Carolina',
+                                      'South Carolina'
+                                    ];
+                                    _currentLSC = 'Georgia';
+                                  });
+                                }
+                                if (_currentRegion == 'hi') {
+                                  setState(() {
+                                    lsc = ['Hawaii', 'None'];
+                                    _currentLSC = 'Hawaii';
+                                  });
+                                }
+                                if (_currentRegion == 'imow') {
+                                  setState(() {
+                                    lsc = [
+                                      'Inland Empire',
+                                      'Montana',
+                                      'Oregon',
+                                      'Pacific Northwest',
+                                      'Snake River'
+                                    ];
+                                    _currentLSC = 'Inland Empire';
+                                  });
+                                }
+                                if (_currentRegion == 'ii') {
+                                  setState(() {
+                                    lsc = ['Illinois', 'Iowa'];
+                                    _currentLSC = 'Illinois';
+                                  });
+                                }
+                                if (_currentRegion == 'in') {
+                                  setState(() {
+                                    lsc = ['Indiana', 'None'];
+                                    _currentLSC = 'Indiana';
+                                  });
+                                }
+                                if (_currentRegion == 'kywv') {
+                                  setState(() {
+                                    lsc = ['Kentucky', 'West Virginia'];
+                                    _currentLSC = 'Kentucky';
+                                  });
+                                }
+                                if (_currentRegion == 'leoh') {
+                                  setState(() {
+                                    lsc = ['Lake Erie', 'Michigan', 'Ohio'];
+                                    _currentLSC = 'Lake Erie';
+                                  });
+                                }
+                                if (_currentRegion == 'lams') {
+                                  setState(() {
+                                    lsc = ['Louisiana', 'Mississippi'];
+                                    _currentLSC = 'Louisiana';
+                                  });
+                                }
+                                if (_currentRegion == 'mmw') {
+                                  setState(() {
+                                    lsc = [
+                                      'Minnesota',
+                                      'North Dakota',
+                                      'South Dakota',
+                                      'Wisconsin'
+                                    ];
+                                    _currentLSC = 'Minnesota';
+                                  });
+                                }
+                                if (_currentRegion == 'ny') {
+                                  setState(() {
+                                    lsc = [
+                                      'Adirondack',
+                                      'Metropolitan',
+                                      'Niagara'
+                                    ];
+                                    _currentLSC = 'Adirondack';
+                                  });
+                                }
+                                if (_currentRegion == 'tx') {
+                                  setState(() {
+                                    lsc = [
+                                      'Border',
+                                      'Gulf',
+                                      'North Texas',
+                                      'South Texas',
+                                      'West Texas'
+                                    ];
+                                    _currentLSC = 'Border';
+                                  });
+                                }
+                                if (_currentRegion == 'kmno') {
+                                  setState(() {
+                                    lsc = [
+                                      'Arkansas',
+                                      'Missouri Valley',
+                                      'Oklahoma',
+                                      'Midwestern',
+                                      'Ozark'
+                                    ];
+                                    _currentLSC = 'Arkansas';
+                                  });
+                                }
+                              });
+                            },
+                          ),
                         ),
                       ),
                       // sizedBox just to add more space
                       SizedBox(height: 20),
-                      Text('Enter your Local Swim Committee',
+                      Text('Local Swim Committee',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           )),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: DropdownButton(
-                          value: _currentLSC,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          items: lsc.map((String lsc) {
-                            return DropdownMenuItem(
-                                value: lsc, child: Text(lsc));
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _currentLSC = newValue!;
-                            });
-                          },
+
+                      SizedBox(height: 10),
+
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(14, 6, 10, 4),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.transparent),
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(5.5),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                            isExpanded: true,
+                            value: _currentLSC,
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            items: lsc.map((String lsc) {
+                              return DropdownMenuItem(
+                                  value: lsc, child: Text(lsc));
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                _currentLSC = newValue!;
+                              });
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
                       Text('Birthday Date',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           )),
                       Row(
                         children: <Widget>[
-                          IconButton(
-                              icon: Icon(Icons.calendar_today),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue[50]),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.calendar_today,
+                                    color: Colors.blueAccent,
+                                  ),
+                                ],
+                              ),
                               onPressed: () {
                                 Future<Null> _selectDate(
                                     BuildContext context) async {
@@ -466,6 +536,7 @@ class _NewHomeState extends State<NewHome> {
                 child: Text('Submit'),
                 onPressed: () async {
                   if (_formKey.currentState!.validate() == true) {
+                    Navigator.pop(context);
                     _formKey.currentState!.save();
 
                     int birthdayYearFirst =
@@ -740,6 +811,7 @@ class _NewHomeState extends State<NewHome> {
                     final swimmerPage =
                         WebScraper("https://www.swimmingrank.com");
                     try {
+                      // scraping swimmer age
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td.ui-helper-center', ['']);
@@ -747,7 +819,7 @@ class _NewHomeState extends State<NewHome> {
                       } else {
                         Navigator.of(context).pop();
                       }
-
+                      // scraping swimmer club
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td > button', ['']);
@@ -755,30 +827,49 @@ class _NewHomeState extends State<NewHome> {
                       } else {
                         Navigator.of(context).pop();
                       }
-
+                      //scraping swimmer gender
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td.ui-helper-center', ['']);
                         swimmerGender = elements[3]['title'];
-                        setState(() {
-                          swimmerList.add(SwimmerData(
-                              _firstName.capitalizeFirstofEach +
-                                  " " +
-                                  _lastName.capitalizeFirstofEach,
-                              swimmerIndex,
-                              fullUrl,
-                              swimmerAge,
-                              swimmerClub,
-                              swimmerGender));
-                        });
-                        Navigator.of(context).pop();
-                        swimmerIndex++;
                       } else {
                         Navigator.of(context).pop();
                       }
                     } catch (e) {
                       print('Invalid!');
                       errorDialog(context);
+                    }
+
+                    //scraping swimmer's last swim meet
+                    if (await swimmerPage.loadWebPage(fullUrl)) {
+                      List<Map<String, dynamic>> elements =
+                          swimmerPage.getElement('th', ['']);
+                      swimmerLastMeet = elements[5]['title'];
+                    } else {
+                      Navigator.of(context).pop();
+                    }
+
+                    if (await swimmerPage.loadWebPage(fullUrl)) {
+                      List<Map<String, dynamic>> elements =
+                          swimmerPage.getElement('th', ['']);
+                      swimmerLastMeetDate = elements[6]['title'];
+                      setState(() {
+                        swimmerList.add(SwimmerData(
+                            _firstName.capitalizeFirstofEach +
+                                " " +
+                                _lastName.capitalizeFirstofEach,
+                            swimmerIndex,
+                            fullUrl,
+                            swimmerAge,
+                            swimmerClub,
+                            swimmerGender,
+                            swimmerLastMeet,
+                            swimmerLastMeetDate.substring(0, 10)));
+                      });
+                      Navigator.of(context).pop();
+                      swimmerIndex++;
+                    } else {
+                      Navigator.of(context).pop();
                     }
                   }
                 },
@@ -797,11 +888,20 @@ class _NewHomeState extends State<NewHome> {
             title: Text('Remove Swimmer?'),
             content: Row(
               children: [
-                Text('Selected: '),
+                Text('Selected: ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
                 Text(swimmer.name),
               ],
             ),
             actions: [
+              MaterialButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               MaterialButton(
                 child: Text('Delete'),
                 onPressed: () {
@@ -813,12 +913,6 @@ class _NewHomeState extends State<NewHome> {
                     swimmerIndex = swimmerList.length;
                     Navigator.pop(context);
                   });
-                },
-              ),
-              MaterialButton(
-                child: Text('Cancel'),
-                onPressed: () {
-                  Navigator.pop(context);
                 },
               ),
             ]);
@@ -890,7 +984,11 @@ class _NewHomeState extends State<NewHome> {
                 ],
               ),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Text('Age: ${swimmer.age} '),
+                Text('Age: ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text('${swimmer.age} '),
               ]),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -918,6 +1016,28 @@ class _NewHomeState extends State<NewHome> {
                     '${swimmer.club}',
                     style: TextStyle(
                       fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 6),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Last Meet: ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      '${swimmer.lastMeet} (${swimmer.lastMeetDate})',
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ],
