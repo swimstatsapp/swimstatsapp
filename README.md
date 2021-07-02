@@ -20,3 +20,7 @@ There are applications avaliable for **mobile** (Android and iOS). Both the iOS 
 | Android          | <a href='#'><img alt='Get it on Android' width="134px" src='./assets/googlelogo.png'/></a> |
 | Android Alt.     | <a href='#'><img alt='Get it on Android' width="134px" src='./assets/fdroidlogo.png'/></a> |
 | iOS              | <a href='#g'><img alt='Get it on macOS' width="134px" src='./assets/applelogo.png'/></a>   |
+
+# Contact Us
+
+If you have any questions, please visit our <a href ="https://swimstatsapp.github.io/">website </a> or email us at swimstatsapp@gmail.com.
