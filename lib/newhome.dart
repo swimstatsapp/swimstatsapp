@@ -367,17 +367,21 @@ class _NewHomeState extends State<NewHome> {
                           style: TextStyle(
                             fontSize: 20,
                           )),
-                      DropdownButton(
-                        value: _currentLSC,
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        items: lsc.map((String lsc) {
-                          return DropdownMenuItem(value: lsc, child: Text(lsc));
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _currentLSC = newValue!;
-                          });
-                        },
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: DropdownButton(
+                          value: _currentLSC,
+                          icon: Icon(Icons.keyboard_arrow_down),
+                          items: lsc.map((String lsc) {
+                            return DropdownMenuItem(
+                                value: lsc, child: Text(lsc));
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _currentLSC = newValue!;
+                            });
+                          },
+                        ),
                       ),
                       SizedBox(height: 20),
                       Text('Birthday Date',
