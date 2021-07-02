@@ -71,10 +71,12 @@ class _NewHomeState extends State<NewHome> {
             title: Text('Add a Swimmer'),
             content: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
-              return Container(
-                child: Form(
-                  key: _formKey,
+              return Form(
+                key: _formKey,
+                child: Container(
+                  width: double.maxFinite,
                   child: ListView(
+                    // mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       _buildFirstName(),
                       _buildLastName(),
