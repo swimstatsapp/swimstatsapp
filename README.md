@@ -1,3 +1,6 @@
-# swimstatsapp
+# SwimStats
 
-Mobile Application to Display Swimming Statistics
+```html
+<img src="./assets/swimstatsintropicture.png" alt="drawing" width="200"/>
+```
+
