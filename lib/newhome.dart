@@ -4,6 +4,19 @@ import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:web_scraper/web_scraper.dart';
 
+// String Manipulation
+
+extension CapExtension on String {
+  String get inCaps =>
+      this.length > 0 ? '${this[0].toUpperCase()}${this.substring(1)}' : '';
+  String get allInCaps => this.toUpperCase();
+  String get capitalizeFirstofEach => this
+      .replaceAll(RegExp(' +'), ' ')
+      .split(" ")
+      .map((str) => str.inCaps)
+      .join(" ");
+}
+
 class NewHome extends StatefulWidget {
   const NewHome({Key? key}) : super(key: key);
 
@@ -749,7 +762,9 @@ class _NewHomeState extends State<NewHome> {
                         swimmerGender = elements[3]['title'];
                         setState(() {
                           swimmerList.add(SwimmerData(
-                              _firstName + " " + _lastName,
+                              _firstName.capitalizeFirstofEach +
+                                  " " +
+                                  _lastName.capitalizeFirstofEach,
                               swimmerIndex,
                               fullUrl,
                               swimmerAge,
