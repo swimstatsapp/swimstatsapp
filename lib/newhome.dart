@@ -35,7 +35,6 @@ class _NewHomeState extends State<NewHome> {
   String swimmerLastMeet = '';
   String swimmerLastMeetDate = '';
 
-
   createAddSwimmerDialog(BuildContext context) {
     String _currentRegion = 'aft';
     String _currentLSC = 'Florida';
@@ -1049,6 +1048,95 @@ class _NewHomeState extends State<NewHome> {
     );
   }
 
+  //home page data refresh
+  Future<Null> refresh() async {
+    for (int x = 0; x < swimmerList.length; x++) {
+      final rootPage = WebScraper("https://www.swimmingrank.com");
+      // scraping swimmer age
+      try {
+        if (await rootPage.loadWebPage(swimmerList[x].url)) {
+          List<Map<String, dynamic>> elements =
+              rootPage.getElement('td.ui-helper-center', ['']);
+          setState(() {
+            swimmerList[x].age = elements[2]['title'];
+          });
+        }
+      } catch (e) {
+        final snackBar = SnackBar(
+            content: Flexible(child: Text('Error. Please try again.')));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+      // scraping swimmer club
+      try {
+        if (await rootPage.loadWebPage(swimmerList[x].url)) {
+          List<Map<String, dynamic>> elements =
+              rootPage.getElement('td > button', ['']);
+          setState(() {
+            swimmerList[x].club = elements[0]['title'];
+          });
+        }
+      } catch (e) {
+        final snackBar = SnackBar(
+            content: Flexible(child: Text('Error. Please try again.')));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+      //scraping swimmer gender
+      try {
+        if (await rootPage.loadWebPage(swimmerList[x].url)) {
+          List<Map<String, dynamic>> elements =
+              rootPage.getElement('td.ui-helper-center', ['']);
+          setState(() {
+            swimmerList[x].gender = elements[3]['title'];
+          });
+        }
+      } catch (e) {
+        final snackBar = SnackBar(
+            content: Flexible(child: Text('Error. Please try again.')));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+      //scraping swimmer's last swim meet
+      try {
+        if (await rootPage.loadWebPage(swimmerList[x].url)) {
+          List<Map<String, dynamic>> elements = rootPage.getElement('th', ['']);
+          setState(() {
+            swimmerList[x].lastMeet = elements[5]['title'];
+          });
+        }
+      } catch (e) {
+        final snackBar = SnackBar(
+            content: Flexible(child: Text('Error. Please try again.')));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+      try {
+        if (await rootPage.loadWebPage(swimmerList[x].url)) {
+          List<Map<String, dynamic>> elements = rootPage.getElement('th', ['']);
+          setState(() {
+            swimmerList[x].lastMeetDate = elements[6]['title'].substring(0, 10);
+          });
+        }
+      } catch (e) {
+        final snackBar = SnackBar(
+            content: Flexible(child: Text('Error. Please try again.')));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -1099,43 +1187,47 @@ class _NewHomeState extends State<NewHome> {
             ),
           ],
         ),
-        body: ListView(
-          children: [
-            if (swimmerList.isEmpty)
-              Center(
-                  child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-                child: Column(
-                  children: [
-                    Text('No swimmers added yet.'),
-                    SizedBox(height: 20),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                              style: TextStyle(color: Colors.black),
-                              text: 'Add a swimmer by clicking the '),
-                          WidgetSpan(
-                            child: Icon(Icons.menu),
-                          ),
-                          TextSpan(
-                              style: TextStyle(color: Colors.black),
-                              text: ' button below.'),
-                        ],
+        body: RefreshIndicator(
+          displacement: 10,
+          onRefresh: refresh,
+          child: ListView(
+            children: [
+              if (swimmerList.isEmpty)
+                Center(
+                    child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
+                  child: Column(
+                    children: [
+                      Text('No swimmers added yet.'),
+                      SizedBox(height: 20),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                style: TextStyle(color: Colors.black),
+                                text: 'Add a swimmer by clicking the '),
+                            WidgetSpan(
+                              child: Icon(Icons.menu),
+                            ),
+                            TextSpan(
+                                style: TextStyle(color: Colors.black),
+                                text: ' button below.'),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ))
+              else
+                Center(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: swimmerList
+                          .map((swimmer) => swimmerTemplate(swimmer))
+                          .toList()),
                 ),
-              ))
-            else
-              Center(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: swimmerList
-                        .map((swimmer) => swimmerTemplate(swimmer))
-                        .toList()),
-              ),
-          ],
+            ],
+          ),
         ),
         floatingActionButton: SpeedDial(
           marginEnd: 18,
