@@ -4,6 +4,32 @@ import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:web_scraper/web_scraper.dart';
 
+// error dialog
+errorDialog(context) {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+          title: Text('Error'),
+          content: Container(
+            child: Row(
+              children: [
+                Flexible(
+                    child: Text('Swimmer does not exist. Please try again.')),
+              ],
+            ),
+          ),
+          actions: [
+            MaterialButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ]);
+    },
+  );
+}
+
 // String Manipulation
 
 extension CapExtension on String {
@@ -535,7 +561,6 @@ class _NewHomeState extends State<NewHome> {
                 child: Text('Submit'),
                 onPressed: () async {
                   if (_formKey.currentState!.validate() == true) {
-                    Navigator.pop(context);
                     _formKey.currentState!.save();
 
                     int birthdayYearFirst =
@@ -815,60 +840,49 @@ class _NewHomeState extends State<NewHome> {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td.ui-helper-center', ['']);
                         swimmerAge = elements[2]['title'];
-                      } else {
-                        Navigator.of(context).pop();
                       }
                       // scraping swimmer club
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td > button', ['']);
                         swimmerClub = elements[0]['title'];
-                      } else {
-                        Navigator.of(context).pop();
                       }
                       //scraping swimmer gender
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('td.ui-helper-center', ['']);
                         swimmerGender = elements[3]['title'];
-                      } else {
-                        Navigator.of(context).pop();
+                      }
+                      //scraping swimmer's last swim meet
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('th', ['']);
+                        swimmerLastMeet = elements[5]['title'];
+                      }
+
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('th', ['']);
+                        swimmerLastMeetDate = elements[6]['title'];
+                        setState(() {
+                          swimmerList.add(SwimmerData(
+                              _firstName.capitalizeFirstofEach +
+                                  " " +
+                                  _lastName.capitalizeFirstofEach,
+                              swimmerIndex,
+                              fullUrl,
+                              swimmerAge,
+                              swimmerClub,
+                              swimmerGender,
+                              swimmerLastMeet,
+                              swimmerLastMeetDate.substring(0, 10)));
+                        });
+                        Navigator.pop(context);
+                        swimmerIndex++;
                       }
                     } catch (e) {
                       print('Invalid!');
                       errorDialog(context);
-                    }
-
-                    //scraping swimmer's last swim meet
-                    if (await swimmerPage.loadWebPage(fullUrl)) {
-                      List<Map<String, dynamic>> elements =
-                          swimmerPage.getElement('th', ['']);
-                      swimmerLastMeet = elements[5]['title'];
-                    } else {
-                      Navigator.of(context).pop();
-                    }
-
-                    if (await swimmerPage.loadWebPage(fullUrl)) {
-                      List<Map<String, dynamic>> elements =
-                          swimmerPage.getElement('th', ['']);
-                      swimmerLastMeetDate = elements[6]['title'];
-                      setState(() {
-                        swimmerList.add(SwimmerData(
-                            _firstName.capitalizeFirstofEach +
-                                " " +
-                                _lastName.capitalizeFirstofEach,
-                            swimmerIndex,
-                            fullUrl,
-                            swimmerAge,
-                            swimmerClub,
-                            swimmerGender,
-                            swimmerLastMeet,
-                            swimmerLastMeetDate.substring(0, 10)));
-                      });
-                      Navigator.of(context).pop();
-                      swimmerIndex++;
-                    } else {
-                      Navigator.of(context).pop();
                     }
                   }
                 },
@@ -920,30 +934,6 @@ class _NewHomeState extends State<NewHome> {
   }
 
   // error dialog
-  errorDialog(context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-            title: Text('Error'),
-            content: Container(
-              child: Row(
-                children: [
-                  Flexible(
-                      child: Text('Swimmer does not exist. Please try again.')),
-                ],
-              ),
-            ),
-            actions: [
-              MaterialButton(
-                  child: Text('Ok'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-            ]);
-      },
-    );
-  }
 
   //swimmer template
   Widget swimmerTemplate(swimmer) {
