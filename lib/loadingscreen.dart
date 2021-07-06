@@ -6,11 +6,9 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Opacity(
-        opacity: 0.2,
-        child: Center(
-        ),
-      ),
+      body: Container(
+          color: Colors.black.withOpacity(0.1),
+          child: Center(child: Text('Loading'))),
     );
   }
 }

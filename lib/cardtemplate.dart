@@ -7,9 +7,22 @@ class SwimmerData {
   String gender = '';
   String lastMeet = '';
   String lastMeetDate = '';
+  String identifier = '';
+  int intAge = 0;
+  String fullUrl = '';
 
-  SwimmerData(String name, int index, String url, String age, String club,
-      String gender, String lastMeet, String lastMeetDate) {
+  SwimmerData(
+      String name,
+      int index,
+      String url,
+      String age,
+      String club,
+      String gender,
+      String lastMeet,
+      String lastMeetDate,
+      String identifier,
+      int intAge,
+      String fullUrl) {
     this.name = name;
     this.index = index;
     this.url = url;
@@ -18,5 +31,8 @@ class SwimmerData {
     this.gender = gender;
     this.lastMeet = lastMeet;
     this.lastMeetDate = lastMeetDate;
+    this.identifier = identifier;
+    this.intAge = intAge;
+    this.fullUrl = fullUrl;
   }
 }
