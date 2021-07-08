@@ -46,12 +46,12 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
             Standards(information['swimmer'].identifier,
                 information['swimmer'].gender, information['swimmer'].intAge),
             Compare(),
-            Meets(information['swimmer'].fullUrl),
+            Meets(information['swimmer'].meets),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.blue[50],
+          backgroundColor: Colors.white,
           items: [
             BottomNavigationBarItem(
               backgroundColor: Colors.blue[50],
@@ -64,7 +64,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
             ),
             BottomNavigationBarItem(
                 backgroundColor: Colors.blue[50],
-                activeIcon: Icon(Icons.timer_sharp, color: Colors.blue),
+                activeIcon: Icon(Icons.analytics_outlined, color: Colors.blue),
                 icon: Icon(
                   Icons.analytics_outlined,
                   color: Colors.black,
@@ -72,7 +72,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
                 label: 'Standards'),
             BottomNavigationBarItem(
                 backgroundColor: Colors.blue[50],
-                activeIcon: Icon(Icons.timer_sharp, color: Colors.blue),
+                activeIcon: Icon(Icons.compare_arrows, color: Colors.blue),
                 icon: Icon(
                   Icons.compare_arrows,
                   color: Colors.black,
@@ -80,7 +80,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
                 label: 'Compare'),
             BottomNavigationBarItem(
                 backgroundColor: Colors.blue[50],
-                activeIcon: Icon(Icons.timer_sharp, color: Colors.blue),
+                activeIcon: Icon(Icons.history, color: Colors.blue),
                 icon: Icon(
                   Icons.history,
                   color: Colors.black,

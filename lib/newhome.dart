@@ -81,6 +81,9 @@ class _NewHomeState extends State<NewHome> {
   String swimmerGender = '';
   String swimmerLastMeet = '';
   String swimmerLastMeetDate = '';
+  List meets = [];
+  int swimmerintAge = 0;
+  List meetTitles = [];
 
   String submitStatus = "Submit";
 
@@ -888,8 +891,14 @@ class _NewHomeState extends State<NewHome> {
                         List<Map<String, dynamic>> elements =
                             swimmerPage.getElement('th', ['']);
                         swimmerLastMeetDate = elements[6]['title'];
+                        swimmerintAge = int.parse(swimmerAge);
+                      }
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        meets = swimmerPage.getElementTitle('tr');
+                        meets.removeRange(0, 5);
+                        meets.removeWhere((item) => item == meets[2]);
+                        meets.removeLast();
 
-                        int swimmerintAge = int.parse(swimmerAge);
                         setState(() {
                           swimmerList.add(SwimmerData(
                               _firstName.capitalizeFirstofEach +
@@ -904,8 +913,10 @@ class _NewHomeState extends State<NewHome> {
                               swimmerLastMeetDate.substring(0, 10),
                               swimmerIdentifier,
                               swimmerintAge,
-                              fullUrl));
+                              fullUrl,
+                              meets));
                         });
+
                         Navigator.pop(context);
 
                         swimmerIndex++;
@@ -1203,6 +1214,16 @@ class _NewHomeState extends State<NewHome> {
                             elements[6]['title'].substring(0, 10);
                         print('Success');
                       });
+                    }
+                  } catch (e) {
+                    print('Failure');
+                  }
+                  try {
+                    if (await rootPage.loadWebPage(swimmerList[x].url)) {
+                      meets = rootPage.getElementTitle('tr');
+                      meets.removeRange(0, 5);
+                      meets.removeWhere((item) => item == meets[2]);
+                      meets.removeLast();
                       scaffoldMessenger.showSnackBar(SnackBar(
                         duration: Duration(seconds: 2),
                         backgroundColor: Colors.green[50],

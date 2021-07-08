@@ -10,6 +10,7 @@ class SwimmerData {
   String identifier = '';
   int intAge = 0;
   String fullUrl = '';
+  List meets = [];
 
   SwimmerData(
       String name,
@@ -22,7 +23,8 @@ class SwimmerData {
       String lastMeetDate,
       String identifier,
       int intAge,
-      String fullUrl) {
+      String fullUrl,
+      List meets) {
     this.name = name;
     this.index = index;
     this.url = url;
@@ -34,5 +36,6 @@ class SwimmerData {
     this.identifier = identifier;
     this.intAge = intAge;
     this.fullUrl = fullUrl;
+    this.meets = meets;
   }
 }

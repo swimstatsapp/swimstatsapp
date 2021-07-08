@@ -1,111 +1,145 @@
 import 'package:flutter/material.dart';
-import 'package:web_scraper/web_scraper.dart';
 
 class Meets extends StatefulWidget {
-  final String url;
-  Meets(this.url);
+  final List meets;
+  Meets(this.meets);
 
   @override
   _MeetsState createState() => _MeetsState();
 }
 
 class _MeetsState extends State<Meets> {
-  String fullUrl = '';
-  List elements = [];
-  List manipulatedElements = [];
-  List originalElements = [];
-
-  void grabData() async {
-    final swimmerPage = WebScraper("https://www.swimmingrank.com");
-    // scraping swimmer age
-    if (await swimmerPage.loadWebPage(widget.url)) {
-      elements = swimmerPage.getElementTitle('tr');
-      elements.removeRange(0, 5);
-      elements.removeWhere((item) => item == elements[2]);
-      elements.removeLast();
-      elements.removeWhere((item) => item.contains('Age'));
-      elements.removeWhere((item) => item.contains('seconds'));
-    }
-  }
-
-  void createOriginal() async {
-    final swimmerPage = WebScraper("https://www.swimmingrank.com");
-    // scraping swimmer age
-    if (await swimmerPage.loadWebPage(widget.url)) {
-      originalElements = swimmerPage.getElementTitle('tr');
-      originalElements.removeRange(0, 5);
-      originalElements.removeWhere((item) => item == elements[2]);
-      originalElements.removeLast();
-    }
-  }
-
-  meetDialog(context, index, manipulatedElements) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-            title: Text(elements[index]),
-            content: Container(
-              child: ListView.builder(
-                  itemCount: manipulatedElements.length,
-                  itemBuilder: (
-                    context,
-                    index,
-                  ) {
-                    return Card(
-                      child: ListTile(
-                        onTap: () {},
-                        title: Text(manipulatedElements[index]),
-                      ),
-                    );
-                  }),
-            ),
-            actions: [
-              MaterialButton(
-                  child: Text('Ok'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-            ]);
-      },
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    grabData();
-    createOriginal();
-  }
-
+  FontWeight textWeight = FontWeight.normal;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-          itemCount: elements.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                onTap: () {
-                  setState(() {
-                    manipulatedElements = originalElements;
-                    manipulatedElements.removeRange(
-                        0,
-                        manipulatedElements
-                            .indexWhere((item) => item == elements[index]));
-                    manipulatedElements.removeRange(
-                        manipulatedElements
-                            .indexWhere((item) => item == elements[index + 1]),
-                        manipulatedElements.length);
-                  });
+    int colorCounter = 0;
+    List meets = widget.meets;
+    Color? background = Colors.red;
+    Color textColor = Colors.black;
+    String swimResult = '';
+    Color borderColor = Colors.black;
 
-                  meetDialog(context, index, manipulatedElements);
-                  manipulatedElements = originalElements;
-                },
-                title: Text(elements[index]),
+    return Container(
+      child: ListView(
+        children: meets.map((meet) {
+          if (meet.contains('Age')) {
+            setState(() {
+              background = Colors.blue[50];
+              textWeight = FontWeight.bold;
+              borderColor = Colors.black;
+            });
+          } else if (meet.contains('2018') ||
+              meet.contains('2019') ||
+              meet.contains('2020') ||
+              meet.contains('2021') ||
+              meet.contains('SC')) {
+            setState(() {
+              background = Colors.blue[100];
+              textWeight = FontWeight.bold;
+              borderColor = Colors.black;
+            });
+          } else if (meet.contains('seconds') && colorCounter == 0) {
+            if (meet.contains('-')) {
+              setState(() {
+                swimResult =
+                    meet.substring(meet.indexOf("-"), meet.length) + '👍';
+                meet = meet.substring(0, meet.indexOf("-"));
+                textColor = Colors.green;
+                print(swimResult);
+                textWeight = FontWeight.normal;
+                borderColor = Colors.white;
+              });
+            } else if (meet.contains('+')) {
+              setState(() {
+                swimResult = meet.substring(meet.indexOf("+"), meet.length);
+                meet = meet.substring(0, meet.indexOf("+"));
+                textColor = Colors.red;
+                print(swimResult);
+                textWeight = FontWeight.normal;
+                borderColor = Colors.white;
+              });
+            } else {
+              setState(() {
+                swimResult = '';
+              });
+            }
+            setState(() {
+              background = Colors.grey[200];
+              colorCounter++;
+            });
+          } else if (meet.contains('seconds') && colorCounter == 1) {
+            if (meet.contains('-')) {
+              setState(() {
+                swimResult =
+                    meet.substring(meet.indexOf("-"), meet.length) + '👍';
+                meet = meet.substring(0, meet.indexOf("-"));
+                textColor = Colors.green;
+                print(swimResult);
+                textWeight = FontWeight.normal;
+                borderColor = Colors.white;
+              });
+            } else if (meet.contains('+')) {
+              setState(() {
+                swimResult = meet.substring(meet.indexOf("+"), meet.length);
+                meet = meet.substring(0, meet.indexOf("+"));
+                textColor = Colors.red;
+                print(swimResult);
+                textWeight = FontWeight.normal;
+                borderColor = Colors.white;
+              });
+            } else {
+              setState(() {
+                swimResult = '';
+              });
+            }
+
+            setState(() {
+              background = Colors.white;
+              colorCounter--;
+            });
+          } else {
+            setState(() {
+              background = Colors.white;
+            });
+          }
+          return Container(
+            color: background,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: borderColor,
+                  width: 1,
+                ),
               ),
-            );
-          }),
+              child: ListTile(
+                onTap: () {},
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // int colorCounter = 0;
+                    // List meets = widget.meets;
+                    // FontWeight textWeight = FontWeight.normal;
+                    // Color? background = Colors.red;
+                    // Color textColor = Colors.black;
+                    // String swimResult = '';
+
+                    if (meet.contains(':') || meet.contains('.'))
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(meet, style: TextStyle(fontWeight: textWeight)),
+                          Text(swimResult, style: TextStyle(color: textColor)),
+                        ],
+                      )
+                    else
+                      Text(meet, style: TextStyle(fontWeight: textWeight)),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }

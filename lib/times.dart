@@ -16,6 +16,7 @@ class _TimesState extends State<Times> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Center(
         child: Text('Times'),
       ),
