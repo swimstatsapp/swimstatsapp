@@ -84,6 +84,7 @@ class _NewHomeState extends State<NewHome> {
   List meets = [];
   int swimmerintAge = 0;
   List meetTitles = [];
+  String _date = '';
 
   String submitStatus = "Submit";
 
@@ -99,9 +100,9 @@ class _NewHomeState extends State<NewHome> {
     ]; //initialize with first region
 
     DateTime _birthday = DateTime.now(); //just to have initial value
-    String _birthdayMonth = DateTime.now().month.toString();
-    String _birthdayDay = DateTime.now().day.toString();
-    String _birthdayYear = DateTime.now().year.toString();
+    String _birthdayMonth = '';
+    String _birthdayDay = '';
+    String _birthdayYear = '';
 //created global key, needed for form
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     //using the _build naming convention for functions that return a widget
@@ -161,6 +162,42 @@ class _NewHomeState extends State<NewHome> {
           },
           onSaved: (value) {
             _lastName = value!;
+          });
+    }
+
+    Widget _buildDateInput() {
+      return TextFormField(
+          keyboardType: TextInputType.datetime,
+          decoration: InputDecoration(
+            hintText: 'mm/dd/yyyy',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(5.5),
+            ),
+            prefixIcon: Icon(
+              Icons.calendar_today,
+              color: Colors.blueAccent,
+            ),
+            filled: true,
+            fillColor: Colors.blue[50],
+          ),
+          validator: (value) {
+            if (RegExp(r"\d\d\/\d\d\/\d\d\d\d").hasMatch(value!) == false) {
+              return 'Invalid date.';
+            }
+          },
+          onSaved: (value) {
+            _date = value!;
+            print(_date);
+            _birthdayMonth = _date.substring(0, 2);
+            print(_birthdayMonth);
+            _birthdayDay = _date.substring(3, 5);
+            print(_birthdayDay);
+            _birthdayYear = _date.substring(8, 10);
           });
     }
 
@@ -516,52 +553,9 @@ class _NewHomeState extends State<NewHome> {
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           )),
-                      Row(
-                        children: <Widget>[
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue[50]),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.blueAccent,
-                                  ),
-                                ],
-                              ),
-                              onPressed: () {
-                                Future<Null> _selectDate(
-                                    BuildContext context) async {
-                                  DateTime? _datePicker = await showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2022),
-                                  );
 
-                                  if (_datePicker != null &&
-                                      _datePicker != _birthday) {
-                                    setState(() {
-                                      _birthday = _datePicker;
-                                      _birthdayDay = _datePicker.day.toString();
-                                      _birthdayMonth =
-                                          _datePicker.month.toString();
-                                      _birthdayYear =
-                                          _datePicker.year.toString();
-                                    });
-                                  }
-                                }
+                      _buildDateInput(),
 
-                                _selectDate(context);
-                              }),
-                          SizedBox(width: 10),
-                          Text(
-                              '$_birthdayMonth / $_birthdayDay / $_birthdayYear ',
-                              style: TextStyle(
-                                fontSize: 20,
-                              )),
-                        ],
-                      ),
                       SizedBox(height: 20),
                       Row(
                         children: <Widget>[
@@ -590,11 +584,11 @@ class _NewHomeState extends State<NewHome> {
                     _formKey.currentState!.save();
 
                     int birthdayYearFirst =
-                        int.parse(_birthdayYear.substring(2, 3));
+                        int.parse(_birthdayYear.substring(0, 1));
                     print(birthdayYearFirst);
 
                     int birthdayYearSecond =
-                        int.parse(_birthdayYear.substring(3, 4));
+                        int.parse(_birthdayYear.substring(1, 2));
                     print(birthdayYearSecond);
 
                     // //creating usable LSC output
@@ -813,7 +807,6 @@ class _NewHomeState extends State<NewHome> {
 
                     int birthdayMonth = int.parse(_birthdayMonth);
                     int birthdayDay = int.parse(_birthdayDay);
-
                     String firstLetter =
                         _firstName.substring(0, 1).toUpperCase();
 

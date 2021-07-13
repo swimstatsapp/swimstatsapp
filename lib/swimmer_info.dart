@@ -43,9 +43,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
           index: _selectedIndex,
           children: [
             Times(),
-            Standards(information['swimmer'].identifier,
-                information['swimmer'].gender, information['swimmer'].intAge),
-            Compare(),
+            Compare(information['swimmer'].age),
             Meets(information['swimmer'].meets),
           ],
         ),
@@ -62,14 +60,6 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
               ),
               label: 'Times',
             ),
-            BottomNavigationBarItem(
-                backgroundColor: Colors.blue[50],
-                activeIcon: Icon(Icons.analytics_outlined, color: Colors.blue),
-                icon: Icon(
-                  Icons.analytics_outlined,
-                  color: Colors.black,
-                ),
-                label: 'Standards'),
             BottomNavigationBarItem(
                 backgroundColor: Colors.blue[50],
                 activeIcon: Icon(Icons.compare_arrows, color: Colors.blue),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Meets extends StatefulWidget {
   final List meets;
@@ -17,129 +18,201 @@ class _MeetsState extends State<Meets> {
     Color? background = Colors.red;
     Color textColor = Colors.black;
     String swimResult = '';
-    Color borderColor = Colors.black;
+    String swimEvent = '';
+    String swimTime = '';
+    String swimAchievement = '';
 
-    return Container(
-      child: ListView(
-        children: meets.map((meet) {
-          if (meet.contains('Age')) {
+    return ListView(
+      children: meets.map((meet) {
+        if (meet.contains('Age')) {
+          setState(() {
+            background = Colors.blue[100];
+            textWeight = FontWeight.bold;
+          });
+        } else if (meet.contains('2018') ||
+            meet.contains('2019') ||
+            meet.contains('2020') ||
+            meet.contains('2021') ||
+            meet.contains('SC') ||
+            meet.contains('Invite') ||
+            meet.contains('Intrasquad') ||
+            meet.contains('Dual') ||
+            meet.contains('Trials')) {
+          setState(() {
+            background = Colors.blue[100];
+            textWeight = FontWeight.bold;
+          });
+        } else if (meet.contains('seconds') && colorCounter == 0) {
+          if (meet.contains('-')) {
             setState(() {
-              background = Colors.blue[50];
-              textWeight = FontWeight.bold;
-              borderColor = Colors.black;
+              RegExp regex = RegExp(r'-?\+?\d{0,3}\.\d{2}');
+              swimResult = meet.substring(meet.indexOf("-"), meet.length);
+              var matches = regex.firstMatch(swimResult);
+              swimResult = matches!.group(0).toString() + '👍';
+              meet = meet.substring(0, meet.indexOf("-"));
+              textColor = Colors.green;
+              textWeight = FontWeight.normal;
             });
-          } else if (meet.contains('2018') ||
-              meet.contains('2019') ||
-              meet.contains('2020') ||
-              meet.contains('2021') ||
-              meet.contains('SC')) {
+          } else if (meet.contains('+')) {
             setState(() {
-              background = Colors.blue[100];
-              textWeight = FontWeight.bold;
-              borderColor = Colors.black;
-            });
-          } else if (meet.contains('seconds') && colorCounter == 0) {
-            if (meet.contains('-')) {
-              setState(() {
-                swimResult =
-                    meet.substring(meet.indexOf("-"), meet.length) + '👍';
-                meet = meet.substring(0, meet.indexOf("-"));
-                textColor = Colors.green;
-                print(swimResult);
-                textWeight = FontWeight.normal;
-                borderColor = Colors.white;
-              });
-            } else if (meet.contains('+')) {
-              setState(() {
-                swimResult = meet.substring(meet.indexOf("+"), meet.length);
-                meet = meet.substring(0, meet.indexOf("+"));
-                textColor = Colors.red;
-                print(swimResult);
-                textWeight = FontWeight.normal;
-                borderColor = Colors.white;
-              });
-            } else {
-              setState(() {
-                swimResult = '';
-              });
-            }
-            setState(() {
-              background = Colors.grey[200];
-              colorCounter++;
-            });
-          } else if (meet.contains('seconds') && colorCounter == 1) {
-            if (meet.contains('-')) {
-              setState(() {
-                swimResult =
-                    meet.substring(meet.indexOf("-"), meet.length) + '👍';
-                meet = meet.substring(0, meet.indexOf("-"));
-                textColor = Colors.green;
-                print(swimResult);
-                textWeight = FontWeight.normal;
-                borderColor = Colors.white;
-              });
-            } else if (meet.contains('+')) {
-              setState(() {
-                swimResult = meet.substring(meet.indexOf("+"), meet.length);
-                meet = meet.substring(0, meet.indexOf("+"));
-                textColor = Colors.red;
-                print(swimResult);
-                textWeight = FontWeight.normal;
-                borderColor = Colors.white;
-              });
-            } else {
-              setState(() {
-                swimResult = '';
-              });
-            }
-
-            setState(() {
-              background = Colors.white;
-              colorCounter--;
+              RegExp regex = RegExp(r'-?\+?\d{0,3}\.\d{2}');
+              swimResult = meet.substring(meet.indexOf("+"), meet.length);
+              var matches = regex.firstMatch(swimResult);
+              swimResult = matches!.group(0).toString();
+              textColor = Colors.red;
+              textWeight = FontWeight.normal;
             });
           } else {
             setState(() {
-              background = Colors.white;
+              swimResult = '';
             });
           }
-          return Container(
-            color: background,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: borderColor,
-                  width: 1,
-                ),
-              ),
-              child: ListTile(
-                onTap: () {},
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // int colorCounter = 0;
-                    // List meets = widget.meets;
-                    // FontWeight textWeight = FontWeight.normal;
-                    // Color? background = Colors.red;
-                    // Color textColor = Colors.black;
-                    // String swimResult = '';
+          setState(() {
+            background = Colors.grey[200];
+            colorCounter++;
+          });
+        } else if (meet.contains('seconds') && colorCounter == 1) {
+          if (meet.contains('-')) {
+            setState(() {
+              RegExp regex = RegExp(r'-?\+?\d{0,3}\.\d{2}');
+              swimResult = meet.substring(meet.indexOf("-"), meet.length);
+              var matches = regex.firstMatch(swimResult);
+              swimResult = matches!.group(0).toString() + '👍';
+              print(swimResult);
+              // meet = meet.substring(0, meet.indexOf("-"));
+              textColor = Colors.green;
+              textWeight = FontWeight.normal;
+            });
+          } else if (meet.contains('+')) {
+            setState(() {
+              RegExp regex = RegExp(r'-?\+?\d{0,3}\.\d{2}');
+              swimResult = meet.substring(meet.indexOf("+"), meet.length);
+              var matches = regex.firstMatch(swimResult);
+              swimResult = matches!.group(0).toString();
+              // meet = meet.substring(0, meet.indexOf("+"));
+              textColor = Colors.red;
+              textWeight = FontWeight.normal;
+            });
+          } else {
+            setState(() {
+              swimResult = '';
+            });
+          }
 
-                    if (meet.contains(':') || meet.contains('.'))
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(meet, style: TextStyle(fontWeight: textWeight)),
-                          Text(swimResult, style: TextStyle(color: textColor)),
-                        ],
-                      )
-                    else
+          setState(() {
+            background = Colors.white;
+            colorCounter--;
+          });
+        } else {
+          setState(() {
+            background = Colors.white;
+          });
+        }
+        if (meet.contains('Freestyle')) {
+          RegExp regex = RegExp(r'\d{0,4} (Yd)?(M)?');
+          var bopper = regex.firstMatch(meet);
+          swimEvent = bopper!.group(0).toString() + ' FR';
+          RegExp exp = RegExp(r'(\d?\d?)?\:?(\d{2})\.(\d{2})');
+          var bop = exp.firstMatch(meet);
+          swimTime = bop!.group(0).toString();
+          if (meet.contains("(")) {
+            swimAchievement =
+                meet.substring(meet.indexOf("("), meet.indexOf(")"));
+          }
+        } else if (meet.contains('Breaststroke')) {
+          RegExp regex = RegExp(r'\d{0,4} (Yd)?(M)?');
+          var bopper = regex.firstMatch(meet);
+          swimEvent = bopper!.group(0).toString() + ' BR';
+          RegExp exp = RegExp(r'(\d?\d?)?\:?(\d{2})\.(\d{2})');
+          var bop = exp.firstMatch(meet);
+          swimTime = bop!.group(0).toString();
+          if (meet.contains("(")) {
+            swimAchievement =
+                meet.substring(meet.indexOf("("), meet.indexOf(")"));
+          }
+        } else if (meet.contains('Butterfly')) {
+          RegExp regex = RegExp(r'\d{0,4} (Yd)?(M)?');
+          var bopper = regex.firstMatch(meet);
+          swimEvent = bopper!.group(0).toString() + ' FL';
+          RegExp exp = RegExp(r'(\d?\d?)?\:?(\d{2})\.(\d{2})');
+          var bop = exp.firstMatch(meet);
+          swimTime = bop!.group(0).toString();
+          if (meet.contains("(")) {
+            swimAchievement =
+                meet.substring(meet.indexOf("("), meet.indexOf(")"));
+          }
+        } else if (meet.contains('Backstroke')) {
+          RegExp regex = RegExp(r'\d{0,4} (Yd)?(M)?');
+          var bopper = regex.firstMatch(meet);
+          swimEvent = bopper!.group(0).toString() + ' BK';
+          RegExp exp = RegExp(r'(\d?\d?)?\:?(\d{2})\.(\d{2})');
+          var bop = exp.firstMatch(meet);
+          swimTime = bop!.group(0).toString();
+          if (meet.contains("(")) {
+            swimAchievement =
+                meet.substring(meet.indexOf("("), meet.indexOf(")"));
+          }
+        } else if (meet.contains('Individual Medley')) {
+          RegExp regex = RegExp(r'\d{0,4} (Yd)?(M)?');
+          var bopper = regex.firstMatch(meet);
+          swimEvent = bopper!.group(0).toString() + ' IM';
+          RegExp exp = RegExp(r'(\d?\d?)?\:?(\d{2})\.(\d{2})');
+          var bop = exp.firstMatch(meet);
+          swimTime = bop!.group(0).toString();
+          if (meet.contains("(")) {
+            swimAchievement =
+                meet.substring(meet.indexOf("("), meet.indexOf(")"));
+          }
+        }
+
+        return Column(
+          children: [
+            if (meet.contains(':') || meet.contains('.'))
+              Column(
+                children: [
+                  Container(
+                    color: background,
+                    child: ListTile(
+                      onTap: () {},
+                      title: SingleChildScrollView(
+                        child: DataTable(
+                          showBottomBorder: false,
+                          dividerThickness: 0.0,
+                          headingRowHeight: 0,
+                          columns: [
+                            DataColumn(label: Text('')),
+                            DataColumn(label: Text('')),
+                            DataColumn(label: Text('')),
+                          ],
+                          rows: [
+                            DataRow(cells: [
+                              DataCell((Text(swimEvent,
+                                  style: TextStyle(fontWeight: textWeight)))),
+                              DataCell(Text(swimTime)),
+                              DataCell(
+                                Text(swimResult,
+                                    style: TextStyle(color: textColor)),
+                              ),
+                            ]),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            else
+              Container(
+                  color: background,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Text(meet, style: TextStyle(fontWeight: textWeight)),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }).toList(),
-      ),
+                    ],
+                  )),
+          ],
+        );
+      }).toList(),
     );
   }
 }
