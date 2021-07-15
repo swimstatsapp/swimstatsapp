@@ -1,6 +1,6 @@
-import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:swimstatsapp/main.dart';
+  
 import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:web_scraper/web_scraper.dart';

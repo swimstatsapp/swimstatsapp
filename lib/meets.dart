@@ -78,7 +78,6 @@ class _MeetsState extends State<Meets> {
               swimResult = meet.substring(meet.indexOf("-"), meet.length);
               var matches = regex.firstMatch(swimResult);
               swimResult = matches!.group(0).toString() + '👍';
-              print(swimResult);
               // meet = meet.substring(0, meet.indexOf("-"));
               textColor = Colors.green;
               textWeight = FontWeight.normal;

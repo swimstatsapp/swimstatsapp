@@ -25,6 +25,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
     Map information = ModalRoute.of(context)!.settings.arguments as Map;
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('${information['swimmer'].name}'),
@@ -43,7 +44,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
           index: _selectedIndex,
           children: [
             Times(),
-            Compare(information['swimmer'].age),
+            Compare(information['swimmer'].name),
             Meets(information['swimmer'].meets),
           ],
         ),
