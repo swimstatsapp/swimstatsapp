@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swimstatsapp/privacypolicy.dart';
-import 'package:swimstatsapp/create_url.dart';
 import 'package:swimstatsapp/swimmer_info.dart';
 import 'package:swimstatsapp/newhome.dart';
 import 'package:swimstatsapp/how_to_use.dart';
@@ -17,14 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/displaytimes',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/newhome',
       routes: {
         '/newhome': (context) => NewHome(),
         '/privacypolicy': (context) => PrivacyPolicy(),
-        '/createurl': (context) => CreateUrl(),
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
         '/about' : (context) => About(),
         '/displaytimes' : (context) => DisplayTime(),
+        '/about': (context) => About(),
+        '/loadingscreen': (context) => LoadingScreen(),
       },
     );
   }
