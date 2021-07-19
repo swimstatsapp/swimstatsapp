@@ -4,7 +4,7 @@ import 'package:swimstatsapp/swimmer_info.dart';
 import 'package:swimstatsapp/newhome.dart';
 import 'package:swimstatsapp/how_to_use.dart';
 import 'package:swimstatsapp/about.dart';
-import 'package:swimstatsapp/loadingscreen.dart';
+import 'package:swimstatsapp/lcm_scy_times.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/displaytimes',
       debugShowCheckedModeBanner: false,
       initialRoute: '/newhome',
       routes: {
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/privacypolicy': (context) => PrivacyPolicy(),
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
+        '/about' : (context) => About(),
+        '/displaytimes' : (context) => DisplayTime(),
         '/about': (context) => About(),
         '/loadingscreen': (context) => LoadingScreen(),
       },
