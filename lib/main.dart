@@ -5,7 +5,7 @@ import 'package:swimstatsapp/swimmer_info.dart';
 import 'package:swimstatsapp/newhome.dart';
 import 'package:swimstatsapp/how_to_use.dart';
 import 'package:swimstatsapp/about.dart';
-import 'package:swimstatsapp/times_display.dart';
+import 'package:swimstatsapp/lcm_scy_times.dart';
 
 void main() {
   runApp(MyApp());
