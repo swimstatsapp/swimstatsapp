@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/displaytimes',
       debugShowCheckedModeBanner: false,
       initialRoute: '/newhome',
       routes: {
@@ -23,10 +22,9 @@ class MyApp extends StatelessWidget {
         '/privacypolicy': (context) => PrivacyPolicy(),
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
-        '/about' : (context) => About(),
-        '/displaytimes' : (context) => DisplayTime(),
         '/about': (context) => About(),
-        '/loadingscreen': (context) => LoadingScreen(),
+        '/displaytimes': (context) => DisplayTime(),
+        '/about': (context) => About(),
       },
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swimstatsapp/times.dart';
-import 'package:swimstatsapp/standards.dart';
 import 'package:swimstatsapp/compare.dart';
 import 'package:swimstatsapp/meets.dart';
+import 'package:swimstatsapp/lcm_scy_times.dart';
 
 class SwimmerInfo extends StatefulWidget {
   const SwimmerInfo({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
         body: IndexedStack(
           index: _selectedIndex,
           children: [
-            Times(),
+            DisplayTime(),
             Compare(information['swimmer'].name),
             Meets(information['swimmer'].meets),
           ],
