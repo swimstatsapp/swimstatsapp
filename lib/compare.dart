@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:swimstatsapp/goaltemplate.dart';
@@ -20,8 +19,6 @@ class Compare extends StatefulWidget {
 }
 
 class _CompareState extends State<Compare> {
-  List<Goal> currentList = [];
-  List<Goal> totalCurrentList = [];
   // Time Conversions to Seconds
   double timeSecondsConversion(String originalTime) {
     double totalSeconds = 0;
@@ -92,19 +89,34 @@ class _CompareState extends State<Compare> {
             controller?.position.userScrollDirection == ScrollDirection.forward;
       });
     });
-    setState(() {
-      for (int x = 0; x < goalList.length; x++) {
-        if (goalList[x].name == widget.name) {
-          totalCurrentList.add(goalList[x]);
-        }
-      }
-      currentList = totalCurrentList;
-      print(currentList);
-    });
-    if (totalCurrentList.isEmpty) {
+
+    initialSort = 'All';
+    if (goalList.isEmpty) {
       showIntro = true;
     } else {
       showIntro = false;
+    }
+
+    for (int x = 0; x < goalList.length; x++) {
+      if (initialSort == 'All' && goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else if (initialSort == 'Freestyle' &&
+          goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else if (initialSort == 'Breaststroke' &&
+          goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else if (initialSort == 'Backstroke' &&
+          goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else if (initialSort == 'Butterfly' &&
+          goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else if (initialSort == "IM" && goalList[x].name == widget.name) {
+        goalList[x].isVisible = true;
+      } else {
+        goalList[x].isVisible = false;
+      }
     }
   }
 
@@ -189,7 +201,7 @@ class _CompareState extends State<Compare> {
     String name = widget.name;
 
     // launching comparison dialog
-    comparisonDialog(context) {
+    addComparisonDialog(context) {
       return showDialog(
         context: context,
         builder: (context) {
@@ -486,19 +498,34 @@ class _CompareState extends State<Compare> {
                               customTime,
                               name,
                               calculateNeed(goalTime, customTime),
-                              calculatePercentNeed(goalTime, customTime)));
+                              calculatePercentNeed(goalTime, customTime),
+                              true));
 
-                          totalCurrentList.add(Goal(
-                              _currentUnit,
-                              _currentYardage,
-                              _currentStroke,
-                              goalTime,
-                              customTime,
-                              name,
-                              calculateNeed(goalTime, customTime),
-                              calculatePercentNeed(goalTime, customTime)));
+                          for (int x = 0; x < goalList.length; x++) {
+                            if (initialSort == 'All' &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else if (initialSort == 'Freestyle' &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else if (initialSort == 'Breaststroke' &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else if (initialSort == 'Backstroke' &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else if (initialSort == 'Butterfly' &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else if (initialSort == "IM" &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else {
+                              goalList[x].isVisible = false;
+                            }
+                          }
 
-                          if (totalCurrentList.isEmpty) {
+                          if (goalList.isEmpty) {
                             showIntro = true;
                           } else {
                             showIntro = false;
@@ -524,7 +551,7 @@ class _CompareState extends State<Compare> {
               content: StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                 return Form(
-                  key: _formKey,
+                  key: _formKey2,
                   child: Container(
                     width: double.maxFinite,
                     child: ListView(
@@ -799,8 +826,8 @@ class _CompareState extends State<Compare> {
                 MaterialButton(
                     child: Text('Submit'),
                     onPressed: () {
-                      if (_formKey.currentState!.validate() == true) {
-                        _formKey.currentState!.save();
+                      if (_formKey2.currentState!.validate() == true) {
+                        _formKey2.currentState!.save();
                         _currentUnit = 'SCY';
 
                         setState(() {
@@ -809,12 +836,11 @@ class _CompareState extends State<Compare> {
                           element.needPercentValue = calculatePercentNeed(
                               element.goalTime, element.currentTime);
 
-                          if (totalCurrentList.isEmpty) {
+                          if (goalList.isEmpty) {
                             showIntro = true;
                           } else {
                             showIntro = false;
                           }
-                          initialSort = 'All';
                         });
 
                         Navigator.of(context).pop();
@@ -857,48 +883,17 @@ class _CompareState extends State<Compare> {
                         DropdownMenuItem(child: Text('IM'), value: 'IM'),
                       ],
                       onChanged: (String? newValue) {
-                        List<Goal> IMCurrentList = [];
-                        List<Goal> freestyleCurrentList = [];
-                        List<Goal> breaststrokeCurrentList = [];
-                        List<Goal> backstrokeCurrentList = [];
-                        List<Goal> butterflyCurrentList = [];
                         setState(() {
                           initialSort = newValue!;
 
-                          if (initialSort == 'All') {
-                            currentList = totalCurrentList;
-                          }
-                          if (initialSort == 'Freestyle') {
-                            currentList = [];
-                            for (int x = 0; x < totalCurrentList.length; x++) {
-                              if (totalCurrentList[x].stroke == 'Freestyle') {
-                                currentList.add(totalCurrentList[x]);
-                              }
-                            }
-                          }
-                          if (initialSort == 'Breaststroke') {
-                            currentList = [];
-                            for (int x = 0; x < totalCurrentList.length; x++) {
-                              if (totalCurrentList[x].stroke ==
-                                  'Breaststroke') {
-                                currentList.add(totalCurrentList[x]);
-                              }
-                            }
-                          }
-                          if (initialSort == 'Backstroke') {
-                            currentList = [];
-                            for (int x = 0; x < totalCurrentList.length; x++) {
-                              if (totalCurrentList[x].stroke == 'Backstroke') {
-                                currentList.add(totalCurrentList[x]);
-                              }
-                            }
-                          }
-                          if (initialSort == 'Butterfly') {
-                            currentList = [];
-                            for (int x = 0; x < totalCurrentList.length; x++) {
-                              if (totalCurrentList[x].stroke == 'Butterfly') {
-                                currentList.add(totalCurrentList[x]);
-                              }
+                          for (int x = 0; x < goalList.length; x++) {
+                            if (initialSort == 'All') {
+                              goalList[x].isVisible = true;
+                            } else if (goalList[x].stroke == initialSort &&
+                                goalList[x].name == widget.name) {
+                              goalList[x].isVisible = true;
+                            } else {
+                              goalList[x].isVisible = false;
                             }
                           }
                         });
@@ -908,165 +903,170 @@ class _CompareState extends State<Compare> {
                 ),
               ),
             ] +
-            currentList.map((element) {
-              return Card(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                          element.distance +
-                              " " +
-                              element.unit +
-                              " " +
-                              element.stroke,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.blue[800])),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Text('CURRENT',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Container(
-                                color: Colors.blue[50],
-                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                child: Text(element.currentTime,
+            goalList.map((element) {
+              return Visibility(
+                visible: element.isVisible,
+                child: Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                            element.distance +
+                                " " +
+                                element.unit +
+                                " " +
+                                element.stroke,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.blue[800])),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Text('CURRENT',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              Container(
+                                  color: Colors.blue[50],
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Text(element.currentTime,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ))),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text('GOAL',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              Container(
+                                  color: Colors.blue[50],
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Text(element.goalTime,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ))),
+                            ],
+                          ),
+                          if (element.needValue.isNegative == false)
+                            Column(
+                              children: [
+                                Text('NEED',
                                     style: TextStyle(
-                                      fontSize: 16,
-                                    ))),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text('GOAL',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Container(
-                                color: Colors.blue[50],
-                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                child: Text(element.goalTime,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Container(
+                                    color: Colors.red[50],
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text('-${element.needValue}',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.red,
+                                        ))),
+                              ],
+                            )
+                          else
+                            Column(
+                              children: [
+                                Text('NEED',
                                     style: TextStyle(
-                                      fontSize: 16,
-                                    ))),
-                          ],
-                        ),
-                        if (element.needValue.isNegative == false)
-                          Column(
-                            children: [
-                              Text('NEED',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Container(
-                                  color: Colors.red[50],
-                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                  child: Text('-${element.needValue}',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.red,
-                                      ))),
-                            ],
-                          )
-                        else
-                          Column(
-                            children: [
-                              Text('NEED',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Container(
-                                  color: Colors.green[50],
-                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                  child: Text('✓',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.green,
-                                      ))),
-                            ],
-                          ),
-                        if (element.needValue.isNegative == false)
-                          Column(
-                            children: [
-                              Text('% NEED',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Container(
-                                  color: Colors.red[50],
-                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                  child: Text('-${element.needPercentValue}%',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.red,
-                                      ))),
-                            ],
-                          )
-                        else
-                          Column(
-                            children: [
-                              Text('% NEED',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Container(
-                                  color: Colors.green[50],
-                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                  child: Text('✓',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.green,
-                                      ))),
-                            ],
-                          ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MaterialButton(
-                          child: Row(
-                            children: [
-                              Text('EDIT'),
-                              Icon(Icons.edit, size: 15),
-                            ],
-                          ),
-                          onPressed: () {
-                            changeDataDialog(context, element);
-                          },
-                        ),
-                        MaterialButton(
-                            child: Text('DELETE'),
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Container(
+                                    color: Colors.green[50],
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text('✓',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.green,
+                                        ))),
+                              ],
+                            ),
+                          if (element.needValue.isNegative == false)
+                            Column(
+                              children: [
+                                Text('% NEED',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Container(
+                                    color: Colors.red[50],
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text('-${element.needPercentValue}%',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.red,
+                                        ))),
+                              ],
+                            )
+                          else
+                            Column(
+                              children: [
+                                Text('% NEED',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Container(
+                                    color: Colors.green[50],
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text('✓',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.green,
+                                        ))),
+                              ],
+                            ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MaterialButton(
+                            child: Row(
+                              children: [
+                                Text('EDIT'),
+                                Icon(Icons.edit, size: 15),
+                              ],
+                            ),
                             onPressed: () {
-                              setState(() {
-                                totalCurrentList
-                                    .removeWhere((item) => item == element);
-                                currentList
-                                    .removeWhere((item) => item == element);
-                                goalList.removeWhere((item) => item == element);
-                                if (totalCurrentList.isEmpty) {
-                                  showIntro = true;
-                                } else {
-                                  showIntro = false;
-                                }
-                              });
-                              Fluttertoast.showToast(
-                                msg: "Removed goal.",
-                                backgroundColor: Colors.black.withOpacity(0.3),
-                                textColor: Colors.white,
-                              );
-                            }),
-                      ],
-                    )
-                  ],
+                              changeDataDialog(context, element);
+                            },
+                          ),
+                          MaterialButton(
+                              child: Text('DELETE'),
+                              onPressed: () {
+                                setState(() {
+                                  goalList
+                                      .removeWhere((item) => item == element);
+                                  goalList
+                                      .removeWhere((item) => item == element);
+                                  goalList
+                                      .removeWhere((item) => item == element);
+                                  if (goalList.isEmpty) {
+                                    showIntro = true;
+                                  } else {
+                                    showIntro = false;
+                                  }
+                                });
+                                Fluttertoast.showToast(
+                                  msg: "Removed goal.",
+                                  backgroundColor:
+                                      Colors.black.withOpacity(0.3),
+                                  textColor: Colors.white,
+                                );
+                              }),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               );
             }).toList(),
@@ -1075,7 +1075,7 @@ class _CompareState extends State<Compare> {
         child: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            comparisonDialog(context);
+            addComparisonDialog(context);
           },
         ),
         duration: Duration(milliseconds: 250),
