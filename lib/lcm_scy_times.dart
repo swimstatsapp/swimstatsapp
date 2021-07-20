@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_scraper/web_scraper.dart';
+import 'package:swimstatsapp/newhome.dart';
 
 class DisplayTime extends StatefulWidget {
   const DisplayTime({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _DisplayTimeState extends State<DisplayTime> {
   void free50YScrap() async {
     final webScraper = WebScraper('https://swimmingrank.com');
     if (await webScraper
-        .loadWebPage('/cal/strokes/strokes_scs/MDAKRAYEU_50FR.html')) {
+        .loadWebPage('')) {
       List<Map<String, dynamic>> elements = webScraper
           .getElement('body > div > table > tbody > tr > td', ['title']);
       setState(() {
@@ -71,7 +72,8 @@ class _DisplayTimeState extends State<DisplayTime> {
   void free100YScrap() async {
     final webScraper = WebScraper('https://swimmingrank.com');
     if (await webScraper
-        .loadWebPage('/cal/strokes/strokes_scs/MDAKRAYEU_100FR.html')) {
+        .loadWebPage('/cal/strokes/strokes_scs/MDAKRAYEU_100FR.html'))
+    {
       List<Map<String, dynamic>> elements = webScraper
           .getElement('body > div > table > tbody > tr > td', ['title']);
       setState(() {
