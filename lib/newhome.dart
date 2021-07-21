@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-  
+
 import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:web_scraper/web_scraper.dart';
@@ -926,14 +925,19 @@ class _NewHomeState extends State<NewHome> {
                       '',
                     ];
 
-                    String free50Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free50Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_50FR.html";
                     print(fullUrl);
                     final free50Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free50Scrap
-                        .loadWebPage('$free50Url')) {
+                    if (await free50Scrap.loadWebPage('$free50Url')) {
                       List<Map<String, dynamic>> elements = free50Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -943,7 +947,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free50YTime = elements[7]['title'];
                           free50MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free50YTime = 'N/A';
                           free50MTime = elements[12]['title'];
@@ -954,17 +959,23 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free ' + free50YTime);
                       print('free ' + free50MTime);
-                      times.replaceRange(3, 6, [free50MTime, '50 Freestyle', free50YTime]);
+                      times.replaceRange(
+                          3, 6, [free50MTime, '50 Freestyle', free50YTime]);
                     }
 
-                    String free100Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free100Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_100FR.html";
                     print(fullUrl);
                     final free100Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free100Scrap
-                        .loadWebPage('$free100Url')) {
+                    if (await free100Scrap.loadWebPage('$free100Url')) {
                       List<Map<String, dynamic>> elements = free100Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -974,7 +985,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free100YTime = elements[7]['title'];
                           free100MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free100YTime = 'N/A';
                           free100MTime = elements[12]['title'];
@@ -985,17 +997,23 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free ' + free100YTime);
                       print('free' + free100MTime);
-                      times.replaceRange(6, 9, [free100MTime, '100 Freestyle', free100YTime]);
+                      times.replaceRange(
+                          6, 9, [free100MTime, '100 Freestyle', free100YTime]);
                     }
 
-                    String free200Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free200Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_200FR.html";
                     print(fullUrl);
                     final free200Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free200Scrap
-                        .loadWebPage('$free200Url')) {
+                    if (await free200Scrap.loadWebPage('$free200Url')) {
                       List<Map<String, dynamic>> elements = free200Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1005,7 +1023,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free200YTime = elements[7]['title'];
                           free200MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free200YTime = 'N/A';
                           free200MTime = elements[12]['title'];
@@ -1016,16 +1035,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free' + free200YTime);
                       print('free' + free200MTime);
-                      times.replaceRange(9, 12, [free200MTime, '200 Freestyle', free200YTime]);
+                      times.replaceRange(
+                          9, 12, [free200MTime, '200 Freestyle', free200YTime]);
                     }
 
-                    String free400Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free400Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_400500FR.html";
                     final free400Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free400Scrap
-                        .loadWebPage('$free400Url')) {
+                    if (await free400Scrap.loadWebPage('$free400Url')) {
                       List<Map<String, dynamic>> elements = free400Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1035,7 +1060,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free500YTime = elements[7]['title'];
                           free400MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free500YTime = 'N/A';
                           free400MTime = elements[12]['title'];
@@ -1046,17 +1072,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free' + free500YTime);
                       print('free' + free400MTime);
-                      times.replaceRange(
-                          12, 15, [free400MTime, '400/500 Freestyle', free500YTime]);
+                      times.replaceRange(12, 15,
+                          [free400MTime, '400/500 Freestyle', free500YTime]);
                     }
 
-                    String free800Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free800Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_8001000FR.html";
                     final free800Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free800Scrap
-                        .loadWebPage('$free800Url')) {
+                    if (await free800Scrap.loadWebPage('$free800Url')) {
                       List<Map<String, dynamic>> elements = free800Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1066,7 +1097,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free1000YTime = elements[7]['title'];
                           free800MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free1000YTime = 'N/A';
                           free800MTime = elements[12]['title'];
@@ -1077,17 +1109,23 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free ' + free1000YTime);
                       print('free ' + free800MTime);
-                      times.replaceRange(
-                          15, 18, [free800MTime, '800/1000 Freestyle', free1000YTime]);
+                      times.replaceRange(15, 18,
+                          [free800MTime, '800/1000 Freestyle', free1000YTime]);
                     }
 
-                    String free1500Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String free1500Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_15001650FR.html";
-                    final free1500Scrap = WebScraper('https://swimmingrank.com');
-                    if (await free1500Scrap
-                        .loadWebPage('$free1500Url')) {
+                    final free1500Scrap =
+                        WebScraper('https://swimmingrank.com');
+                    if (await free1500Scrap.loadWebPage('$free1500Url')) {
                       List<Map<String, dynamic>> elements = free1500Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1097,7 +1135,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           free1650YTime = elements[7]['title'];
                           free1500MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           free1650YTime = 'N/A';
                           free1500MTime = elements[12]['title'];
@@ -1108,17 +1147,25 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('free ' + free1650YTime);
                       print('free ' + free1500MTime);
-                      times.replaceRange(
-                          18, 21, [free1500MTime, '1500/1650 Freestyle', free1650YTime]);
+                      times.replaceRange(18, 21, [
+                        free1500MTime,
+                        '1500/1650 Freestyle',
+                        free1650YTime
+                      ]);
                     }
 
-                    String back100Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String back100Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_100BK.html";
                     final back100Scrap = WebScraper('https://swimmingrank.com');
-                    if (await back100Scrap
-                        .loadWebPage('$back100Url')) {
+                    if (await back100Scrap.loadWebPage('$back100Url')) {
                       List<Map<String, dynamic>> elements = back100Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1128,7 +1175,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           back100YTime = elements[7]['title'];
                           back100MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           back100YTime = 'N/A';
                           back100MTime = elements[12]['title'];
@@ -1139,17 +1187,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('back' + back100YTime);
                       print('back' + back100MTime);
-                      times
-                          .replaceRange(21, 24, [back100MTime, '100 Backstroke', back100YTime]);
+                      times.replaceRange(21, 24,
+                          [back100MTime, '100 Backstroke', back100YTime]);
                     }
 
-                    String back200Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String back200Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_200BK.html";
                     final back200Scrap = WebScraper('https://swimmingrank.com');
-                    if (await back200Scrap
-                        .loadWebPage('$back200Url')) {
+                    if (await back200Scrap.loadWebPage('$back200Url')) {
                       List<Map<String, dynamic>> elements = back200Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1159,7 +1212,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           back200YTime = elements[7]['title'];
                           back200MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           back200YTime = 'N/A';
                           back200MTime = elements[12]['title'];
@@ -1170,17 +1224,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('back' + back200YTime);
                       print('back' + back200MTime);
-                      times
-                          .replaceRange(24, 27, [back200MTime, '200 Backstroke', back200YTime]);
+                      times.replaceRange(24, 27,
+                          [back200MTime, '200 Backstroke', back200YTime]);
                     }
 
-                    String brst100Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String brst100Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_100BR.html";
                     final brst100Scrap = WebScraper('https://swimmingrank.com');
-                    if (await brst100Scrap
-                        .loadWebPage('$brst100Url')) {
+                    if (await brst100Scrap.loadWebPage('$brst100Url')) {
                       List<Map<String, dynamic>> elements = brst100Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1190,7 +1249,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           brst100YTime = elements[7]['title'];
                           brst100MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           brst100YTime = 'N/A';
                           brst100MTime = elements[12]['title'];
@@ -1201,17 +1261,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('brst' + brst100YTime);
                       print('brst' + brst100MTime);
-                      times.replaceRange(
-                          27, 30, [brst100MTime, '100 Breaststroke', brst100YTime]);
+                      times.replaceRange(27, 30,
+                          [brst100MTime, '100 Breaststroke', brst100YTime]);
                     }
 
-                    String brst200Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String brst200Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_200BR.html";
                     final brst200Scrap = WebScraper('https://swimmingrank.com');
-                    if (await brst200Scrap
-                        .loadWebPage('$brst200Url')) {
+                    if (await brst200Scrap.loadWebPage('$brst200Url')) {
                       List<Map<String, dynamic>> elements = brst200Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1221,7 +1286,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           brst200YTime = elements[7]['title'];
                           brst200MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           brst200YTime = 'N/A';
                           brst200MTime = elements[12]['title'];
@@ -1232,17 +1298,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('brst' + brst200YTime);
                       print('brst' + brst200MTime);
-                      times.replaceRange(
-                          30, 33, [brst200MTime, '200 Breaststroke', brst200YTime]);
+                      times.replaceRange(30, 33,
+                          [brst200MTime, '200 Breaststroke', brst200YTime]);
                     }
 
-                    String fly100Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String fly100Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_100FL.html";
                     final fly100Scrap = WebScraper('https://swimmingrank.com');
-                    if (await fly100Scrap
-                        .loadWebPage('$fly100Url')) {
+                    if (await fly100Scrap.loadWebPage('$fly100Url')) {
                       List<Map<String, dynamic>> elements = fly100Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1252,7 +1323,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           fly100YTime = elements[7]['title'];
                           fly100MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           fly100YTime = 'N/A';
                           fly100MTime = elements[12]['title'];
@@ -1263,16 +1335,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('fly ' + fly100YTime);
                       print('fly' + fly100MTime);
-                      times.replaceRange(33, 36, [fly100MTime, '100 Butterfly', fly100YTime]);
+                      times.replaceRange(
+                          33, 36, [fly100MTime, '100 Butterfly', fly100YTime]);
                     }
 
-                    String fly200Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String fly200Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_200FL.html";
                     final fly200Scrap = WebScraper('https://swimmingrank.com');
-                    if (await fly200Scrap
-                        .loadWebPage('$fly200Url')) {
+                    if (await fly200Scrap.loadWebPage('$fly200Url')) {
                       List<Map<String, dynamic>> elements = fly200Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1282,7 +1360,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           fly200YTime = elements[7]['title'];
                           fly200MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           fly200YTime = 'N/A';
                           fly200MTime = elements[12]['title'];
@@ -1293,16 +1372,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('fly' + fly200YTime);
                       print('fly' + fly200MTime);
-                      times.replaceRange(36, 39, [fly200MTime, '200 Butterfly', fly200YTime]);
+                      times.replaceRange(
+                          36, 39, [fly200MTime, '200 Butterfly', fly200YTime]);
                     }
 
-                    String im200Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String im200Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_200IM.html";
                     final im200Scrap = WebScraper('https://swimmingrank.com');
-                    if (await im200Scrap
-                        .loadWebPage('$im200Url')) {
+                    if (await im200Scrap.loadWebPage('$im200Url')) {
                       List<Map<String, dynamic>> elements = im200Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1312,7 +1397,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           im200YTime = elements[7]['title'];
                           im200MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           im200YTime = 'N/A';
                           im200MTime = elements[12]['title'];
@@ -1323,16 +1409,22 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('IM' + im200YTime);
                       print('IM' + im200MTime);
-                      times.replaceRange(39, 42, [im200MTime, '200 IM', im200YTime]);
+                      times.replaceRange(
+                          39, 42, [im200MTime, '200 IM', im200YTime]);
                     }
 
-                    String im400Url = "/" + _currentRegion + "/strokes/strokes_" + currentLSCidentifier + "/" + swimmerIdentifier +
+                    String im400Url = "/" +
+                        _currentRegion +
+                        "/strokes/strokes_" +
+                        currentLSCidentifier +
+                        "/" +
+                        swimmerIdentifier +
                         "_400IM.html";
                     final im400Scrap = WebScraper('https://swimmingrank.com');
-                    if (await im400Scrap
-                        .loadWebPage('$im400Url')) {
+                    if (await im400Scrap.loadWebPage('$im400Url')) {
                       List<Map<String, dynamic>> elements = im400Scrap
-                          .getElement('body > div > table > tbody > tr > td', ['title']);
+                          .getElement('body > div > table > tbody > tr > td',
+                              ['title']);
                       setState(() {
                         if (elements[7]['title'].contains('.') == true &&
                             elements[12]['title'].contains('.') == true) {
@@ -1342,7 +1434,8 @@ class _NewHomeState extends State<NewHome> {
                             elements[12]['title'].contains('.') == false) {
                           im400YTime = elements[7]['title'];
                           im400MTime = 'N/A';
-                        } else if (elements[7]['title'].contains('.') == false &&
+                        } else if (elements[7]['title'].contains('.') ==
+                                false &&
                             elements[12]['title'].contains('.') == true) {
                           im400YTime = 'N/A';
                           im400MTime = elements[12]['title'];
@@ -1353,16 +1446,9 @@ class _NewHomeState extends State<NewHome> {
                       });
                       print('IM' + im400YTime);
                       print('IM' + im400MTime);
-                      times.replaceRange(42, 45, [im400MTime, '400 IM', im400YTime]);
+                      times.replaceRange(
+                          42, 45, [im400MTime, '400 IM', im400YTime]);
                     }
-
-
-
-
-
-
-
-
 
                     //parsing information from the website
 
@@ -1422,7 +1508,35 @@ class _NewHomeState extends State<NewHome> {
                               swimmerIdentifier,
                               swimmerintAge,
                               fullUrl,
-                              meets));
+                              meets,
+                              free50YTime,
+                              free50MTime,
+                              free100YTime,
+                              free100MTime,
+                              free200YTime,
+                              free200MTime,
+                              free500YTime,
+                              free400MTime,
+                              free1000YTime,
+                              free800MTime,
+                              free1650YTime,
+                              free1500MTime,
+                              back100YTime,
+                              back100MTime,
+                              back200YTime,
+                              back200MTime,
+                              brst100YTime,
+                              brst100MTime,
+                              brst200YTime,
+                              brst200MTime,
+                              fly100YTime,
+                              fly100MTime,
+                              fly200YTime,
+                              fly200MTime,
+                              im200YTime,
+                              im200MTime,
+                              im400YTime,
+                              im400MTime));
                         });
 
                         Navigator.pop(context);
