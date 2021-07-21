@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
         '/swimmerinfo': (context) => SwimmerInfo(),
         '/howtouse': (context) => HowToUse(),
         '/about': (context) => About(),
+        // '/displaytimes': (context) => DisplayTime(),
+        '/about': (context) => About(),
         '/displaytimes': (context) => DisplayTime(),
         '/termsandconditions': (context) => TermsAndConditions(),
       },
