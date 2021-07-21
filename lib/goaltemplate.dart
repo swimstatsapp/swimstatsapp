@@ -7,6 +7,7 @@ class Goal {
   String currentTime = '';
   double needValue = 0;
   double needPercentValue = 0;
+  bool isVisible = true;
 
   Goal(
       String unit,
@@ -16,7 +17,8 @@ class Goal {
       String currentTime,
       String name,
       double needValue,
-      double needPercentValue) {
+      double needPercentValue,
+      bool isVisible) {
     this.unit = unit;
     this.distance = distance;
     this.stroke = stroke;
@@ -25,5 +27,6 @@ class Goal {
     this.name = name;
     this.needValue = needValue;
     this.needPercentValue = needPercentValue;
+    this.isVisible = isVisible;
   }
 }

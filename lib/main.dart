@@ -5,6 +5,7 @@ import 'package:swimstatsapp/newhome.dart';
 import 'package:swimstatsapp/how_to_use.dart';
 import 'package:swimstatsapp/about.dart';
 import 'package:swimstatsapp/lcm_scy_times.dart';
+import 'package:swimstatsapp/termsandconditions.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/about': (context) => About(),
         // '/displaytimes': (context) => DisplayTime(),
         '/about': (context) => About(),
+        '/displaytimes': (context) => DisplayTime(),
+        '/termsandconditions': (context) => TermsAndConditions(),
       },
     );
   }
