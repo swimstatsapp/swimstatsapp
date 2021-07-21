@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PrivacyPolicy extends StatelessWidget {
-  const PrivacyPolicy({Key? key}) : super(key: key);
+class TermsAndConditions extends StatelessWidget {
+  const TermsAndConditions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,16 @@ class PrivacyPolicy extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: Text('Privacy Policy'),
+          title: Text('Terms and Conditions'),
           centerTitle: true,
         ),
-        body: Center(),
+        body: ListView(
+          children: [
+            ListTile(
+              title: Text('Terms and Conditions here'),
+            ),
+          ],
+        ),
       ),
     );
   }

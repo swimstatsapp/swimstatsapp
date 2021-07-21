@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-  
+
 import 'package:swimstatsapp/cardtemplate.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:web_scraper/web_scraper.dart';
@@ -82,6 +81,9 @@ class _NewHomeState extends State<NewHome> {
   String swimmerLastMeet = '';
   String swimmerLastMeetDate = '';
   List meets = [];
+  List rankingNumberLCM = [];
+  List rankingNumberSCY = [];
+  List rankingHeaders = [];
   int swimmerintAge = 0;
   List meetTitles = [];
   String _date = '';
@@ -578,322 +580,420 @@ class _NewHomeState extends State<NewHome> {
             }),
             actions: [
               MaterialButton(
-                child: Text('Submit'),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate() == true) {
-                    _formKey.currentState!.save();
+                  child: Text('Submit'),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate() == true) {
+                      _formKey.currentState!.save();
 
-                    int birthdayYearFirst =
-                        int.parse(_birthdayYear.substring(0, 1));
-                    print(birthdayYearFirst);
+                      int birthdayYearFirst =
+                          int.parse(_birthdayYear.substring(0, 1));
+                      print(birthdayYearFirst);
 
-                    int birthdayYearSecond =
-                        int.parse(_birthdayYear.substring(1, 2));
-                    print(birthdayYearSecond);
+                      int birthdayYearSecond =
+                          int.parse(_birthdayYear.substring(1, 2));
+                      print(birthdayYearSecond);
 
-                    // //creating usable LSC output
-                    if (_currentLSC == 'Florida') {
-                      currentLSCidentifier = 'fl';
-                    }
-                    if (_currentLSC == 'Florida Gold Coast') {
-                      currentLSCidentifier = 'fg';
-                    }
-                    if (_currentLSC == 'Southeastern') {
-                      currentLSCidentifier = 'se';
-                    }
-                    if (_currentLSC == 'Alaska') {
-                      currentLSCidentifier = 'ak';
-                    }
-                    if (_currentLSC == 'Arizona') {
-                      currentLSCidentifier = 'az';
-                    }
-                    if (_currentLSC == 'Southern California') {
-                      currentLSCidentifier = 'scs';
-                    }
-                    if (_currentLSC == 'Pacific') {
-                      currentLSCidentifier = 'pc';
-                    }
-                    if (_currentLSC == 'San Diego - Imperial') {
-                      currentLSCidentifier = 'si';
-                    }
-                    if (_currentLSC == 'Central') {
-                      currentLSCidentifier = 'cc';
-                    }
-                    if (_currentLSC == 'Sierra Nevada') {
-                      currentLSCidentifier = 'sn';
-                    }
-                    if (_currentLSC == 'Colorado') {
-                      currentLSCidentifier = 'co';
-                    }
-                    if (_currentLSC == 'New Mexico') {
-                      currentLSCidentifier = 'nm';
-                    }
-                    if (_currentLSC == 'Utah') {
-                      currentLSCidentifier = 'ut';
-                    }
-                    if (_currentLSC == 'Wyoming') {
-                      currentLSCidentifier = 'wy';
-                    }
-                    if (_currentLSC == 'Connecticut') {
-                      currentLSCidentifier = 'ct';
-                    }
-                    if (_currentLSC == 'Maine') {
-                      currentLSCidentifier = 'me';
-                    }
-                    if (_currentLSC == 'New England') {
-                      currentLSCidentifier = 'ne';
-                    }
-                    if (_currentLSC == 'Maryland') {
-                      currentLSCidentifier = 'md';
-                    }
-                    if (_currentLSC == 'Potomac Valley') {
-                      currentLSCidentifier = 'pv';
-                    }
-                    if (_currentLSC == 'Virginia') {
-                      currentLSCidentifier = 'va';
-                    }
-                    if (_currentLSC == 'Allegheny Mountain') {
-                      currentLSCidentifier = 'am';
-                    }
-                    if (_currentLSC == 'Mid Atlantic') {
-                      currentLSCidentifier = 'ma';
-                    }
-                    if (_currentLSC == 'New Jersey') {
-                      currentLSCidentifier = 'nj';
-                    }
-                    if (_currentLSC == 'Georgia') {
-                      currentLSCidentifier = 'ga';
-                    }
-                    if (_currentLSC == 'North Carolina') {
-                      currentLSCidentifier = 'nc';
-                    }
-                    if (_currentLSC == 'South Carolina') {
-                      currentLSCidentifier = 'fl';
-                    }
-                    if (_currentLSC == 'Hawaii') {
-                      currentLSCidentifier = 'hi';
-                    }
-                    if (_currentLSC == 'Inland Empire') {
-                      currentLSCidentifier = 'ie';
-                    }
-                    if (_currentLSC == 'Montana') {
-                      currentLSCidentifier = 'mt';
-                    }
-                    if (_currentLSC == 'Oregon') {
-                      currentLSCidentifier = 'or';
-                    }
-                    if (_currentLSC == 'Pacific Northwest') {
-                      currentLSCidentifier = 'pn';
-                    }
-                    if (_currentLSC == 'Snake River') {
-                      currentLSCidentifier = 'sr';
-                    }
-                    if (_currentLSC == 'Illinois') {
-                      currentLSCidentifier = 'il';
-                    }
-                    if (_currentLSC == 'Iowa') {
-                      currentLSCidentifier = 'ia';
-                    }
-                    if (_currentLSC == 'Indiana') {
-                      currentLSCidentifier = 'in';
-                    }
-                    if (_currentLSC == 'Kentucky') {
-                      currentLSCidentifier = 'ky';
-                    }
-                    if (_currentLSC == 'West Virginia') {
-                      currentLSCidentifier = 'wv';
-                    }
-                    if (_currentLSC == 'Lake Erie') {
-                      currentLSCidentifier = 'fl';
-                    }
-                    if (_currentLSC == 'Michigan') {
-                      currentLSCidentifier = 'mi';
-                    }
-                    if (_currentLSC == 'Ohio') {
-                      currentLSCidentifier = 'oh';
-                    }
-                    if (_currentLSC == 'Louisiana') {
-                      currentLSCidentifier = 'la';
-                    }
-                    if (_currentLSC == 'Mississippi') {
-                      currentLSCidentifier = 'ms';
-                    }
-                    if (_currentLSC == 'Minnesota') {
-                      currentLSCidentifier = 'mn';
-                    }
-                    if (_currentLSC == 'North Dakota') {
-                      currentLSCidentifier = 'nd';
-                    }
-                    if (_currentLSC == 'South Dakota') {
-                      currentLSCidentifier = 'sd';
-                    }
-                    if (_currentLSC == 'Wisconsin') {
-                      currentLSCidentifier = 'wi';
-                    }
-                    if (_currentLSC == 'Adirondack') {
-                      currentLSCidentifier = 'ad';
-                    }
-                    if (_currentLSC == 'Metropolitan') {
-                      currentLSCidentifier = 'mr';
-                    }
-                    if (_currentLSC == 'Niagara') {
-                      currentLSCidentifier = 'ni';
-                    }
-                    if (_currentLSC == 'Border') {
-                      currentLSCidentifier = 'bd';
-                    }
-                    if (_currentLSC == 'Gulf') {
-                      currentLSCidentifier = 'gu';
-                    }
-                    if (_currentLSC == 'North Texas') {
-                      currentLSCidentifier = 'nt';
-                    }
-                    if (_currentLSC == 'South Texas') {
-                      currentLSCidentifier = 'st';
-                    }
-                    if (_currentLSC == 'West Texas') {
-                      currentLSCidentifier = 'wt';
-                    }
-                    if (_currentLSC == 'Arkansas') {
-                      currentLSCidentifier = 'ar';
-                    }
-                    if (_currentLSC == 'Missouri Valley') {
-                      currentLSCidentifier = 'mv';
-                    }
-                    if (_currentLSC == 'Oklahoma') {
-                      currentLSCidentifier = 'ok';
-                    }
-                    if (_currentLSC == 'Midwestern') {
-                      currentLSCidentifier = 'mw';
-                    }
-                    if (_currentLSC == 'Ozark') {
-                      currentLSCidentifier = 'oz';
-                    }
-
-                    //using index of array to correspond to value
-                    List letter = [
-                      'A',
-                      'B',
-                      'C',
-                      'D',
-                      'E',
-                      'F',
-                      'G',
-                      'H',
-                      'I',
-                      'J',
-                      'K',
-                      'L',
-                      'M',
-                      'O',
-                      'P',
-                      'Q',
-                      'R',
-                      'S',
-                      'T',
-                      'U',
-                      'V',
-                      'W',
-                      'X',
-                      'Y',
-                      'Z',
-                      '0',
-                      '1',
-                      '2',
-                      '3',
-                      '4',
-                      '5'
-                    ];
-
-                    int birthdayMonth = int.parse(_birthdayMonth);
-                    int birthdayDay = int.parse(_birthdayDay);
-                    String firstLetter =
-                        _firstName.substring(0, 1).toUpperCase();
-
-                    String secondLetter = letter[birthdayMonth];
-
-                    String thirdLetter =
-                        _firstName.substring(1, 2).toUpperCase();
-
-                    String fourthLetter = letter[birthdayDay];
-
-                    String fifthLetter =
-                        _firstName.substring(2, 3).toUpperCase();
-
-                    String sixthLetter = letter[birthdayYearFirst];
-
-                    String seventhLetter =
-                        _lastName.substring(0, 1).toUpperCase();
-
-                    String eigthLetter = letter[birthdayYearSecond];
-
-                    String ninthLetter =
-                        _lastName.substring(1, 2).toUpperCase();
-
-                    String swimmerIdentifier = firstLetter +
-                        secondLetter +
-                        thirdLetter +
-                        fourthLetter +
-                        fifthLetter +
-                        sixthLetter +
-                        seventhLetter +
-                        eigthLetter +
-                        ninthLetter;
-
-                    String fullUrl = "/" +
-                        _currentRegion +
-                        "/strokes/strokes_" +
-                        currentLSCidentifier +
-                        "/" +
-                        swimmerIdentifier +
-                        "_meets.html";
-                    print(fullUrl);
-
-                    //parsing information from the website
-
-                    final swimmerPage =
-                        WebScraper("https://www.swimmingrank.com");
-
-                    try {
-                      // scraping swimmer age
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('td.ui-helper-center', ['']);
-                        swimmerAge = elements[2]['title'];
+                      // //creating usable LSC output
+                      if (_currentLSC == 'Florida') {
+                        currentLSCidentifier = 'fl';
                       }
-                      // scraping swimmer club
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('td > button', ['']);
-                        swimmerClub = elements[0]['title'];
+                      if (_currentLSC == 'Florida Gold Coast') {
+                        currentLSCidentifier = 'fg';
                       }
-                      //scraping swimmer gender
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('td.ui-helper-center', ['']);
-                        swimmerGender = elements[3]['title'];
+                      if (_currentLSC == 'Southeastern') {
+                        currentLSCidentifier = 'se';
                       }
-                      //scraping swimmer's last swim meet
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('th', ['']);
-                        swimmerLastMeet = elements[5]['title'];
+                      if (_currentLSC == 'Alaska') {
+                        currentLSCidentifier = 'ak';
+                      }
+                      if (_currentLSC == 'Arizona') {
+                        currentLSCidentifier = 'az';
+                      }
+                      if (_currentLSC == 'Southern California') {
+                        currentLSCidentifier = 'scs';
+                      }
+                      if (_currentLSC == 'Pacific') {
+                        currentLSCidentifier = 'pc';
+                      }
+                      if (_currentLSC == 'San Diego - Imperial') {
+                        currentLSCidentifier = 'si';
+                      }
+                      if (_currentLSC == 'Central') {
+                        currentLSCidentifier = 'cc';
+                      }
+                      if (_currentLSC == 'Sierra Nevada') {
+                        currentLSCidentifier = 'sn';
+                      }
+                      if (_currentLSC == 'Colorado') {
+                        currentLSCidentifier = 'co';
+                      }
+                      if (_currentLSC == 'New Mexico') {
+                        currentLSCidentifier = 'nm';
+                      }
+                      if (_currentLSC == 'Utah') {
+                        currentLSCidentifier = 'ut';
+                      }
+                      if (_currentLSC == 'Wyoming') {
+                        currentLSCidentifier = 'wy';
+                      }
+                      if (_currentLSC == 'Connecticut') {
+                        currentLSCidentifier = 'ct';
+                      }
+                      if (_currentLSC == 'Maine') {
+                        currentLSCidentifier = 'me';
+                      }
+                      if (_currentLSC == 'New England') {
+                        currentLSCidentifier = 'ne';
+                      }
+                      if (_currentLSC == 'Maryland') {
+                        currentLSCidentifier = 'md';
+                      }
+                      if (_currentLSC == 'Potomac Valley') {
+                        currentLSCidentifier = 'pv';
+                      }
+                      if (_currentLSC == 'Virginia') {
+                        currentLSCidentifier = 'va';
+                      }
+                      if (_currentLSC == 'Allegheny Mountain') {
+                        currentLSCidentifier = 'am';
+                      }
+                      if (_currentLSC == 'Mid Atlantic') {
+                        currentLSCidentifier = 'ma';
+                      }
+                      if (_currentLSC == 'New Jersey') {
+                        currentLSCidentifier = 'nj';
+                      }
+                      if (_currentLSC == 'Georgia') {
+                        currentLSCidentifier = 'ga';
+                      }
+                      if (_currentLSC == 'North Carolina') {
+                        currentLSCidentifier = 'nc';
+                      }
+                      if (_currentLSC == 'South Carolina') {
+                        currentLSCidentifier = 'fl';
+                      }
+                      if (_currentLSC == 'Hawaii') {
+                        currentLSCidentifier = 'hi';
+                      }
+                      if (_currentLSC == 'Inland Empire') {
+                        currentLSCidentifier = 'ie';
+                      }
+                      if (_currentLSC == 'Montana') {
+                        currentLSCidentifier = 'mt';
+                      }
+                      if (_currentLSC == 'Oregon') {
+                        currentLSCidentifier = 'or';
+                      }
+                      if (_currentLSC == 'Pacific Northwest') {
+                        currentLSCidentifier = 'pn';
+                      }
+                      if (_currentLSC == 'Snake River') {
+                        currentLSCidentifier = 'sr';
+                      }
+                      if (_currentLSC == 'Illinois') {
+                        currentLSCidentifier = 'il';
+                      }
+                      if (_currentLSC == 'Iowa') {
+                        currentLSCidentifier = 'ia';
+                      }
+                      if (_currentLSC == 'Indiana') {
+                        currentLSCidentifier = 'in';
+                      }
+                      if (_currentLSC == 'Kentucky') {
+                        currentLSCidentifier = 'ky';
+                      }
+                      if (_currentLSC == 'West Virginia') {
+                        currentLSCidentifier = 'wv';
+                      }
+                      if (_currentLSC == 'Lake Erie') {
+                        currentLSCidentifier = 'fl';
+                      }
+                      if (_currentLSC == 'Michigan') {
+                        currentLSCidentifier = 'mi';
+                      }
+                      if (_currentLSC == 'Ohio') {
+                        currentLSCidentifier = 'oh';
+                      }
+                      if (_currentLSC == 'Louisiana') {
+                        currentLSCidentifier = 'la';
+                      }
+                      if (_currentLSC == 'Mississippi') {
+                        currentLSCidentifier = 'ms';
+                      }
+                      if (_currentLSC == 'Minnesota') {
+                        currentLSCidentifier = 'mn';
+                      }
+                      if (_currentLSC == 'North Dakota') {
+                        currentLSCidentifier = 'nd';
+                      }
+                      if (_currentLSC == 'South Dakota') {
+                        currentLSCidentifier = 'sd';
+                      }
+                      if (_currentLSC == 'Wisconsin') {
+                        currentLSCidentifier = 'wi';
+                      }
+                      if (_currentLSC == 'Adirondack') {
+                        currentLSCidentifier = 'ad';
+                      }
+                      if (_currentLSC == 'Metropolitan') {
+                        currentLSCidentifier = 'mr';
+                      }
+                      if (_currentLSC == 'Niagara') {
+                        currentLSCidentifier = 'ni';
+                      }
+                      if (_currentLSC == 'Border') {
+                        currentLSCidentifier = 'bd';
+                      }
+                      if (_currentLSC == 'Gulf') {
+                        currentLSCidentifier = 'gu';
+                      }
+                      if (_currentLSC == 'North Texas') {
+                        currentLSCidentifier = 'nt';
+                      }
+                      if (_currentLSC == 'South Texas') {
+                        currentLSCidentifier = 'st';
+                      }
+                      if (_currentLSC == 'West Texas') {
+                        currentLSCidentifier = 'wt';
+                      }
+                      if (_currentLSC == 'Arkansas') {
+                        currentLSCidentifier = 'ar';
+                      }
+                      if (_currentLSC == 'Missouri Valley') {
+                        currentLSCidentifier = 'mv';
+                      }
+                      if (_currentLSC == 'Oklahoma') {
+                        currentLSCidentifier = 'ok';
+                      }
+                      if (_currentLSC == 'Midwestern') {
+                        currentLSCidentifier = 'mw';
+                      }
+                      if (_currentLSC == 'Ozark') {
+                        currentLSCidentifier = 'oz';
                       }
 
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('th', ['']);
-                        swimmerLastMeetDate = elements[6]['title'];
-                        swimmerintAge = int.parse(swimmerAge);
-                      }
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        meets = swimmerPage.getElementTitle('tr');
-                        meets.removeRange(0, 5);
-                        meets.removeWhere((item) => item == meets[2]);
-                        meets.removeLast();
+                      //using index of array to correspond to value
+                      List letter = [
+                        'A',
+                        'B',
+                        'C',
+                        'D',
+                        'E',
+                        'F',
+                        'G',
+                        'H',
+                        'I',
+                        'J',
+                        'K',
+                        'L',
+                        'M',
+                        'O',
+                        'P',
+                        'Q',
+                        'R',
+                        'S',
+                        'T',
+                        'U',
+                        'V',
+                        'W',
+                        'X',
+                        'Y',
+                        'Z',
+                        '0',
+                        '1',
+                        '2',
+                        '3',
+                        '4',
+                        '5'
+                      ];
 
-                        setState(() {
-                          swimmerList.add(SwimmerData(
+                      int birthdayMonth = int.parse(_birthdayMonth);
+                      int birthdayDay = int.parse(_birthdayDay);
+                      String firstLetter =
+                          _firstName.substring(0, 1).toUpperCase();
+
+                      String secondLetter = letter[birthdayMonth];
+
+                      String thirdLetter =
+                          _firstName.substring(1, 2).toUpperCase();
+
+                      String fourthLetter = letter[birthdayDay];
+
+                      String fifthLetter =
+                          _firstName.substring(2, 3).toUpperCase();
+
+                      String sixthLetter = letter[birthdayYearFirst];
+
+                      String seventhLetter =
+                          _lastName.substring(0, 1).toUpperCase();
+
+                      String eigthLetter = letter[birthdayYearSecond];
+
+                      String ninthLetter =
+                          _lastName.substring(1, 2).toUpperCase();
+
+                      String swimmerIdentifier = firstLetter +
+                          secondLetter +
+                          thirdLetter +
+                          fourthLetter +
+                          fifthLetter +
+                          sixthLetter +
+                          seventhLetter +
+                          eigthLetter +
+                          ninthLetter;
+
+                      String fullUrl = "/" +
+                          _currentRegion +
+                          "/strokes/strokes_" +
+                          currentLSCidentifier +
+                          "/" +
+                          swimmerIdentifier +
+                          "_meets.html";
+                      print(fullUrl);
+
+                      // https://www.swimmingrank.com/cal/strokes/strokes_scs/lcm_AFNGDALEU_imx.html
+
+                      String lcmRankingUrl = '/' +
+                          _currentRegion +
+                          "/strokes/strokes_" +
+                          currentLSCidentifier +
+                          "/lcm_" +
+                          swimmerIdentifier +
+                          "_imx.html";
+                      String scyRankingUrl = '/' +
+                          _currentRegion +
+                          "/strokes/strokes_" +
+                          currentLSCidentifier +
+                          "/scy_" +
+                          swimmerIdentifier +
+                          "_imx.html";
+
+                      //parsing information from the website
+
+                      final swimmerPage =
+                          WebScraper("https://www.swimmingrank.com");
+
+                      try {
+                        // scraping swimmer age
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements = swimmerPage
+                              .getElement('td.ui-helper-center', ['']);
+                          swimmerAge = elements[2]['title'];
+                        }
+                        // scraping swimmer club
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements =
+                              swimmerPage.getElement('td > button', ['']);
+                          swimmerClub = elements[0]['title'];
+                        }
+                        //scraping swimmer gender
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements = swimmerPage
+                              .getElement('td.ui-helper-center', ['']);
+                          swimmerGender = elements[3]['title'];
+                        }
+                        //scraping swimmer's last swim meet
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements =
+                              swimmerPage.getElement('th', ['']);
+                          swimmerLastMeet = elements[5]['title'];
+                        }
+
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements =
+                              swimmerPage.getElement('th', ['']);
+                          swimmerLastMeetDate = elements[6]['title'];
+                          swimmerintAge = int.parse(swimmerAge);
+                        }
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          meets = swimmerPage.getElementTitle('tr');
+                          meets.removeRange(0, 5);
+                          meets.removeWhere((item) => item == meets[2]);
+                          meets.removeLast();
+                        }
+                        if (await swimmerPage.loadWebPage(lcmRankingUrl)) {
+                          rankingNumberLCM =
+                              swimmerPage.getElementTitle('button');
+                          rankingNumberLCM.removeRange(0, 1);
+                        }
+                        if (await swimmerPage.loadWebPage(scyRankingUrl)) {
+                          rankingNumberSCY =
+                              swimmerPage.getElementTitle('button');
+                          rankingNumberSCY.removeRange(0, 1);
+                        }
+
+                        if (await swimmerPage.loadWebPage(lcmRankingUrl)) {
+                          // rankingHeaders = swimmerPage.getElementTitle('th');
+                          // rankingHeaders.removeRange(13, rankingHeaders.length);
+                          // rankingHeaders.removeRange(0, 8);
+
+                          print(rankingHeaders);
+
+                          setState(() {
+                            swimmerList.add(SwimmerData(
+                                _firstName.capitalizeFirstofEach +
+                                    " " +
+                                    _lastName.capitalizeFirstofEach,
+                                swimmerIndex,
+                                fullUrl,
+                                swimmerAge,
+                                swimmerClub,
+                                swimmerGender,
+                                swimmerLastMeet,
+                                swimmerLastMeetDate.substring(0, 10),
+                                swimmerIdentifier,
+                                swimmerintAge,
+                                fullUrl,
+                                meets));
+                          });
+
+                          Navigator.pop(context);
+
+                          swimmerIndex++;
+                        }
+                      } catch (e) {
+                        try {
+                          // scraping swimmer age
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            List<Map<String, dynamic>> elements = swimmerPage
+                                .getElement('td.ui-helper-center', ['']);
+                            swimmerAge = elements[1]['title'];
+                          }
+                          // scraping swimmer club
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            List<Map<String, dynamic>> elements =
+                                swimmerPage.getElement('td > button', ['']);
+                            swimmerClub = elements[0]['title'];
+                          }
+                          //scraping swimmer gender
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            List<Map<String, dynamic>> elements = swimmerPage
+                                .getElement('td.ui-helper-center', ['']);
+                            swimmerGender = elements[2]['title'];
+                          }
+                          //scraping swimmer's last swim meet
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            List<Map<String, dynamic>> elements =
+                                swimmerPage.getElement('th', ['']);
+                            swimmerLastMeet = elements[4]['title'];
+                          }
+
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            List<Map<String, dynamic>> elements =
+                                swimmerPage.getElement('th', ['']);
+                            swimmerLastMeetDate = elements[5]['title'];
+                            swimmerintAge = int.parse(swimmerAge);
+                          }
+                          if (await swimmerPage.loadWebPage(fullUrl)) {
+                            meets = swimmerPage.getElementTitle('tr');
+                            meets.removeRange(0, 4);
+                            print(meets[2]);
+                            meets.removeWhere((item) => item == meets[2]);
+                            meets.removeLast();
+                          }
+
+                          setState(() {
+                            swimmerList.add(SwimmerData(
                               _firstName.capitalizeFirstofEach +
                                   " " +
                                   _lastName.capitalizeFirstofEach,
@@ -907,20 +1007,21 @@ class _NewHomeState extends State<NewHome> {
                               swimmerIdentifier,
                               swimmerintAge,
                               fullUrl,
-                              meets));
-                        });
+                              meets,
+                            ));
+                          });
 
-                        Navigator.pop(context);
+                          Navigator.pop(context);
 
-                        swimmerIndex++;
+                          swimmerIndex++;
+                        } catch (e) {
+                          print('Invalid!');
+                          print(e);
+                          errorDialog(context);
+                        }
                       }
-                    } catch (e) {
-                      print('Invalid!');
-                      errorDialog(context);
                     }
-                  }
-                },
-              ),
+                  }),
             ],
           );
         });
@@ -1082,47 +1183,55 @@ class _NewHomeState extends State<NewHome> {
         appBar: AppBar(
           title: Text('Select a Swimmer'),
           centerTitle: true,
-          actions: [
-            PopupMenuButton(
-              onSelected: (item) {
-                if (item == 0) {
-                  Navigator.pushNamed(context, '/howtouse');
-                }
-                if (item == 1) {
-                  Navigator.pushNamed(context, '/about');
-                }
-              },
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: 0,
-                  child: RichText(
-                    text: TextSpan(children: [
-                      WidgetSpan(
-                        child: Icon(Icons.list, color: Colors.black),
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20),
+                color: Colors.grey[200],
+                child: Center(
+                    child: Column(
+                  children: [
+                    Container(
+                      width: 200,
+                      margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      child: Image(
+                        image: AssetImage('assets/titlelogo.png'),
                       ),
-                      TextSpan(
-                          text: '   How to Use',
-                          style: TextStyle(color: Colors.black)),
-                    ]),
-                  ),
-                ),
-                PopupMenuItem(
-                  value: 1,
-                  child: RichText(
-                    text: TextSpan(children: [
-                      WidgetSpan(
-                        child: Icon(Icons.info_outline_rounded,
-                            color: Colors.black),
-                      ),
-                      TextSpan(
-                          text: '   About',
-                          style: TextStyle(color: Colors.black)),
-                    ]),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                    )
+                  ],
+                )),
+              ),
+              ListTile(
+                  leading: Icon(Icons.menu_book_sharp, color: Colors.black),
+                  title: Text('How To Use'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/howtouse');
+                  }),
+              ListTile(
+                  leading:
+                      Icon(Icons.info_outline_rounded, color: Colors.black),
+                  title: Text('About'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/about');
+                  }),
+              ListTile(
+                  leading: Icon(Icons.library_books_sharp, color: Colors.black),
+                  title: Text('Terms and Conditions'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/termsandconditions');
+                  }),
+              ListTile(
+                  leading:
+                      Icon(Icons.privacy_tip_outlined, color: Colors.black),
+                  title: Text('Privacy Policy'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/privacypolicy');
+                  }),
+            ],
+          ),
         ),
         body: WillPopScope(
           onWillPop: onWillPop,
@@ -1214,8 +1323,8 @@ class _NewHomeState extends State<NewHome> {
                   try {
                     if (await rootPage.loadWebPage(swimmerList[x].url)) {
                       meets = rootPage.getElementTitle('tr');
-                      meets.removeRange(0, 5);
-                      meets.removeWhere((item) => item == meets[2]);
+                      meets.removeRange(0, 4);
+                      meets.removeWhere((item) => item.contains('Event'));
                       meets.removeLast();
                       scaffoldMessenger.showSnackBar(SnackBar(
                         duration: Duration(seconds: 2),

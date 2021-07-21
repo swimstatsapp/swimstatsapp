@@ -13,18 +13,19 @@ class SwimmerData {
   List meets = [];
 
   SwimmerData(
-      String name,
-      int index,
-      String url,
-      String age,
-      String club,
-      String gender,
-      String lastMeet,
-      String lastMeetDate,
-      String identifier,
-      int intAge,
-      String fullUrl,
-      List meets) {
+    String name,
+    int index,
+    String url,
+    String age,
+    String club,
+    String gender,
+    String lastMeet,
+    String lastMeetDate,
+    String identifier,
+    int intAge,
+    String fullUrl,
+    List meets,
+  ) {
     this.name = name;
     this.index = index;
     this.url = url;

@@ -37,7 +37,8 @@ class _MeetsState extends State<Meets> {
             meet.contains('Invite') ||
             meet.contains('Intrasquad') ||
             meet.contains('Dual') ||
-            meet.contains('Trials')) {
+            meet.contains('Trials') ||
+            meet.contains('vs')) {
           setState(() {
             background = Colors.blue[100];
             textWeight = FontWeight.bold;
