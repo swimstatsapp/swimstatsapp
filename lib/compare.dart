@@ -887,7 +887,8 @@ class _CompareState extends State<Compare> {
                           initialSort = newValue!;
 
                           for (int x = 0; x < goalList.length; x++) {
-                            if (initialSort == 'All') {
+                            if (initialSort == 'All' &&
+                                goalList[x].name == widget.name) {
                               goalList[x].isVisible = true;
                             } else if (goalList[x].stroke == initialSort &&
                                 goalList[x].name == widget.name) {
@@ -956,7 +957,7 @@ class _CompareState extends State<Compare> {
                                       ))),
                             ],
                           ),
-                          if (element.needValue.isNegative == false)
+                          if (element.needValue > 0.0)
                             Column(
                               children: [
                                 Text('NEED',
@@ -990,7 +991,7 @@ class _CompareState extends State<Compare> {
                                         ))),
                               ],
                             ),
-                          if (element.needValue.isNegative == false)
+                          if (element.needValue > 0.0)
                             Column(
                               children: [
                                 Text('% NEED',

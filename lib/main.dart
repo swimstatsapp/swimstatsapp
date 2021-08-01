@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         '/about': (context) => About(),
         // '/displaytimes': (context) => DisplayTime(),
         '/about': (context) => About(),
-        '/displaytimes': (context) => DisplayTime(),
         '/termsandconditions': (context) => TermsAndConditions(),
       },
     );
