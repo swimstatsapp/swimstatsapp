@@ -23,7 +23,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool isLoading = false;
 
-  String _url = 'https://swimstatsapp.github.io/';
+  String _url = 'https://swimstatsapp.github.io/#donate';
   void _launchURL() async => await canLaunch(_url)
       ? await launch(_url)
       : throw 'Could not launch $_url';
@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
           content: Container(
             width: double.maxFinite,
             child: DefaultTabController(
-              length: 6,
+              length: 7,
               child: Builder(
                   builder: (BuildContext context) => Center(
                         child: Container(
@@ -126,6 +126,21 @@ class _HomeState extends State<Home> {
                                         SizedBox(height: 20),
                                         Text(
                                             'Navigate to the compare section and click the floating action button to add goals.')
+                                      ],
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(height: 7),
+                                        Image.asset('assets/5.gif', width: 140),
+                                        SizedBox(height: 20),
+                                        Text(
+                                            'Swipe down on home page to reload swimmer data.')
                                       ],
                                     ),
                                   ),
@@ -533,7 +548,7 @@ class _HomeState extends State<Home> {
                 leading: Icon(Icons.favorite, color: Colors.black),
                 title: Text('Donate'),
                 onTap: () {
-                  String _url = 'https://swimstatsapp.github.io/';
+                  String _url = 'https://swimstatsapp.github.io/#donate';
                   void _launchURL() async => await canLaunch(_url)
                       ? await launch(_url)
                       : throw 'Could not launch $_url';
