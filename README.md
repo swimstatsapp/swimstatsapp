@@ -21,6 +21,10 @@ There are applications avaliable for **mobile** (Android and iOS). Both the iOS 
 | Android Alt.     | <a href='#'><img alt='Get it on Android' width="134px" src='./assets/fdroidlogo.png'/></a> |
 | iOS              | <a href='#g'><img alt='Get it on macOS' width="134px" src='./assets/applelogo.png'/></a>   |
 
+# Credits
+All swimmer information is collected from swimmingrank.com. Thank you to the Mr.Lee of Swimming Rank for maintaining a providing a public database for everyone to use. If you have any inquiries regarding how swimmer data is handled, please contact swimmingrank@gmail.com or <a href="https://www.swimmingrank.com/privacy_policy.html"> read their privacy policy</a>.
+
+
 # Contact Us
 
 If you have any questions, please visit our <a href ="https://swimstatsapp.github.io/">website </a> or email us at swimstatsapp@gmail.com.
