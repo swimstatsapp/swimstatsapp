@@ -1,67 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:web_scraper/web_scraper.dart';
-import 'package:swimstatsapp/newhome.dart';
 
-class DisplayTime extends StatelessWidget {
-  String free50YTime = '';
-  String free50MTime = '';
-  String free100YTime = '';
-  String free100MTime = '';
-  String free200YTime = '';
-  String free200MTime = '';
-  String free500YTime = '';
-  String free400MTime = '';
-  String free1000YTime = '';
-  String free800MTime = '';
-  String free1650YTime = '';
-  String free1500MTime = '';
-  String back100YTime = '';
-  String back100MTime = '';
-  String back200YTime = '';
-  String back200MTime = '';
-  String brst100YTime = '';
-  String brst100MTime = '';
-  String brst200YTime = '';
-  String brst200MTime = '';
-  String fly100YTime = '';
-  String fly100MTime = '';
-  String fly200YTime = '';
-  String fly200MTime = '';
-  String im200YTime = '';
-  String im200MTime = '';
-  String im400YTime = '';
-  String im400MTime = '';
-  List<String> times = ['SCY', 'Event', 'LCM'];
+class Times extends StatefulWidget {
+  String? free50YTime;
+  String? free50MTime;
+  String? free100YTime;
+  String? free100MTime;
+  String? free200YTime;
+  String? free200MTime;
+  String? free500YTime;
+  String? free400MTime;
+  String? free1000YTime;
+  String? free800MTime;
+  String? free1650YTime;
+  String? free1500MTime;
+  String? back100YTime;
+  String? back100MTime;
+  String? back200YTime;
+  String? back200MTime;
+  String? brst100YTime;
+  String? brst100MTime;
+  String? brst200YTime;
+  String? brst200MTime;
+  String? fly100YTime;
+  String? fly100MTime;
+  String? fly200YTime;
+  String? fly200MTime;
+  String? im200YTime;
+  String? im200MTime;
+  String? im400YTime;
+  String? im400MTime;
 
-  DisplayTime(
-    String free50YTime,
-    String free50MTime,
-    String free100YTime,
-    String free100MTime,
-    String free200YTime,
-    String free200MTime,
-    String free500YTime,
-    String free400MTime,
-    String free1000YTime,
-    String free800MTime,
-    String free1650YTime,
-    String free1500MTime,
-    String back100YTime,
-    String back100MTime,
-    String back200YTime,
-    String back200MTime,
-    String brst100YTime,
-    String brst100MTime,
-    String brst200YTime,
-    String brst200MTime,
-    String fly100YTime,
-    String fly100MTime,
-    String fly200YTime,
-    String fly200MTime,
-    String im200YTime,
-    String im200MTime,
-    String im400YTime,
-    String im400MTime,
+  Times(
+    String? free50YTime,
+    String? free50MTime,
+    String? free100YTime,
+    String? free100MTime,
+    String? free200YTime,
+    String? free200MTime,
+    String? free500YTime,
+    String? free400MTime,
+    String? free1000YTime,
+    String? free800MTime,
+    String? free1650YTime,
+    String? free1500MTime,
+    String? back100YTime,
+    String? back100MTime,
+    String? back200YTime,
+    String? back200MTime,
+    String? brst100YTime,
+    String? brst100MTime,
+    String? brst200YTime,
+    String? brst200MTime,
+    String? fly100YTime,
+    String? fly100MTime,
+    String? fly200YTime,
+    String? fly200MTime,
+    String? im200YTime,
+    String? im200MTime,
+    String? im400YTime,
+    String? im400MTime,
   ) {
     this.free50YTime = free50YTime;
     this.free50MTime = free50MTime;
@@ -94,50 +91,55 @@ class DisplayTime extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    times.add(free50YTime);
-    times.add('50 FR');
-    times.add(free50MTime);
-    times.add(free100YTime);
-    times.add('100 FR');
-    times.add(free100MTime);
-    times.add(free200YTime);
-    times.add('200 FR');
-    times.add(free200MTime);
-    times.add(free500YTime);
-    times.add('500/400 FR');
-    times.add(free400MTime);
-    times.add(free1000YTime);
-    times.add('1000/800 FR');
-    times.add(free800MTime);
-    times.add(free1650YTime);
-    times.add('1650/1500 FR');
-    times.add(free1500MTime);
-    times.add(back100YTime);
-    times.add('100 BK');
-    times.add(back100MTime);
-    times.add(back200YTime);
-    times.add('200 BK');
-    times.add(back200MTime);
-    times.add(brst100YTime);
-    times.add('100 BR');
-    times.add(brst100MTime);
-    times.add(brst200YTime);
-    times.add('200 BR');
-    times.add(brst200MTime);
-    times.add(fly100YTime);
-    times.add('100 FL');
-    times.add(fly100MTime);
-    times.add(fly200YTime);
-    times.add('200 FL');
-    times.add(fly200MTime);
-    times.add(im200YTime);
-    times.add('200 IM');
-    times.add(im200MTime);
-    times.add(im400YTime);
-    times.add('400 IM');
-    times.add(im400MTime);
+  _TimesState createState() => _TimesState();
+}
 
+class _TimesState extends State<Times> {
+  @override
+  Widget build(BuildContext context) {
+    List<String?> times = ['SCY', 'Event', 'LCM'];
+    times.add(widget.free50YTime);
+    times.add('50 FR');
+    times.add(widget.free50MTime);
+    times.add(widget.free100YTime);
+    times.add('100 FR');
+    times.add(widget.free100MTime);
+    times.add(widget.free200YTime);
+    times.add('200 FR');
+    times.add(widget.free200MTime);
+    times.add(widget.free500YTime);
+    times.add('500/400 FR');
+    times.add(widget.free400MTime);
+    times.add(widget.free1000YTime);
+    times.add('1000/800 FR');
+    times.add(widget.free800MTime);
+    times.add(widget.free1650YTime);
+    times.add('1650/1500 FR');
+    times.add(widget.free1500MTime);
+    times.add(widget.back100YTime);
+    times.add('100 BK');
+    times.add(widget.back100MTime);
+    times.add(widget.back200YTime);
+    times.add('200 BK');
+    times.add(widget.back200MTime);
+    times.add(widget.brst100YTime);
+    times.add('100 BR');
+    times.add(widget.brst100MTime);
+    times.add(widget.brst200YTime);
+    times.add('200 BR');
+    times.add(widget.brst200MTime);
+    times.add(widget.fly100YTime);
+    times.add('100 FL');
+    times.add(widget.fly100MTime);
+    times.add(widget.fly200YTime);
+    times.add('200 FL');
+    times.add(widget.fly200MTime);
+    times.add(widget.im200YTime);
+    times.add('200 IM');
+    times.add(widget.im200MTime);
+    times.add(widget.im400YTime);
+    times.add('400 IM');
+    times.add(widget.im400MTime);
     return Scaffold(
       body: GridView(
         scrollDirection: Axis.vertical,
@@ -152,7 +154,7 @@ class DisplayTime extends StatelessWidget {
         ),
         children: times.map((e) {
           Color background = Colors.red;
-          if (e.contains('FR') ||
+          if (e!.contains('FR') ||
               e.contains('BR') ||
               e.contains('BK') ||
               e.contains('FL') ||

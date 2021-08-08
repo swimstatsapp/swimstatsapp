@@ -1,20 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:web_scraper/web_scraper.dart';
+
+List? meets = [];
 
 class Meets extends StatefulWidget {
-  final List meets;
-  Meets(this.meets);
-
+  String? fullUrl = '';
+  Meets({required this.fullUrl});
   @override
   _MeetsState createState() => _MeetsState();
 }
 
 class _MeetsState extends State<Meets> {
   FontWeight textWeight = FontWeight.normal;
+
+  void grabMeets() async {
+    final swimmerPage = WebScraper("https://www.swimmingrank.com");
+    if (await swimmerPage.loadWebPage(widget.fullUrl!)) {
+      meets = swimmerPage.getElementTitle('tr');
+      meets!.removeRange(0, 5);
+      meets!.removeWhere((item) => item == meets![2]);
+      meets!.removeLast();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    grabMeets();
+  }
+
   @override
   Widget build(BuildContext context) {
     int colorCounter = 0;
-    List meets = widget.meets;
     Color? background = Colors.red;
     Color textColor = Colors.black;
     String swimResult = '';
@@ -23,7 +40,7 @@ class _MeetsState extends State<Meets> {
     String swimAchievement = '';
 
     return ListView(
-      children: meets.map((meet) {
+      children: meets!.map((meet) {
         if (meet.contains('Age')) {
           setState(() {
             background = Colors.blue[100];
@@ -38,7 +55,8 @@ class _MeetsState extends State<Meets> {
             meet.contains('Intrasquad') ||
             meet.contains('Dual') ||
             meet.contains('Trials') ||
-            meet.contains('vs')) {
+            meet.contains('vs') ||
+            meet.contains('Finals')) {
           setState(() {
             background = Colors.blue[100];
             textWeight = FontWeight.bold;

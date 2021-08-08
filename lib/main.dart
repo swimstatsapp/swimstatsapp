@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:swimstatsapp/privacypolicy.dart';
-import 'package:swimstatsapp/swimmer_info.dart';
-import 'package:swimstatsapp/newhome.dart';
-import 'package:swimstatsapp/how_to_use.dart';
-import 'package:swimstatsapp/about.dart';
-import 'package:swimstatsapp/lcm_scy_times.dart';
-import 'package:swimstatsapp/termsandconditions.dart';
+
+//importing documentation
+import 'package:database/home.dart';
+import 'package:database/docs/about.dart';
+import 'package:database/docs/termsandconditions.dart';
+import 'package:database/docs/privacypolicy.dart';
+
+//importing menus
+import 'package:database/menus/swimmer_menu.dart';
+import 'package:database/info/swimmer_info.dart';
+import 'package:database/menus/loading.dart';
+import 'package:database/menus/goal_menu.dart';
+import 'package:database/menus/updategoal_menu.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/newhome',
-      routes: {
-        '/newhome': (context) => NewHome(),
-        '/privacypolicy': (context) => PrivacyPolicy(),
-        '/swimmerinfo': (context) => SwimmerInfo(),
-        '/howtouse': (context) => HowToUse(),
-        '/about': (context) => About(),
-        // '/displaytimes': (context) => DisplayTime(),
-        '/about': (context) => About(),
-        '/termsandconditions': (context) => TermsAndConditions(),
-      },
-    );
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Home(),
+          '/about': (context) => About(),
+          '/termsandconditions': (context) => TermsAndConditions(),
+          '/privacypolicy': (context) => PrivacyPolicy(),
+          '/swimmermenu': (context) => SwimmerMenu(),
+          '/swimmerinfo': (context) => SwimmerInfo(),
+          '/loading': (context) => Loading(),
+          '/goalmenu': (context) => GoalMenu(),
+          '/updategoalmenu': (context) => UpdateGoalMenu(),
+        });
   }
 }
