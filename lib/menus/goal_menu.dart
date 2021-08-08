@@ -324,6 +324,7 @@ class _GoalMenuState extends State<GoalMenu> {
                       needValue: calculateNeed(goalTime, customTime),
                       needPercentValue:
                           calculatePercentNeed(goalTime, customTime),
+                      currentComparison: _currentComparison,
                     );
                     await GoalDatabase.instance.create(goal);
                     Navigator.pop(context);

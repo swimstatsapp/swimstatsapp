@@ -22,6 +22,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     Map information = ModalRoute.of(context)!.settings.arguments as Map;

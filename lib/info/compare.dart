@@ -76,6 +76,58 @@ class Compare extends StatefulWidget {
 }
 
 class _CompareState extends State<Compare> {
+  double timeSecondsConversion(String originalTime) {
+    double totalSeconds = 0;
+    double minutes = 0;
+    double seconds = 0;
+    double minuteSeconds = 0;
+    if (originalTime.contains(':')) {
+      try {
+        minutes = double.parse(originalTime.substring(0, 2) + ".00");
+        seconds = double.parse(originalTime.substring(3, originalTime.length));
+        minuteSeconds = minutes * 60.0;
+      } catch (e) {
+        minutes = double.parse(originalTime.substring(0, 1) + ".00");
+        seconds = double.parse(originalTime.substring(2, originalTime.length));
+        minuteSeconds = minutes * 60.0;
+      }
+
+      // rounding to hundredths
+      totalSeconds = (minuteSeconds + seconds) * 100;
+      totalSeconds = totalSeconds.ceilToDouble();
+      totalSeconds = totalSeconds / 100;
+    } else {
+      double seconds = double.parse(originalTime);
+      totalSeconds = seconds;
+    }
+    return totalSeconds;
+  }
+
+  //calculate Need
+  double calculateNeed(goalTime, customTime) {
+    double goalTimeSeconds = timeSecondsConversion(goalTime);
+    double currentTimeSeconds = timeSecondsConversion(customTime);
+    double need = 0;
+
+    need = currentTimeSeconds - goalTimeSeconds;
+    need = (need * 100).ceilToDouble();
+    need = need / 100;
+    return need;
+  }
+
+  //calculate Need%
+  double calculatePercentNeed(goalTime, customTime) {
+    double goalTimeSeconds = timeSecondsConversion(goalTime);
+    double currentTimeSeconds = timeSecondsConversion(customTime);
+    double need = 0;
+
+    need = 1 - (goalTimeSeconds / currentTimeSeconds);
+    need = (need * 100).ceilToDouble();
+    need = need / 100;
+
+    return need;
+  }
+
   bool isLoading = false;
 
   //refresh swimmer list
@@ -89,6 +141,164 @@ class _CompareState extends State<Compare> {
       } else {
         goals[x].isVisible = false;
       }
+
+      if (goals[x].currentComparison == 'Current Time') {
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '50') {
+          goals[x].currentTime = widget.free50YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '500') {
+          goals[x].currentTime = widget.free50MTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.free100YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.free100MTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.free200YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.free200MTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '500') {
+          goals[x].currentTime = widget.free500YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '400') {
+          goals[x].currentTime = widget.free400MTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '1000') {
+          goals[x].currentTime = widget.free1000YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '800') {
+          goals[x].currentTime = widget.free800MTime;
+        }
+
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '1650') {
+          goals[x].currentTime = widget.free1650YTime;
+        }
+        if (goals[x].stroke == 'Freestyle' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '1500') {
+          goals[x].currentTime = widget.free1500MTime;
+        }
+        if (goals[x].stroke == 'Backstroke' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.back100YTime;
+        }
+        if (goals[x].stroke == 'Backstroke' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.back100MTime;
+        }
+        if (goals[x].stroke == 'Backstroke' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.back200YTime;
+        }
+        if (goals[x].stroke == 'Backstroke' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.back200MTime;
+        }
+        if (goals[x].stroke == 'Breaststroke' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.brst100YTime;
+        }
+        if (goals[x].stroke == 'Breaststroke' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.brst100MTime;
+        }
+        if (goals[x].stroke == 'Breaststroke' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.brst200YTime;
+        }
+        if (goals[x].stroke == 'Breaststroke' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.brst200MTime;
+        }
+        if (goals[x].stroke == 'Butterfly' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.fly100YTime;
+        }
+        if (goals[x].stroke == 'Butterfly' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '100') {
+          goals[x].currentTime = widget.fly100MTime;
+        }
+        if (goals[x].stroke == 'Butterfly' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.fly200YTime;
+        }
+        if (goals[x].stroke == 'Butterfly' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.fly200MTime;
+        }
+        if (goals[x].stroke == 'IM' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.im200YTime;
+        }
+        if (goals[x].stroke == 'IM' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '200') {
+          goals[x].currentTime = widget.im200MTime;
+        }
+        if (goals[x].stroke == 'IM' &&
+            goals[x].unit == 'SCY' &&
+            goals[x].distance == '400') {
+          goals[x].currentTime = widget.im400YTime;
+        }
+        if (goals[x].stroke == 'IM' &&
+            goals[x].unit == 'LCM' &&
+            goals[x].distance == '400') {
+          goals[x].currentTime = widget.im400MTime;
+        }
+      }
+      final goal = Goal(
+        id: goals[x].id,
+        name: goals[x].name,
+        unit: goals[x].unit,
+        distance: goals[x].distance,
+        stroke: goals[x].stroke,
+        goalTime: goals[x].goalTime,
+        currentTime: goals[x].currentTime,
+        needValue: calculateNeed(goals[x].goalTime, goals[x].currentTime),
+        needPercentValue:
+            calculatePercentNeed(goals[x].goalTime, goals[x].currentTime),
+        currentComparison: goals[x].currentComparison,
+      );
+      await GoalDatabase.instance.update(goal);
     }
 
     setState(() => isLoading = false);
@@ -97,6 +307,7 @@ class _CompareState extends State<Compare> {
   @override
   void initState() {
     super.initState();
+    print('initialized compare');
 
     initialSort = 'All';
 

@@ -54,7 +54,8 @@ ${GoalFields.stroke} $textType,
 ${GoalFields.goalTime} $textType,
 ${GoalFields.currentTime} $textType,
 ${GoalFields.needValue} $doubleType,
-${GoalFields.needPercentValue} $doubleType
+${GoalFields.needPercentValue} $doubleType,
+${GoalFields.currentComparison} $textType
 )
       ''');
   }

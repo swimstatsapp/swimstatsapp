@@ -365,6 +365,7 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
                       needValue: calculateNeed(goalTime, customTime),
                       needPercentValue:
                           calculatePercentNeed(goalTime, customTime),
+                      currentComparison: _currentComparison,
                     );
                     print(goal.stroke);
                     await GoalDatabase.instance.update(goal);
