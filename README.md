@@ -1,4 +1,4 @@
-<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/swimstatsapp/swimstatsapp">
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/swimstatsapp/swimstatsapp)
 <img width="400" src="./assets/swimstatsintropicture.png" align="left" />
 
 #
