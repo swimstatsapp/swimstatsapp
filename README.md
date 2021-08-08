@@ -1,4 +1,7 @@
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/swimstatsapp/swimstatsapp)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/swimstatsapp/swimstatsapp)
+![GitHub contributors](https://img.shields.io/github/contributors/swimstatsapp/swimstatsapp)
+![GitHub last commit](https://img.shields.io/github/last-commit/swimstatsapp/swimstatsapp)
+
 <img width="400" src="./assets/swimstatsintropicture.png" align="left" />
 
 #
