@@ -1,3 +1,4 @@
+https://img.shields.io/github/commit-activity/m/swimstatsapp/swimstatsapp
 <img width="400" src="./assets/swimstatsintropicture.png" align="left" />
 
 #
