@@ -17,9 +17,15 @@ class _MeetsState extends State<Meets> {
     final swimmerPage = WebScraper("https://www.swimmingrank.com");
     if (await swimmerPage.loadWebPage(widget.fullUrl!)) {
       meets = swimmerPage.getElementTitle('tr');
-      meets!.removeRange(0, 5);
-      meets!.removeWhere((item) => item == meets![2]);
-      meets!.removeLast();
+      if (meets![4].contains('Male') || meets![4].contains('Female')) {
+        meets!.removeRange(0, 5);
+        meets!.removeWhere((item) => item == meets![2]);
+        meets!.removeLast();
+      } else {
+        meets!.removeRange(0, 4);
+        meets!.removeWhere((item) => item == meets![2]);
+        meets!.removeLast();
+      }
     }
   }
 

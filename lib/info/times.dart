@@ -112,6 +112,7 @@ class _TimesState extends State<Times> {
     times.add(widget.free400MTime);
     times.add(widget.free1000YTime);
     times.add('1000/800 FR');
+    print(widget.free1000YTime);
     times.add(widget.free800MTime);
     times.add(widget.free1650YTime);
     times.add('1650/1500 FR');

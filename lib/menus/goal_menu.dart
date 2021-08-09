@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:database/model/goal.dart';
 import 'package:database/database/goal_database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class GoalMenu extends StatefulWidget {
   const GoalMenu({Key? key}) : super(key: key);
@@ -28,14 +29,32 @@ class _GoalMenuState extends State<GoalMenu> {
   double needPercentValue = 0;
   String initialSort = 'All';
 
-  List<String> yardage = ['25', '50', '100', '200', '500', '1000', '1650'];
+  List<String> yardage = [
+    '25',
+    '50',
+    '100',
+    '200',
+    '400',
+    '500',
+    '1000',
+    '1650'
+  ];
   List<String> stroke = [
     'Freestyle',
     'Breaststroke',
     'Backstroke',
     'Butterfly'
   ];
-  List<String> SCYyardage = ['25', '50', '100', '200', '500', '1000', '1650'];
+  List<String> SCYyardage = [
+    '25',
+    '50',
+    '100',
+    '200',
+    '400',
+    '500',
+    '1000',
+    '1650'
+  ];
 
   List<String> LCMyardage = ['50', '100', '200', '400', '800', '1500'];
   List<String> SCMyardage = ['50', '100', '200', '400', '800', '1500'];
@@ -314,20 +333,36 @@ class _GoalMenuState extends State<GoalMenu> {
                         customTime = im400MTime!;
                       }
                     }
-                    final goal = Goal(
-                      name: name,
-                      unit: _currentUnit,
-                      distance: _currentYardage,
-                      stroke: _currentStroke,
-                      goalTime: goalTime,
-                      currentTime: customTime,
-                      needValue: calculateNeed(goalTime, customTime),
-                      needPercentValue:
-                          calculatePercentNeed(goalTime, customTime),
-                      currentComparison: _currentComparison,
-                    );
-                    await GoalDatabase.instance.create(goal);
-                    Navigator.pop(context);
+                    try {
+                      if (customTime != '00:00.00') {
+                        final goal = Goal(
+                          name: name,
+                          unit: _currentUnit,
+                          distance: _currentYardage,
+                          stroke: _currentStroke,
+                          goalTime: goalTime,
+                          currentTime: customTime,
+                          needValue: calculateNeed(goalTime, customTime),
+                          needPercentValue:
+                              calculatePercentNeed(goalTime, customTime),
+                          currentComparison: _currentComparison,
+                        );
+                        await GoalDatabase.instance.create(goal);
+                        Navigator.pop(context);
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: "Time does not exist.",
+                          backgroundColor: Colors.black.withOpacity(0.3),
+                          textColor: Colors.white,
+                        );
+                      }
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                        msg: "Time does not exist.",
+                        backgroundColor: Colors.black.withOpacity(0.3),
+                        textColor: Colors.white,
+                      );
+                    }
                   }
                 },
                 child: Row(
@@ -434,7 +469,7 @@ class _GoalMenuState extends State<GoalMenu> {
                               if (_currentYardage == '400' &&
                                   _currentUnit == "SCY") {
                                 stroke = fourhundredeventsshortcourse;
-                                _currentStroke = 'Freestyle';
+                                _currentStroke = 'IM';
                               }
                               if (_currentYardage == '800' ||
                                   _currentYardage == "1000") {

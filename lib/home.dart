@@ -363,7 +363,7 @@ class _HomeState extends State<Home> {
             swimmers
                 .map((swimmer) => InkWell(
                       onTap: () {
-                        print('Clicked swimmer');
+                        print(swimmer.free1000YTime);
                         Navigator.pushNamed(
                           context,
                           '/swimmerinfo',
@@ -382,6 +382,12 @@ class _HomeState extends State<Home> {
                                           onTap: () async {
                                             await SwimmerDatabase.instance
                                                 .delete(swimmer.id!);
+                                            Fluttertoast.showToast(
+                                              msg: "Deleted swimmer.",
+                                              backgroundColor:
+                                                  Colors.black.withOpacity(0.3),
+                                              textColor: Colors.white,
+                                            );
                                             refreshSwimmers();
                                             Navigator.pop(context);
                                           }),
@@ -1263,12 +1269,26 @@ class _HomeState extends State<Home> {
             child: Icon(Icons.add),
             foregroundColor: Colors.white,
             backgroundColor: Colors.blue[400],
-            label: 'Add Swimmer',
+            label: 'Add By Name',
             labelStyle: TextStyle(
               fontSize: 18.0,
             ),
             onTap: () async {
               Navigator.pushNamed(context, '/swimmermenu').then((value) {
+                refreshSwimmers();
+              });
+            },
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.add),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.blue[400],
+            label: 'Add By Identifier',
+            labelStyle: TextStyle(
+              fontSize: 18.0,
+            ),
+            onTap: () async {
+              Navigator.pushNamed(context, '/identifiermenu').then((value) {
                 refreshSwimmers();
               });
             },

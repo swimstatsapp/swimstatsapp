@@ -4,14 +4,14 @@ import 'package:database/model/swimmer.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:web_scraper/web_scraper.dart';
 
-class SwimmerMenu extends StatefulWidget {
-  const SwimmerMenu({Key? key}) : super(key: key);
+class IdentifierMenu extends StatefulWidget {
+  const IdentifierMenu({Key? key}) : super(key: key);
 
   @override
-  _SwimmerMenuState createState() => _SwimmerMenuState();
+  _IdentifierMenuState createState() => _IdentifierMenuState();
 }
 
-class _SwimmerMenuState extends State<SwimmerMenu> {
+class _IdentifierMenuState extends State<IdentifierMenu> {
   @override
   Widget build(BuildContext context) {
     //key for form validation
@@ -30,16 +30,12 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
     String swimmerGender = '';
     String swimmerLastMeet = '';
     String swimmerLastMeetDate = '';
+    String swimmerIdentifier = '';
 
-    String _date = '';
-    String _birthdayDay = '';
-    String _birthdayMonth = '';
-    String _birthdayYear = '';
-
-    Widget _buildFirstName() {
+    Widget _buildIdentifier() {
       return TextFormField(
           decoration: InputDecoration(
-            hintText: 'First Name',
+            hintText: 'Identifier',
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(5.5),
@@ -55,78 +51,8 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
             filled: true,
             fillColor: Colors.blue[50],
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'First Name is Required';
-            }
-          },
           onSaved: (value) {
-            _firstName = value!;
-          });
-    }
-
-    Widget _buildLastName() {
-      return TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Last Name',
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(5.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(5.5),
-            ),
-            prefixIcon: Icon(
-              Icons.person,
-              color: Colors.blueAccent,
-            ),
-            filled: true,
-            fillColor: Colors.blue[50],
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Last Name is Required';
-            }
-          },
-          onSaved: (value) {
-            _lastName = value!;
-          });
-    }
-
-    Widget _buildDateInput() {
-      return TextFormField(
-          keyboardType: TextInputType.datetime,
-          decoration: InputDecoration(
-            hintText: 'mm/dd/yyyy',
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(5.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(5.5),
-            ),
-            prefixIcon: Icon(
-              Icons.calendar_today,
-              color: Colors.blueAccent,
-            ),
-            filled: true,
-            fillColor: Colors.blue[50],
-          ),
-          validator: (value) {
-            if (RegExp(r"\d\d\/\d\d\/\d\d\d\d").hasMatch(value!) == false) {
-              return 'Invalid date.';
-            }
-          },
-          onSaved: (value) {
-            _date = value!;
-
-            _birthdayMonth = _date.substring(0, 2);
-
-            _birthdayDay = _date.substring(3, 5);
-
-            _birthdayYear = _date.substring(8, 10);
+            swimmerIdentifier = value!;
           });
     }
 
@@ -185,13 +111,6 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
                                         style: TextStyle(color: Colors.white)),
                                   ]),
                             )));
-
-                    // identifier algorithm
-                    int birthdayYearFirst =
-                        int.parse(_birthdayYear.substring(0, 1));
-
-                    int birthdayYearSecond =
-                        int.parse(_birthdayYear.substring(1, 2));
 
                     // //creating usable LSC output
                     if (_currentLSC == 'Florida') {
@@ -407,41 +326,6 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
                       '5'
                     ];
 
-                    int birthdayMonth = int.parse(_birthdayMonth);
-                    int birthdayDay = int.parse(_birthdayDay);
-                    String firstLetter =
-                        _firstName!.substring(0, 1).toUpperCase();
-
-                    String secondLetter = letter[birthdayMonth];
-
-                    String thirdLetter =
-                        _firstName!.substring(1, 2).toUpperCase();
-
-                    String fourthLetter = letter[birthdayDay];
-
-                    String fifthLetter =
-                        _firstName!.substring(2, 3).toUpperCase();
-
-                    String sixthLetter = letter[birthdayYearFirst];
-
-                    String seventhLetter =
-                        _lastName!.substring(0, 1).toUpperCase();
-
-                    String eigthLetter = letter[birthdayYearSecond];
-
-                    String ninthLetter =
-                        _lastName!.substring(1, 2).toUpperCase();
-
-                    String swimmerIdentifier = firstLetter +
-                        secondLetter +
-                        thirdLetter +
-                        fourthLetter +
-                        fifthLetter +
-                        sixthLetter +
-                        seventhLetter +
-                        eigthLetter +
-                        ninthLetter;
-
                     String fullUrl = "/" +
                         _currentRegion +
                         "/strokes/strokes_" +
@@ -483,6 +367,21 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
                         WebScraper("https://www.swimmingrank.com");
 
                     try {
+                      // scraping swimmer name
+                      if (await swimmerPage.loadWebPage(fullUrl)) {
+                        List<Map<String, dynamic>> elements =
+                            swimmerPage.getElement('h1', ['']);
+                        var name = elements[0]['title'];
+                        print(name);
+                        if (name == 'Swimming Rank') {
+                          Navigator.pop(context);
+                          errorDialog(context);
+                        } else {
+                          List listofNames = name.split(" ");
+                          _firstName = listofNames[0];
+                          _lastName = listofNames[1];
+                        }
+                      }
                       // scraping swimmer age
                       if (await swimmerPage.loadWebPage(fullUrl)) {
                         List<Map<String, dynamic>> elements =
@@ -1089,6 +988,7 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
                             "/" +
                             swimmerIdentifier +
                             "_50FR.html";
+
                         final free50Scrap =
                             WebScraper('https://swimmingrank.com');
                         if (await free50Scrap.loadWebPage('$free50Url')) {
@@ -1659,9 +1559,23 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
               key: _formkey,
               child: ListView(
                 children: [
-                  _buildFirstName(),
+                  Text('Identifier',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      )),
                   SizedBox(height: 10),
-                  _buildLastName(),
+                  _buildIdentifier(),
+                  SizedBox(height: 10),
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.info),
+                      SizedBox(width: 10),
+                      Flexible(
+                          child: Text(
+                              'Share your identifier by clicking the three dot menu on the swimmer\'s card.')),
+                    ],
+                  ),
                   SizedBox(height: 10),
                   Text('Region',
                       style: TextStyle(
@@ -1981,13 +1895,6 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text('Birthday Date',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      )),
-
-                  _buildDateInput(),
 
                   SizedBox(height: 20),
                   Row(

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:database/model/goal.dart';
 import 'package:database/database/goal_database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class UpdateGoalMenu extends StatefulWidget {
   const UpdateGoalMenu({Key? key}) : super(key: key);
@@ -354,22 +355,38 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
                         customTime = im400MTime!;
                       }
                     }
-                    final goal = Goal(
-                      id: id,
-                      name: name,
-                      unit: currentUnit,
-                      distance: currentYardage,
-                      stroke: currentStroke,
-                      goalTime: goalTime,
-                      currentTime: customTime,
-                      needValue: calculateNeed(goalTime, customTime),
-                      needPercentValue:
-                          calculatePercentNeed(goalTime, customTime),
-                      currentComparison: _currentComparison,
-                    );
-                    print(goal.stroke);
-                    await GoalDatabase.instance.update(goal);
-                    Navigator.pop(context);
+                    try {
+                      if (customTime != '00:00.00') {
+                        final goal = Goal(
+                          id: id,
+                          name: name,
+                          unit: currentUnit,
+                          distance: currentYardage,
+                          stroke: currentStroke,
+                          goalTime: goalTime,
+                          currentTime: customTime,
+                          needValue: calculateNeed(goalTime, customTime),
+                          needPercentValue:
+                              calculatePercentNeed(goalTime, customTime),
+                          currentComparison: _currentComparison,
+                        );
+                        print(goal.stroke);
+                        await GoalDatabase.instance.update(goal);
+                        Navigator.pop(context);
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: "Time does not exist.",
+                          backgroundColor: Colors.black.withOpacity(0.3),
+                          textColor: Colors.white,
+                        );
+                      }
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                        msg: "Time does not exist.",
+                        backgroundColor: Colors.black.withOpacity(0.3),
+                        textColor: Colors.white,
+                      );
+                    }
                   }
                 },
                 child: Row(

@@ -12,6 +12,7 @@ import 'package:database/info/swimmer_info.dart';
 import 'package:database/menus/loading.dart';
 import 'package:database/menus/goal_menu.dart';
 import 'package:database/menus/updategoal_menu.dart';
+import 'package:database/menus/identifier_menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           '/termsandconditions': (context) => TermsAndConditions(),
           '/privacypolicy': (context) => PrivacyPolicy(),
           '/swimmermenu': (context) => SwimmerMenu(),
+          '/identifiermenu': (context) => IdentifierMenu(),
           '/swimmerinfo': (context) => SwimmerInfo(),
           '/loading': (context) => Loading(),
           '/goalmenu': (context) => GoalMenu(),
