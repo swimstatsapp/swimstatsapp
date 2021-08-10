@@ -134,7 +134,7 @@ class _CompareState extends State<Compare> {
   Future refreshGoals() async {
     setState(() => isLoading = true);
 
-    goals = await GoalDatabase.instance.readAll() as List<Goal>;
+    goals = await GoalDatabase.instance.readAll();
     for (int x = 0; x < goals.length; x++) {
       if (goals[x].name == widget.name) {
         goals[x].isVisible = true;
