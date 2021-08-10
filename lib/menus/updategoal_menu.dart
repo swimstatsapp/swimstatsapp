@@ -19,7 +19,7 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
   bool showInput = true;
 
   String? _currentComparison = 'Custom';
-  String? comparisonText = 'Current Time';
+
   String? name;
   String? currentUnit;
   String? currentYardage;
@@ -57,6 +57,7 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
   String? im200MTime;
   String? im400YTime;
   String? im400MTime;
+  int? id;
 
   List<String> yardage = ['25', '50', '100', '200', '500', '1000', '1650'];
   List<String> stroke = [
@@ -158,8 +159,6 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
   @override
   Widget build(BuildContext context) {
     Map information = ModalRoute.of(context)!.settings.arguments as Map;
-
-    int? id;
     if (hasStarted == false) {
       name = information['name'];
       currentUnit = information['unit'];
@@ -197,6 +196,7 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
       im200MTime = information['im200MTime'];
       im400YTime = information['im400YTime'];
       im400MTime = information['im400MTime'];
+      print('fetching from info');
     }
     return Scaffold(
         appBar: AppBar(
@@ -211,181 +211,184 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
             TextButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate() == true) {
-                    _formKey.currentState!.save();
-                    if (_currentComparison == 'Current Time') {
+                    if (_currentComparison == 'Custom') {
+                      _formKey.currentState!.save();
+
+                      final goal = Goal(
+                        id: id,
+                        name: name,
+                        unit: currentUnit,
+                        distance: currentYardage,
+                        stroke: currentStroke,
+                        goalTime: goalTime,
+                        currentTime: customTime,
+                        needValue: calculateNeed(goalTime, customTime),
+                        needPercentValue:
+                            calculatePercentNeed(goalTime, customTime),
+                        currentComparison: _currentComparison,
+                      );
+                      print(goal.id);
+                      await GoalDatabase.instance.update(goal);
+                      Navigator.pop(context);
+                    } else {
+                      String currentTime = '';
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '50') {
-                        customTime = free50YTime!;
+                        currentTime = free50YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
-                          currentYardage == '500') {
-                        customTime = free50MTime!;
+                          currentYardage == '50') {
+                        currentTime = free50MTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '100') {
-                        customTime = free100YTime!;
+                        currentTime = free100YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '100') {
-                        customTime = free100MTime!;
+                        currentTime = free100MTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '200') {
-                        customTime = free200YTime!;
+                        currentTime = free200YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '200') {
-                        customTime = free200MTime!;
+                        currentTime = free200MTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '500') {
-                        customTime = free500YTime!;
+                        currentTime = free500YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '400') {
-                        customTime = free400MTime!;
+                        currentTime = free400MTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '1000') {
-                        customTime = free1000YTime!;
+                        currentTime = free1000YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '800') {
-                        customTime = free800MTime!;
+                        currentTime = free800MTime!;
                       }
 
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '1650') {
-                        customTime = free1650YTime!;
+                        currentTime = free1650YTime!;
                       }
                       if (currentStroke == 'Freestyle' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '1500') {
-                        customTime = free1500MTime!;
+                        currentTime = free1500MTime!;
                       }
                       if (currentStroke == 'Backstroke' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '100') {
-                        customTime = back100YTime!;
+                        currentTime = back100YTime!;
                       }
                       if (currentStroke == 'Backstroke' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '100') {
-                        customTime = back100MTime!;
+                        currentTime = back100MTime!;
                       }
                       if (currentStroke == 'Backstroke' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '200') {
-                        customTime = back200YTime!;
+                        currentTime = back200YTime!;
                       }
                       if (currentStroke == 'Backstroke' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '200') {
-                        customTime = back200MTime!;
+                        currentTime = back200MTime!;
                       }
                       if (currentStroke == 'Breaststroke' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '100') {
-                        customTime = brst100YTime!;
+                        currentTime = brst100YTime!;
                       }
                       if (currentStroke == 'Breaststroke' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '100') {
-                        customTime = brst100MTime!;
+                        currentTime = brst100MTime!;
                       }
                       if (currentStroke == 'Breaststroke' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '200') {
-                        customTime = brst200YTime!;
+                        currentTime = brst200YTime!;
                       }
                       if (currentStroke == 'Breaststroke' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '200') {
-                        customTime = brst200MTime!;
+                        currentTime = brst200MTime!;
                       }
                       if (currentStroke == 'Butterfly' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '100') {
-                        customTime = fly100YTime!;
+                        currentTime = fly100YTime!;
                       }
                       if (currentStroke == 'Butterfly' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '100') {
-                        customTime = fly100MTime!;
+                        currentTime = fly100MTime!;
                       }
                       if (currentStroke == 'Butterfly' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '200') {
-                        customTime = fly200YTime!;
+                        currentTime = fly200YTime!;
                       }
                       if (currentStroke == 'Butterfly' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '200') {
-                        customTime = fly200MTime!;
+                        currentTime = fly200MTime!;
                       }
                       if (currentStroke == 'IM' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '200') {
-                        customTime = im200YTime!;
+                        currentTime = im200YTime!;
                       }
                       if (currentStroke == 'IM' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '200') {
-                        customTime = im200MTime!;
+                        currentTime = im200MTime!;
                       }
                       if (currentStroke == 'IM' &&
                           currentUnit == 'SCY' &&
                           currentYardage == '400') {
-                        customTime = im400YTime!;
+                        currentTime = im400YTime!;
                       }
                       if (currentStroke == 'IM' &&
                           currentUnit == 'LCM' &&
                           currentYardage == '400') {
-                        customTime = im400MTime!;
+                        currentTime = im400MTime!;
                       }
-                    }
-                    try {
-                      if (customTime != '00:00.00') {
-                        final goal = Goal(
-                          id: id,
-                          name: name,
-                          unit: currentUnit,
-                          distance: currentYardage,
-                          stroke: currentStroke,
-                          goalTime: goalTime,
-                          currentTime: customTime,
-                          needValue: calculateNeed(goalTime, customTime),
-                          needPercentValue:
-                              calculatePercentNeed(goalTime, customTime),
-                          currentComparison: _currentComparison,
-                        );
-                        print(goal.stroke);
-                        await GoalDatabase.instance.update(goal);
-                        Navigator.pop(context);
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: "Time does not exist.",
-                          backgroundColor: Colors.black.withOpacity(0.3),
-                          textColor: Colors.white,
-                        );
-                      }
-                    } catch (e) {
-                      Fluttertoast.showToast(
-                        msg: "Time does not exist.",
-                        backgroundColor: Colors.black.withOpacity(0.3),
-                        textColor: Colors.white,
+                      final goal = Goal(
+                        id: id,
+                        name: name,
+                        unit: currentUnit,
+                        distance: currentYardage,
+                        stroke: currentStroke,
+                        goalTime: goalTime,
+                        currentTime: currentTime,
+                        needValue: calculateNeed(goalTime, currentTime),
+                        needPercentValue:
+                            calculatePercentNeed(goalTime, currentTime),
+                        currentComparison: _currentComparison,
                       );
+                      print(goal.id);
+                      await GoalDatabase.instance.update(goal);
+                      Navigator.pop(context);
                     }
                   }
                 },
@@ -475,7 +478,6 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
 
                               if (_currentComparison == 'Current Time') {
                                 showInput = false;
-                                customTime = '00:00.00';
                               } else if (_currentComparison == 'Custom') {
                                 showInput = true;
                               }
@@ -518,12 +520,7 @@ class _UpdateGoalMenuState extends State<UpdateGoalMenu> {
                             }
                           },
                           onSaved: (value) {
-                            if (_currentComparison == 'Current Time') {
-                              showInput = false;
-                              customTime = '00:00.00';
-                            } else {
-                              customTime = value!;
-                            }
+                            customTime = value!;
                           }),
                     ),
                   ],

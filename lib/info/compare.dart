@@ -142,163 +142,163 @@ class _CompareState extends State<Compare> {
         goals[x].isVisible = false;
       }
 
-      if (goals[x].currentComparison == 'Current Time') {
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '50') {
-          goals[x].currentTime = widget.free50YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '500') {
-          goals[x].currentTime = widget.free50MTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.free100YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.free100MTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.free200YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.free200MTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '500') {
-          goals[x].currentTime = widget.free500YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '400') {
-          goals[x].currentTime = widget.free400MTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '1000') {
-          goals[x].currentTime = widget.free1000YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '800') {
-          goals[x].currentTime = widget.free800MTime;
-        }
+      // if (goals[x].currentComparison == 'Current Time') {
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '50') {
+      //     goals[x].currentTime = widget.free50YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '50') {
+      //     goals[x].currentTime = widget.free50MTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.free100YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.free100MTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.free200YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.free200MTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '500') {
+      //     goals[x].currentTime = widget.free500YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '400') {
+      //     goals[x].currentTime = widget.free400MTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '1000') {
+      //     goals[x].currentTime = widget.free1000YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '800') {
+      //     goals[x].currentTime = widget.free800MTime;
+      //   }
 
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '1650') {
-          goals[x].currentTime = widget.free1650YTime;
-        }
-        if (goals[x].stroke == 'Freestyle' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '1500') {
-          goals[x].currentTime = widget.free1500MTime;
-        }
-        if (goals[x].stroke == 'Backstroke' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.back100YTime;
-        }
-        if (goals[x].stroke == 'Backstroke' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.back100MTime;
-        }
-        if (goals[x].stroke == 'Backstroke' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.back200YTime;
-        }
-        if (goals[x].stroke == 'Backstroke' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.back200MTime;
-        }
-        if (goals[x].stroke == 'Breaststroke' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.brst100YTime;
-        }
-        if (goals[x].stroke == 'Breaststroke' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.brst100MTime;
-        }
-        if (goals[x].stroke == 'Breaststroke' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.brst200YTime;
-        }
-        if (goals[x].stroke == 'Breaststroke' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.brst200MTime;
-        }
-        if (goals[x].stroke == 'Butterfly' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.fly100YTime;
-        }
-        if (goals[x].stroke == 'Butterfly' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '100') {
-          goals[x].currentTime = widget.fly100MTime;
-        }
-        if (goals[x].stroke == 'Butterfly' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.fly200YTime;
-        }
-        if (goals[x].stroke == 'Butterfly' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.fly200MTime;
-        }
-        if (goals[x].stroke == 'IM' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.im200YTime;
-        }
-        if (goals[x].stroke == 'IM' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '200') {
-          goals[x].currentTime = widget.im200MTime;
-        }
-        if (goals[x].stroke == 'IM' &&
-            goals[x].unit == 'SCY' &&
-            goals[x].distance == '400') {
-          goals[x].currentTime = widget.im400YTime;
-        }
-        if (goals[x].stroke == 'IM' &&
-            goals[x].unit == 'LCM' &&
-            goals[x].distance == '400') {
-          goals[x].currentTime = widget.im400MTime;
-        }
-      }
-      final goal = Goal(
-        id: goals[x].id,
-        name: goals[x].name,
-        unit: goals[x].unit,
-        distance: goals[x].distance,
-        stroke: goals[x].stroke,
-        goalTime: goals[x].goalTime,
-        currentTime: goals[x].currentTime,
-        needValue: calculateNeed(goals[x].goalTime, goals[x].currentTime),
-        needPercentValue:
-            calculatePercentNeed(goals[x].goalTime, goals[x].currentTime),
-        currentComparison: goals[x].currentComparison,
-      );
-      await GoalDatabase.instance.update(goal);
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '1650') {
+      //     goals[x].currentTime = widget.free1650YTime;
+      //   }
+      //   if (goals[x].stroke == 'Freestyle' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '1500') {
+      //     goals[x].currentTime = widget.free1500MTime;
+      //   }
+      //   if (goals[x].stroke == 'Backstroke' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.back100YTime;
+      //   }
+      //   if (goals[x].stroke == 'Backstroke' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.back100MTime;
+      //   }
+      //   if (goals[x].stroke == 'Backstroke' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.back200YTime;
+      //   }
+      //   if (goals[x].stroke == 'Backstroke' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.back200MTime;
+      //   }
+      //   if (goals[x].stroke == 'Breaststroke' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.brst100YTime;
+      //   }
+      //   if (goals[x].stroke == 'Breaststroke' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.brst100MTime;
+      //   }
+      //   if (goals[x].stroke == 'Breaststroke' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.brst200YTime;
+      //   }
+      //   if (goals[x].stroke == 'Breaststroke' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.brst200MTime;
+      //   }
+      //   if (goals[x].stroke == 'Butterfly' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.fly100YTime;
+      //   }
+      //   if (goals[x].stroke == 'Butterfly' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '100') {
+      //     goals[x].currentTime = widget.fly100MTime;
+      //   }
+      //   if (goals[x].stroke == 'Butterfly' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.fly200YTime;
+      //   }
+      //   if (goals[x].stroke == 'Butterfly' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.fly200MTime;
+      //   }
+      //   if (goals[x].stroke == 'IM' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.im200YTime;
+      //   }
+      //   if (goals[x].stroke == 'IM' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '200') {
+      //     goals[x].currentTime = widget.im200MTime;
+      //   }
+      //   if (goals[x].stroke == 'IM' &&
+      //       goals[x].unit == 'SCY' &&
+      //       goals[x].distance == '400') {
+      //     goals[x].currentTime = widget.im400YTime;
+      //   }
+      //   if (goals[x].stroke == 'IM' &&
+      //       goals[x].unit == 'LCM' &&
+      //       goals[x].distance == '400') {
+      //     goals[x].currentTime = widget.im400MTime;
+      //   }
+      // }
+      // final goal = Goal(
+      //   id: goals[x].id,
+      //   name: goals[x].name,
+      //   unit: goals[x].unit,
+      //   distance: goals[x].distance,
+      //   stroke: goals[x].stroke,
+      //   goalTime: goals[x].goalTime,
+      //   currentTime: goals[x].currentTime,
+      //   needValue: calculateNeed(goals[x].goalTime, goals[x].currentTime),
+      //   needPercentValue:
+      //       calculatePercentNeed(goals[x].goalTime, goals[x].currentTime),
+      //   currentComparison: goals[x].currentComparison,
+      // );
+      // await GoalDatabase.instance.update(goal);
     }
 
     setState(() => isLoading = false);
@@ -511,7 +511,7 @@ class _CompareState extends State<Compare> {
                                           'goalTime': element.goalTime,
                                           'currentTime': element.currentTime,
                                           'free50YTime': widget.free50YTime,
-                                          'free50mTime': widget.free50MTime,
+                                          'free50MTime': widget.free50MTime,
                                           'free100YTime': widget.free100YTime,
                                           'free100MTime': widget.free100MTime,
                                           'free200YTime': widget.free200YTime,
@@ -572,7 +572,7 @@ class _CompareState extends State<Compare> {
           Navigator.of(context).pushNamed('/goalmenu', arguments: {
             'name': widget.name,
             'free50YTime': widget.free50YTime,
-            'free50mTime': widget.free50MTime,
+            'free50MTime': widget.free50MTime,
             'free100YTime': widget.free100YTime,
             'free100MTime': widget.free100MTime,
             'free200YTime': widget.free200YTime,

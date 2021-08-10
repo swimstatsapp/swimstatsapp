@@ -33,7 +33,7 @@ class _SwimmerInfoState extends State<SwimmerInfo> {
           TextButton(
               child: Text('Click'),
               onPressed: () {
-                print(information['swimmer'].free50YTime);
+                print(information['swimmer'].free50MTime);
               }),
         ],
         title: Text(

@@ -198,7 +198,7 @@ class _GoalMenuState extends State<GoalMenu> {
                       }
                       if (_currentStroke == 'Freestyle' &&
                           _currentUnit == 'LCM' &&
-                          _currentYardage == '500') {
+                          _currentYardage == '50') {
                         customTime = free50MTime!;
                       }
                       if (_currentStroke == 'Freestyle' &&

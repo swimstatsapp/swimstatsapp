@@ -484,10 +484,14 @@ class _SwimmerMenuState extends State<SwimmerMenu> {
 
                     try {
                       // scraping swimmer age
-                      if (await swimmerPage.loadWebPage(fullUrl)) {
-                        List<Map<String, dynamic>> elements =
-                            swimmerPage.getElement('td.ui-helper-center', ['']);
-                        swimmerAge = elements[2]['title'];
+                      try {
+                        if (await swimmerPage.loadWebPage(fullUrl)) {
+                          List<Map<String, dynamic>> elements = swimmerPage
+                              .getElement('td.ui-helper-center', ['']);
+                          swimmerAge = elements[2]['title'];
+                        }
+                      } catch (e) {
+                        errorDialog(context);
                       }
                       // scraping swimmer club
                       if (await swimmerPage.loadWebPage(fullUrl)) {
