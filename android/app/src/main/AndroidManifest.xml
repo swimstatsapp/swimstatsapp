@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.swimstatsapp">
+    package="com.swimstats.app">
    <application
         android:label="SwimStats"
         android:icon="@mipmap/ic_launcher">
