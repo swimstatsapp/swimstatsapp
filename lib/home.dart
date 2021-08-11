@@ -561,6 +561,18 @@ class _HomeState extends State<Home> {
 
                   _launchURL();
                 }),
+            ListTile(
+                leading: Icon(Icons.bug_report, color: Colors.black),
+                title: Text('Report Bug'),
+                onTap: () {
+                  String _url =
+                      'https://github.com/swimstatsapp/swimstatsapp/issues';
+                  void _launchURL() async => await canLaunch(_url)
+                      ? await launch(_url)
+                      : throw 'Could not launch $_url';
+
+                  _launchURL();
+                }),
           ],
         ),
       ),

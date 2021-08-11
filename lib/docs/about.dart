@@ -48,6 +48,9 @@ class About extends StatelessWidget {
                 height: 10,
               ),
               Center(
+                child: Text('Version 1.0.2'),
+              ),
+              Center(
                 child: TextButton(
                     child: Text('Visit our website'),
                     onPressed: () {
