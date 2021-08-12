@@ -1,0 +1,1 @@
+Various swimmer data, including personal best times, time standards, and time comparisons can all all be accesed through this application
