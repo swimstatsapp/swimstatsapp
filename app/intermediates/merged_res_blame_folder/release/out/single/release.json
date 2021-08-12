@@ -1,0 +1,186 @@
+[
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_corner.xml.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/build/fluttertoast/intermediates/packaged_res/release/drawable/corner.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_notification_template_part_time.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-mdpi_launch_image.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-mdpi/launch_image.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_notification_action_tombstone.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_toast_bg.xml.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/build/fluttertoast/intermediates/packaged_res/release/drawable/toast_bg.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_notification_template_icon_group.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_notification_action.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_notification_bg_low.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-mdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout-v16_notification_template_custom_big.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout-v16/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout-v21_notification_template_icon_group.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_notification_tile_bg.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_custom_dialog.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout-v21_notification_template_custom_big.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_notification_template_part_chronometer.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_launch_background.xml.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/drawable/launch_background.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-v21_notification_action_background.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout_toast_custom.xml.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/build/fluttertoast/intermediates/packaged_res/release/layout/toast_custom.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_notification_icon_background.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xxhdpi_launch_image.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xxhdpi/launch_image.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout-v21_notification_action_tombstone.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-v21_launch_background.xml.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xhdpi_launch_image.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xhdpi/launch_image.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable_notification_bg.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-hdpi_launch_image.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-hdpi/launch_image.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-hdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/layout-v21_notification_action.xml.flat",
+        "source": "/home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xxxhdpi_launch_image.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xxxhdpi/launch_image.png"
+    },
+    {
+        "merged": "/home/aluo/Documents/GitHub/swimstatsapp/build/app/intermediates/res/merged/release/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    }
+]

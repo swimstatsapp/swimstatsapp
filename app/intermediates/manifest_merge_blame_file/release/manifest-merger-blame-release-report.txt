@@ -1,0 +1,98 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.swimstats.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:41:5-66
+11-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:41:22-64
+12
+13    <application
+13-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:3:4-40:19
+14        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+14-->[androidx.core:core:1.1.0] /home/aluo/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
+15        android:icon="@mipmap/ic_launcher"
+15-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:5:9-43
+16        android:label="SwimStats" >
+16-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:4:9-34
+17        <activity
+17-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:6:9-34:20
+18            android:name="com.swimstats.app.MainActivity"
+18-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:7:13-41
+19            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+19-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:10:13-163
+20            android:hardwareAccelerated="true"
+20-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:11:13-47
+21            android:launchMode="singleTop"
+21-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:8:13-43
+22            android:theme="@style/LaunchTheme"
+22-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:9:13-47
+23            android:windowSoftInputMode="adjustResize" >
+23-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:12:13-55
+24
+25            <!--
+26                 Specifies an Android theme to apply to this Activity as soon as
+27                 the Android process has started. This theme is visible to the user
+28                 while the Flutter UI initializes. After that, this theme continues
+29                 to determine the Window background behind the Flutter UI.
+30            -->
+31            <meta-data
+31-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:17:13-20:17
+32                android:name="io.flutter.embedding.android.NormalTheme"
+32-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:18:15-70
+33                android:resource="@style/NormalTheme" />
+33-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:19:15-52
+34            <!--
+35                 Displays an Android View that continues showing the launch screen
+36                 Drawable until Flutter paints its first frame, then this splash
+37                 screen fades out. A splash screen is useful to avoid any visual
+38                 gap between the end of Android's launch screen and the painting of
+39                 Flutter's first frame.
+40            -->
+41            <meta-data
+41-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:26:13-29:17
+42                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+42-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:27:15-79
+43                android:resource="@drawable/launch_background" />
+43-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:28:15-61
+44
+45            <intent-filter>
+45-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:30:13-33:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:31:17-68
+46-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:31:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:32:17-76
+48-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:32:27-74
+49            </intent-filter>
+50        </activity>
+51        <!--
+52             Don't delete the meta-data below.
+53             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+54        -->
+55        <meta-data
+55-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:37:9-39:33
+56            android:name="flutterEmbedding"
+56-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:38:13-44
+57            android:value="2" />
+57-->/home/aluo/Documents/GitHub/swimstatsapp/android/app/src/main/AndroidManifest.xml:39:13-30
+58
+59        <activity
+59-->[:url_launcher] /home/aluo/Documents/GitHub/swimstatsapp/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
+60            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+60-->[:url_launcher] /home/aluo/Documents/GitHub/swimstatsapp/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
+61            android:exported="false"
+61-->[:url_launcher] /home/aluo/Documents/GitHub/swimstatsapp/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
+62            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+62-->[:url_launcher] /home/aluo/Documents/GitHub/swimstatsapp/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
+63    </application>
+64
+65</manifest>

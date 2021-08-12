@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/swimstats/app/BuildConfig.java
+ com.swimstats.app.BuildConfig
