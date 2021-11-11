@@ -41,6 +41,7 @@ git clone https://github.com/swimstatsapp/swimstatsapp.git
 
 Open terminal in the swimstatsapp directory and run:
 ```
+flutter pub get
 flutter run
 ```
 
